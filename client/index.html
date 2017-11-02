@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
     <base href="/">
     <link rel="stylesheet" href="/public/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -29,8 +35,23 @@
       </p>
     </form>
 </div>
-<ui-gmap-google-map center='Gainesville' zoom='13'>
-</ui-gmap-google-map>
+<div id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: 29.6516, lng: -82.3248};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY&callback=initMap">
+    </script>
 
 
 
