@@ -1,0 +1,123 @@
+#searchBar {
+  margin: 15px 10px;
+}
+
+nav {
+  margin-top: 20px;
+  margin-left: 60px;
+}
+
+.tableWrapper {
+  max-height: 500px;
+  overflow: auto;
+}
+
+#loader {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.formWrapper {
+  border-radius: 5px;
+  background-color: #e5f2ff;
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+.angular-google-map-container {
+  height: 500px;
+}
+.content {
+  margin-top: 50px;
+}
+.undecorated-link:hover {
+  text-decoration: none;
+}
+[ng\:cloak],
+[ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
+ form {
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  legend {
+    margin-top: 10px;
+  }
+
+  h3 {
+    background-color: lightblue;
+    width: 300px;
+    border-style: solid;
+    padding: 15px;
+    padding-bottom: 150px;
+    max-height: 75px;
+    float: left;
+    text-align: center;
+    font-family: futura, "Trebuchet MS", Arial, sans-serif;
+  }
+
+  ng-map {
+    width: 70%;
+    height: 150%;
+    margin-right: 10px;
+    float: right;
+  }
+
+  h4 {
+    max-width: 300px;
+    margin-top: 300px;
+    margin-left: 20px;
+  }
+
+  .info {
+    display: none;
+  }
+.header-profile-image {
+  opacity: 0.8;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.open .header-profile-image,
+a:hover .header-profile-image {
+  opacity: 1;
+}
+.user-header-dropdown-toggle {
+  padding-top: 11px !important;
+  padding-bottom: 11px !important;
+}
+.error-text {
+  display: none;
+}
+.has-error .help-block.error-text {
+  display: block;
+}
+.has-error .help-inline.error-text {
+  display: inline;
+}
+.boxed {
+  border: 1px solid black ;
+}
+  .box{
+  width: 150px;
+  height: 80px;
+  z-index: 2;
+  display: none;
+}
+ 
+.white{
+  background:#fff;
+  border:1px solid black;
+  display: block;
+}
+.zip{
+  font-size: 20px;
+  color: red;
+}
