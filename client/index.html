@@ -35,20 +35,26 @@
       </p>
     </form>
 </div>
+    <div style="display: inline;">
+      <input onclick="clearMarkers();" type=button value="Hide Markers">
+      <input onclick="showMarkers();" type=button value="Show All Markers">
+    </div>
 <div id="map"></div>
     <script>
+      var map;
+      var gainesville = {lat: 29.6516, lng: -82.3248};
+      var zip32601 = {lat: 29.6422516, lng: -82.3289111};
+      var zip32603 = {lat: 29.6577485, lng: -82.3479016};
+      var zip32605 = {lat: 29.6793128, lng: -82.3723105};
+      var zip32606 = {lat: 29.6788293, lng: -82.4644445};
+      var zip32607 = {lat: 29.647247, lng: -82.4156829};
+      var zip32608 = {lat: 29.6156734, lng: -82.3659168};
+      var zip32609 = {lat: 29.7935588, lng: -82.2583297};
+      var zip32641 = {lat: 29.6311155, lng: -82.2365981};
+      var zip32653 = {lat: 29.7429556, lng: -82.3777335};
+      var markers = [];
       function initMap() {
-        var gainesville = {lat: 29.6516, lng: -82.3248};
-        var zip32601 = {lat: 29.6422516, lng: -82.3289111};
-        var zip32603 = {lat: 29.6577485, lng: -82.3479016};
-        var zip32605 = {lat: 29.6793128, lng: -82.3723105};
-        var zip32606 = {lat: 29.6788293, lng: -82.4644445};
-        var zip32607 = {lat: 29.647247, lng: -82.4156829};
-        var zip32608 = {lat: 29.6156734, lng: -82.3659168};
-        var zip32609 = {lat: 29.7935588, lng: -82.2583297};
-        var zip32641 = {lat: 29.6311155, lng: -82.2365981};
-        var zip32653 = {lat: 29.7429556, lng: -82.3777335};
-        var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
           center: gainesville
         });
@@ -160,6 +166,26 @@
         marker32653.addListener('click',function() {
           info32653.open(map,marker32653);
         });
+      markers.push(marker32601);
+      markers.push(marker32603);
+      markers.push(marker32605);
+      markers.push(marker32606);
+      markers.push(marker32607);
+      markers.push(marker32608);
+      markers.push(marker32609);
+      markers.push(marker32641);
+      markers.push(marker32653);
+      }
+      function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+      function clearMarkers() {
+        setMapOnAll(null);
+      }
+      function showMarkers() {
+        setMapOnAll(map);
       }
     </script>
     <script async defer
@@ -167,21 +193,3 @@
     </script>
   </body>
 </html>
-
-<!--
-          var marker32601 = new google.maps.Feature({
-          position: zip32601,
-          map: map,
-          label: '32601'
-        });
-          var marker32603 = new google.maps.Feature({
-          position: zip32603,
-          map: map,
-          label: '32603'
-        });
-          var marker32605 = new google.maps.Feature({
-          position: zip32605,
-          map: map,
-          label: '32605'
-        });
-        -->
