@@ -18,7 +18,7 @@
       <legend> Toggle Between Different Displays: </legend>
       <p> </p>
       <p>
-        <input type="checkbox" name="demographic" value="demographic" id="demographic">
+        <input type="checkbox" name="demographic" value="demographic" id="demographic" onclick="Markers()">
         <label for="demographic"> Demographic Information &emsp; &emsp; &emsp; &emsp; &emsp;
           </label>
         <input type="checkbox" name="routes" value="routes" id="routes">
@@ -35,13 +35,10 @@
       </p>
     </form>
 </div>
-    <div style="display: inline;">
-      <input onclick="clearMarkers();" type=button value="Hide Markers">
-      <input onclick="showMarkers();" type=button value="Show All Markers">
-    </div>
 <div id="map"></div>
     <script>
       var map;
+      var demo = true;
       var gainesville = {lat: 29.6516, lng: -82.3248};
       var zip32601 = {lat: 29.6422516, lng: -82.3289111};
       var zip32603 = {lat: 29.6577485, lng: -82.3479016};
@@ -175,18 +172,23 @@
       markers.push(marker32609);
       markers.push(marker32641);
       markers.push(marker32653);
+      Markers();
       }
       function setMapOnAll(map) {
         for (var i = 0; i < markers.length; i++) {
           markers[i].setMap(map);
         }
       }
-      function clearMarkers() {
-        setMapOnAll(null);
-      }
-      function showMarkers() {
-        setMapOnAll(map);
-      }
+      function Markers() {
+        if (demo === true){
+          setMapOnAll(null);
+          demo = false;
+       }
+        else{
+          setMapOnAll(map);
+          demo = true;
+        }
+      } 
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY&callback=initMap">
