@@ -1,0 +1,157 @@
+{
+    "entries": [
+        {
+            "zip": 32601,
+            "population": 18585,
+            "medianAge": 24.4,
+            "numOfHousing": 9182,
+            "medianIncome": 24272,
+            "percentBelowPov": 46.9,
+            "race": {
+                "whiteAlone": 13029,
+                "AAAlone": 3895,
+                "nativeAm": 0,
+                "asian": 891,
+                "nativeHawaiian": 88,
+                "Other": 237,
+                "twoOrMore": 668,
+                "hispanicLatino": 1818,
+                "whiteAloneNotHispanic": 11613
+            }
+        },
+        {
+            "zip": 32603,
+            "population": 6741,
+            "medianAge": 21.1,
+            "numOfHousing": 2422,
+            "medianIncome": 20080,
+            "percentBelowPov": 54.5,
+            "race": {
+                "whiteAlone": 6046,
+                "AAAlone": 389,
+                "nativeAm": 17,
+                "asian": 762,
+                "nativeHawaiian": 0,
+                "Other": 109,
+                "twoOrMore": 275,
+                "hispanicLatino": 1266,
+                "whiteAloneNotHispanic": 4891
+            }
+        },
+        {
+            "zip": 32605,
+            "population": 22925,
+            "medianAge": 40,
+            "numOfHousing": 10459,
+            "medianIncome": 69264,
+            "percentBelowPov": 12.1,
+            "race": {
+                "whiteAlone": 18672,
+                "AAAlone":	2156,
+                "nativeAm": 111,
+                "asian": 1177,
+                "nativeHawaiian": 28,
+                "Other": 319,
+                "twoOrMore": 828,
+                "hispanicLatino": 2124,
+                "whiteAloneNotHispanic": 17063
+            }
+        },
+        {
+            "zip": 32606,
+            "population": 21833,
+            "medianAge": 36.8,
+            "numOfHousing": 10600,
+            "medianIncome": 59122,
+            "percentBelowPov": 10.1,
+            "race": {
+                "whiteAlone": 17763,
+                "AAAlone": 2228,
+                "nativeAm": 17,
+                "asian": 2540,
+                "nativeHawaiian": 24,
+                "Other": 297,
+                "twoOrMore": 870,
+                "hispanicLatino": 2509,
+                "whiteAloneNotHispanic": 15809
+            }
+        },
+        {
+            "zip": 32607,
+            "population": 29750,
+            "medianAge": 25.1,
+            "numOfHousing": 14802,
+            "medianIncome": 33724,
+            "percentBelowPov": 35.4,
+            "race": {
+                "whiteAlone": 21178,
+                "AAAlone": 6421,
+                "nativeAm": 74,
+                "asian": 1503,
+                "nativeHawaiian": 32,
+                "Other": 207,
+                "twoOrMore": 1009,
+                "hispanicLatino": 3618,
+                "whiteAloneNotHispanic": 18160
+            }
+        },
+        {
+            "zip": 32608,
+            "population": 45842,
+            "medianAge": 28,
+            "numOfHousing": 23245,
+            "medianIncome": 40465,
+            "percentBelowPov": 29.4,
+            "race": {
+                "whiteAlone": 31993,
+                "AAAlone": 7111,
+                "nativeAm": 189,
+                "asian": 4412,
+                "nativeHawaiian": 317,
+                "Other": 697,
+                "twoOrMore": 1409,
+                "hispanicLatino": 5074,
+                "whiteAloneNotHispanic": 27821
+            }
+        },
+        {
+            "zip": 32609,
+            "population": 18756,
+            "medianAge": 36.1,
+            "numOfHousing": 7999,
+            "medianIncome": 28569,
+            "percentBelowPov": 32.8,
+            "race": {
+                "whiteAlone": 8655,
+                "AAAlone": 7584,
+                "nativeAm": 68,
+                "asian": 475,
+                "nativeHawaiian": 0,
+                "Other": 94,
+                "twoOrMore": 774,
+                "hispanicLatino": 1202,
+                "whiteAloneNotHispanic": 7925
+            }
+        },
+        {
+            "zip": 32641,
+            "population": 14291,
+            "medianAge": 34.9,
+            "numOfHousing": 5290,
+            "medianIncome": 30091,
+            "percentBelowPov": 30.6,
+            "race": {
+                "whiteAlone": 3007,
+                "AAAlone": 10140,
+                "nativeAm": 30,
+                "asian": 89,
+                "nativeHawaiian": 0,
+                "Other": 41,
+                "twoOrMore": 379,
+                "hispanicLatino": 107,
+                "whiteAloneNotHispanic": 2945
+            }
+        }
+    ]
+
+}
