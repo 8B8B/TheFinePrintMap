@@ -10,8 +10,12 @@
     <base href="/">
     <link rel="stylesheet" href="/public/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
+
   </head>
-  <body ng-app="directoryApp">
+
+  <body ng-app="myApp">
+  <div id="homeController" ng-controller="HomeController">
+
  <br>
   <div class="boxed">
     <form>
@@ -35,7 +39,7 @@
       </p>
     </form>
 </div>
-<div id="map"></div>
+<div id="map" ></div>
     <script>
       function initMap() {
         var uluru = {lat: 29.6516, lng: -82.3248};
@@ -48,32 +52,37 @@
           map: map
         });
       }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY&callback=initMap">
+
     </script>
 
+    <!--
+    <script>
+        var a = document.getElementById('myApp');
+        var $scope = angular.element(a).scope();
+        console.log($scope.coord);
+    </script>
+    <p> get agresponse : {{stdata.data[0].location}}</p>
+    <p>{{coord}}</p>
+    -->
 
-
-<!--
-
-
-    <script src="/public/lib/jquery/dist/jquery.min.js"></script
+    <script src="/public/lib/jquery/dist/jquery.min.js"></script>
     <script src="/public/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/public/lib/angular/angular.js"></script>
     <script src="/public/lib/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="/public/lib/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="/public/lib/lodash/dist/lodash.min.js"></script>
     <script src="/public/lib/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
-    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
-    <script src="/public/lib/angular-google-maps/dist/angular-google-maps.min.js"></script>
+    <script src="controllers/home.client.controller.js"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY&callback=initMap">
+    </script>
+      <!-- Application Source Code -->
 
-    <!-- Application Source Code -->
-    <!--
+      <!--
     <script src="app/app.js"></script>
     <script src="app/config/listings.client.routes.js"></script>
     <script src="app/factories/listings.client.factory.js"></script>
-    <script src="app/controllers/listings.client.controller.js"></script>
-  -->
+    -->
+  </div>
   </body>
 </html>
