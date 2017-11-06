@@ -1,3 +1,7 @@
+<!--
+API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
+-->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -29,32 +33,69 @@
         <input type="checkbox" name="demographic" value="demographic" id="demographic">
         <label for="demographic">  Travel Time Comparisons &emsp; &emsp; &emsp; &emsp; &emsp;
           </label>
-        <input type="checkbox" name="routes" value="routes" id="routes">
-        <label for="routes"> Heat Map
-          </label>
+        
+        <!--will change to a dropdown of checkboxes or a form-->
+        <select id="dropbtn" onchange="heatMap()">
+          <option selected="selected">Heat Map</option>
+          <option value="toggleHeatmap">Toggle Heat Map</option>
+          <option value="changeGradient">Change Gradient</option>
+          <option value="changeOpacity">Change Opacity</option>
+        </select>
+        <!--
+        <button class = "dropbtn"> Heat Map <i class= fa fa-caret-down"></i></button>
+        <div class = "dropdown-content">
+          <button on-click="toggleHeatmap()"> Toggle Heat Map</button>
+          <button on-click="changeGradient()"> Change Gradient</button>
+          <a href="#">changeGradient()</a>
+          <a href="#">changeRadius()</a>
+          <a href="#">changeOpacity()</a>
+        </div>
+        -->
+
+
       </p>
     </form>
 </div>
+
 <div id="map"></div>
     <script>
-      var map;
-      var demo = true;
-      var gainesville = {lat: 29.6516, lng: -82.3248};
-      var zip32601 = {lat: 29.6422516, lng: -82.3289111};
-      var zip32603 = {lat: 29.6577485, lng: -82.3479016};
-      var zip32605 = {lat: 29.6793128, lng: -82.3723105};
-      var zip32606 = {lat: 29.6788293, lng: -82.4644445};
-      var zip32607 = {lat: 29.647247, lng: -82.4156829};
-      var zip32608 = {lat: 29.6156734, lng: -82.3659168};
-      var zip32609 = {lat: 29.7935588, lng: -82.2583297};
-      var zip32641 = {lat: 29.6311155, lng: -82.2365981};
-      var zip32653 = {lat: 29.7429556, lng: -82.3777335};
-      var markers = [];
+
+    //initialized globally for use across functions
+    var map, heatmap;
+    var toggleClick = false;
+    var radiusClick = false;
+    var opacityClick = false;
+    var gradientClick = false;
+      
+    var demo = true;
+    var gainesville = {lat: 29.6516, lng: -82.3248};
+    var zip32601 = {lat: 29.6422516, lng: -82.3289111};
+    var zip32603 = {lat: 29.6577485, lng: -82.3479016};
+    var zip32605 = {lat: 29.6793128, lng: -82.3723105};
+    var zip32606 = {lat: 29.6788293, lng: -82.4644445};
+    var zip32607 = {lat: 29.647247, lng: -82.4156829};
+    var zip32608 = {lat: 29.6156734, lng: -82.3659168};
+    var zip32609 = {lat: 29.7935588, lng: -82.2583297};
+    var zip32641 = {lat: 29.6311155, lng: -82.2365981};
+    var zip32653 = {lat: 29.7429556, lng: -82.3777335};
+    var markers = [];
+      
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
           center: gainesville
         });
+      
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map,
+          radius: 50,
+          opacity: 0.5
+        });
+        heatmap.setMap(map);
+
+
+        //zipcodes, markers, pop-up windows
         var content32601 = '<div>' + '<p> Zip Code: 32601<br> Population: 18,585 <br> Median Age: 24.4<br> Number of Houses: 9,182<br> Median Income: $24,272<br> Below Poverty Line: 46.90%</p>' + '</div>';
         var info32601 = new google.maps.InfoWindow({
           content: content32601
@@ -179,6 +220,69 @@
           markers[i].setMap(map);
         }
       }
+
+     function heatMap(){
+      if(document.getElementById("dropbtn").value === "selected"){
+      }
+        if(document.getElementById("dropbtn").value === "toggleHeatmap"){
+          if(toggleClick == false){
+              heatmap.setMap(heatmap.getMap() ? null : map);
+              toggleClick = true;
+            } else{
+              heatmap.setMap(map);
+              toggleClick = false;
+            }
+        } else if(document.getElementById("dropbtn").value === "changeGradient"){
+          var gradient = [
+            'rgba(0, 255, 255, 0)',
+            'rgba(0, 255, 255, 1)',
+            'rgba(0, 191, 255, 1)',
+            'rgba(0, 127, 255, 1)',
+            'rgba(0, 63, 255, 1)',
+            'rgba(0, 0, 255, 1)',
+            'rgba(0, 0, 223, 1)',
+            'rgba(0, 0, 191, 1)',
+            'rgba(0, 0, 159, 1)',
+            'rgba(0, 0, 127, 1)',
+            'rgba(63, 0, 91, 1)',
+            'rgba(127, 0, 63, 1)',
+            'rgba(191, 0, 31, 1)',
+            'rgba(255, 0, 0, 1)'
+          ]
+            if(radiusClick == false){
+              heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+              gradientClick = true;
+            } else {
+              gradientClick = false;
+            }
+        } else if(document.getElementById("dropbtn").value === "changeOpacity"){
+            if(opacityClick == false){
+              heatmap.set('opacity', heatmap.get('opacity') ? null : 0.9);
+              opacityClick = true;
+            } else {
+              heatmap.set('opacity', heatmap.get('opacity') ? null : 0.5);
+              opacityClick = false;
+            }
+        }
+      }
+      //temporary data points
+      function getPoints() {
+        return [
+          new google.maps.LatLng(29.6516, -82.3248),
+          new google.maps.LatLng(29.6522516, -82.3689111),
+          new google.maps.LatLng(29.6472516, -82.4189111),
+          new google.maps.LatLng(29.6422516, -82.3289111),
+          new google.maps.LatLng(29.6577485, -82.3479016),
+          new google.maps.LatLng(29.6793128, -82.3723105),
+          new google.maps.LatLng(29.6788293, -82.4644445),
+          new google.maps.LatLng(29.647247, -82.4156829),
+          new google.maps.LatLng(29.6156734, -82.3659168),
+          new google.maps.LatLng(29.7935588, -82.2583297),
+          new google.maps.LatLng(29.6311155, -82.2365981),
+          new google.maps.LatLng(29.7429556, -82.3777335)
+        ];
+      }
+
       function Markers() {
         if (demo === true){
           setMapOnAll(null);
@@ -191,7 +295,7 @@
       } 
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY&callback=initMap">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY&libraries=visualization&callback=initMap">
     </script>
   </body>
 </html>
