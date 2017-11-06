@@ -66,6 +66,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
     var radiusClick = false;
     var opacityClick = false;
     var gradientClick = false;
+    var trafficLayer, transitLayer, bikeLayer;
       
     var demo = true;
     var gainesville = {lat: 29.6516, lng: -82.3248};
@@ -93,6 +94,16 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
           opacity: 0.5
         });
         heatmap.setMap(map);
+
+        trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(map);
+        
+        transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
+
+        bikeLayer = new google.maps.BicyclingLayer();
+        bikeLayer.setMap(map);
+
 
 
         //zipcodes, markers, pop-up windows
