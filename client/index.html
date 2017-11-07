@@ -48,14 +48,9 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         <input type="checkbox" name="demographic" value="demographic" id="demographic">
         <label for="demographic">  Travel Time Comparisons &emsp; &emsp; &emsp; &emsp; &emsp;
           </label>
-        
-        <!--will change to a dropdown of checkboxes or a form-->
-        <select id="dropbtn" onchange="heatMap()">
-          <option selected="selected">Heat Map</option>
-          <option value="toggleHeatmap">Toggle Heat Map</option>
-          <option value="changeGradient">Change Gradient</option>
-          <option value="changeOpacity">Change Opacity</option>
-        </select>
+        <input type="checkbox" name="heatmap" value="heatmap" id="heatmap" onclick="heatMap()">
+        <label for="routes"> Heat Map
+          </label>
         <!--
         <button class = "dropbtn"> Heat Map <i class= fa fa-caret-down"></i></button>
         <div class = "dropdown-content">
@@ -77,7 +72,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
 
     //initialized globally for use across functions
     var map, heatmap;
-    var toggleClick = false;
+    var toggleClick = true;
     var radiusClick = false;
     var opacityClick = false;
     var gradientClick = false;
@@ -113,15 +108,9 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
           opacity: 0.5
         });
         heatmap.setMap(map);
-
-        trafficLayer = new google.maps.TrafficLayer();
-        trafficLayer.setMap(map);
-        
         transitLayer = new google.maps.TransitLayer();
         transitLayer.setMap(map);
-
-        bikeLayer = new google.maps.BicyclingLayer();
-        bikeLayer.setMap(map);
+        heatMap();
 
 
 
@@ -404,17 +393,16 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       }
     }
      function heatMap(){
-      if(document.getElementById("dropbtn").value === "selected"){
-      }
-        if(document.getElementById("dropbtn").value === "toggleHeatmap"){
-          if(toggleClick == false){
+          if(toggleClick === true){
               heatmap.setMap(heatmap.getMap() ? null : map);
-              toggleClick = true;
+              toggleClick = false;
             } else{
               heatmap.setMap(map);
-              toggleClick = false;
+              toggleClick = true;
             }
-        } else if(document.getElementById("dropbtn").value === "changeGradient"){
+        } 
+/*
+        else if(document.getElementById("dropbtn").value === "changeGradient"){
           var gradient = [
             'rgba(0, 255, 255, 0)',
             'rgba(0, 255, 255, 1)',
@@ -446,7 +434,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
               opacityClick = false;
             }
         }
-      }
+        */
       //temporary data points
       function getPoints() {
         return [
