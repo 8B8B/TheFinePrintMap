@@ -268,6 +268,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         }],
         map: map
       });
+      line2.setVisible(false);
     }
     function setMapOnAll(map) {
       for (var i = 0; i < markers.length; i++) {
@@ -286,7 +287,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
     }
   </script>
 
-  <h3 id="demo">
+  <h3 id="textBox">
     Select a location and view the difference in travel times and frequency.
   </h3>
 
@@ -304,12 +305,12 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
     function myFunction() {
       var x = document.getElementById("mySelect").value;
       if (x == "nothing") {
-        document.getElementById("demo").innerHTML = "Select a location and view the difference in travel times and frequency.";
+        document.getElementById("textBox").innerHTML = "Select a location and view the difference in travel times and frequency.";
         line.setVisible(false);
         line2.setVisible(false);
       }
       if (x == "shands") {
-        document.getElementById("demo").innerHTML = "Shands to Santa Fe: 38 minutes, every 30 minutes <br>Shands to Downtown: 30 minutes, every ~51 minutes";
+        document.getElementById("textBox").innerHTML = "Shands to Santa Fe: 38 minutes, every 30 minutes <br>Shands to Downtown: 30 minutes, every ~51 minutes";
         line.setVisible(false);
         line2.setVisible(false);
         line = new google.maps.Polyline({
@@ -332,7 +333,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         line2.setVisible(true);
       }
       if (x == "butler") {
-        document.getElementById("demo").innerHTML = "Butler Plaza to Oaks Mall: 38 minutes, every 30 minutes <br>Butler Plaza to Downtown: 30 minutes, every ~51 minutes";
+        document.getElementById("textBox").innerHTML = "Butler Plaza to Oaks Mall: 38 minutes, every 30 minutes <br>Butler Plaza to Downtown: 30 minutes, every ~51 minutes";
         line.setVisible(false);
         line2.setVisible(false);
         line = new google.maps.Polyline({
@@ -355,7 +356,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         line2.setVisible(true);
       }
       if (x == "rosa") {
-        document.getElementById("demo").innerHTML = "Downtown to Oaks Mall: 38 minutes, every 30 minutes <br>Downtown to Santa Fe: 30 minutes, every ~51 minutes";
+        document.getElementById("textBox").innerHTML = "Downtown to Oaks Mall: 38 minutes, every 30 minutes <br>Downtown to Santa Fe: 30 minutes, every ~51 minutes";
         line.setVisible(false);
         line2.setVisible(false);
         line = new google.maps.Polyline({
@@ -378,7 +379,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         line2.setVisible(true);
       }
       if (x == "santa") {
-        document.getElementById("demo").innerHTML = "Santa Fe to Butler Plaza: 38 minutes, every 30 minutes <br>Santa Fe to Oaks Plaza: 30 minutes, every ~51 minutes";
+        document.getElementById("textBox").innerHTML = "Santa Fe to Butler Plaza: 38 minutes, every 30 minutes <br>Santa Fe to Oaks Plaza: 30 minutes, every ~51 minutes";
         line.setVisible(false);
         line2.setVisible(false);
         line = new google.maps.Polyline({
@@ -400,7 +401,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         line.setVisible(true);
         line2.setVisible(true);
       }
-
+    }
      function heatMap(){
       if(document.getElementById("dropbtn").value === "selected"){
       }
