@@ -1,24 +1,42 @@
+<!--
+API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
+-->
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-       #map {
-        height: 400px;
-        width: 100%;
-       }
-    </style>
-    <base href="/">
-    <link rel="stylesheet" href="/public/lib/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
-  </head>
-  <body ng-app="directoryApp">
- <br>
+
+<head>
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+
+    h3 {
+      background-color: lightblue;
+      width: 300px;
+      border-style: solid;
+      padding: 15px;
+      padding-bottom: 150px;
+      max-height: 75px;
+      float: left;
+      text-align: center;
+      font-family: futura, "Trebuchet MS", Arial, sans-serif;
+    }
+  </style>
+  <base href="/">
+  <link rel="stylesheet" href="/public/lib/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body ng-app="directoryApp">
+  <br>
   <div class="boxed">
     <form>
       <legend> Toggle Between Different Displays: </legend>
       <p> </p>
       <p>
-        <input type="checkbox" name="demographic" value="demographic" id="demographic">
+        <input type="checkbox" name="demographic" value="demographic" id="demographic" onclick="Markers()">
         <label for="demographic"> Demographic Information &emsp; &emsp; &emsp; &emsp; &emsp;
           </label>
         <input type="checkbox" name="routes" value="routes" id="routes">
@@ -29,29 +47,73 @@
         <input type="checkbox" name="demographic" value="demographic" id="demographic">
         <label for="demographic">  Travel Time Comparisons &emsp; &emsp; &emsp; &emsp; &emsp;
           </label>
-        <input type="checkbox" name="routes" value="routes" id="routes">
+        <input type="checkbox" name="heatmap" value="heatmap" id="heatmap" onclick="heatMap()">
         <label for="routes"> Heat Map
           </label>
+        <!--
+        <button class = "dropbtn"> Heat Map <i class= fa fa-caret-down"></i></button>
+        <div class = "dropdown-content">
+          <button on-click="toggleHeatmap()"> Toggle Heat Map</button>
+          <button on-click="changeGradient()"> Change Gradient</button>
+          <a href="#">changeGradient()</a>
+          <a href="#">changeRadius()</a>
+          <a href="#">changeOpacity()</a>
+        </div>
+        -->
+
+
       </p>
     </form>
 </div>
+
 <div id="map"></div>
     <script>
+
+    //initialized globally for use across functions
+    var map, heatmap;
+    var toggleClick = true;
+    var radiusClick = false;
+    var opacityClick = false;
+    var gradientClick = false;
+    var trafficLayer, transitLayer, bikeLayer;
+
+    var line;
+    var line2;
+    var lineSymbol;
+
+    var demo = true;
+    var gainesville = {lat: 29.6516, lng: -82.3248};
+    var zip32601 = {lat: 29.6422516, lng: -82.3289111};
+    var zip32603 = {lat: 29.6577485, lng: -82.3479016};
+    var zip32605 = {lat: 29.6793128, lng: -82.3723105};
+    var zip32606 = {lat: 29.6788293, lng: -82.4644445};
+    var zip32607 = {lat: 29.647247, lng: -82.4156829};
+    var zip32608 = {lat: 29.6156734, lng: -82.3659168};
+    var zip32609 = {lat: 29.7935588, lng: -82.2583297};
+    var zip32641 = {lat: 29.6311155, lng: -82.2365981};
+    var zip32653 = {lat: 29.7429556, lng: -82.3777335};
+    var markers = [];
+
       function initMap() {
-        var gainesville = {lat: 29.6516, lng: -82.3248};
-        var zip32601 = {lat: 29.6422516, lng: -82.3289111};
-        var zip32603 = {lat: 29.6577485, lng: -82.3479016};
-        var zip32605 = {lat: 29.6793128, lng: -82.3723105};
-        var zip32606 = {lat: 29.6788293, lng: -82.4644445};
-        var zip32607 = {lat: 29.647247, lng: -82.4156829};
-        var zip32608 = {lat: 29.6156734, lng: -82.3659168};
-        var zip32609 = {lat: 29.7935588, lng: -82.2583297};
-        var zip32641 = {lat: 29.6311155, lng: -82.2365981};
-        var zip32653 = {lat: 29.7429556, lng: -82.3777335};
-        var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
           center: gainesville
         });
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map,
+          radius: 50,
+          opacity: 0.5
+        });
+        heatmap.setMap(map);
+        transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
+        heatMap();
+
+
+
+        //zipcodes, markers, pop-up windows
         var content32601 = '<div>' + '<p> Zip Code: 32601<br> Population: 18,585 <br> Median Age: 24.4<br> Number of Houses: 9,182<br> Median Income: $24,272<br> Below Poverty Line: 46.90%</p>' + '</div>';
         var info32601 = new google.maps.InfoWindow({
           content: content32601
@@ -160,28 +222,249 @@
         marker32653.addListener('click',function() {
           info32653.open(map,marker32653);
         });
+      markers.push(marker32601);
+      markers.push(marker32603);
+      markers.push(marker32605);
+      markers.push(marker32606);
+      markers.push(marker32607);
+      markers.push(marker32608);
+      markers.push(marker32609);
+      markers.push(marker32641);
+      markers.push(marker32653);
+      Markers();
+
+      // Define a symbol using a predefined path (an arrow)
+      // supplied by the Google Maps JavaScript API.
+      lineSymbol = {
+        path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+      };
+
+      // Create the polyline and add the symbol via the 'icons' property.
+      line = new google.maps.Polyline({
+        path: [{ lat: 22.291, lng: 153.027 }, { lat: 18.291, lng: 153.027 }],
+        icons: [{
+          icon: lineSymbol,
+          offset: '100%'
+        }],
+        map: map
+      });
+      line.setVisible(false);
+      line2 = new google.maps.Polyline({
+        path: [{ lat: 22.291, lng: 153.027 }, { lat: 18.291, lng: 153.027 }],
+        icons: [{
+          icon: lineSymbol,
+          offset: '100%'
+        }],
+        map: map
+      });
+      line2.setVisible(false);
+    }
+    function setMapOnAll(map) {
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+      }
+    }
+    function Markers() {
+      if (demo === true) {
+        setMapOnAll(null);
+        demo = false;
+      }
+      else {
+        setMapOnAll(map);
+        demo = true;
+      }
+    }
+  </script>
+
+  <h3 id="textBox">
+    Select a location and view the difference in travel times and frequency.
+  </h3>
+
+  <p>Select a starting location</p>
+  <select id="mySelect">
+        <option value="nothing">-- Select one --</option>
+            <option value="shands">Shands Hospital</option>
+            <option value="butler">Butler Plaza</option>
+            <option value="rosa">Rosa Park's Downtown Station</option>
+            <option value="santa">Santa Fe College</option>
+        </select>
+
+  <script>
+    document.getElementById("mySelect").addEventListener("change", myFunction);
+    function myFunction() {
+      var x = document.getElementById("mySelect").value;
+      if (x == "nothing") {
+        document.getElementById("textBox").innerHTML = "Select a location and view the difference in travel times and frequency.";
+        line.setVisible(false);
+        line2.setVisible(false);
+      }
+      if (x == "shands") {
+        document.getElementById("textBox").innerHTML = "Shands to Santa Fe: 38 minutes, every 30 minutes <br>Shands to Downtown: 30 minutes, every ~51 minutes";
+        line.setVisible(false);
+        line2.setVisible(false);
+        line = new google.maps.Polyline({
+          path: [{ lat: 29.639849, lng: -82.341958 }, { lat: 29.680646, lng: -82.430331 }],
+          icons: [{
+            icon: lineSymbol,
+            offset: '100%'
+          }],
+          map: map
+        });
+        line2 = new google.maps.Polyline({
+          path: [{ lat: 29.639849, lng: -82.341958 }, { lat: 29.645994, lng: -82.322708 }],
+          icons: [{
+            icon: lineSymbol,
+            offset: '100%'
+          }],
+          map: map
+        });
+        line.setVisible(true);
+        line2.setVisible(true);
+      }
+      if (x == "butler") {
+        document.getElementById("textBox").innerHTML = "Butler Plaza to Oaks Mall: 38 minutes, every 30 minutes <br>Butler Plaza to Downtown: 30 minutes, every ~51 minutes";
+        line.setVisible(false);
+        line2.setVisible(false);
+        line = new google.maps.Polyline({
+          path: [{ lat: 29.625140, lng: -82.387885 }, { lat: 29.653164, lng: -82.411028 }],
+          icons: [{
+            icon: lineSymbol,
+            offset: '100%'
+          }],
+          map: map
+        });
+        line2 = new google.maps.Polyline({
+          path: [{ lat: 29.625140, lng: -82.387885 }, { lat: 29.645994, lng: -82.322708 }],
+          icons: [{
+            icon: lineSymbol,
+            offset: '100%'
+          }],
+          map: map
+        });
+        line.setVisible(true);
+        line2.setVisible(true);
+      }
+      if (x == "rosa") {
+        document.getElementById("textBox").innerHTML = "Downtown to Oaks Mall: 38 minutes, every 30 minutes <br>Downtown to Santa Fe: 30 minutes, every ~51 minutes";
+        line.setVisible(false);
+        line2.setVisible(false);
+        line = new google.maps.Polyline({
+          path: [{ lat: 29.645994, lng: -82.322708 }, { lat: 29.653164, lng: -82.411028 }],
+          icons: [{
+            icon: lineSymbol,
+            offset: '100%'
+          }],
+          map: map
+        });
+        line2 = new google.maps.Polyline({
+          path: [{ lat: 29.645994, lng: -82.322708 }, { lat: 29.680646, lng: -82.430331 }],
+          icons: [{
+            icon: lineSymbol,
+            offset: '100%'
+          }],
+          map: map
+        });
+        line.setVisible(true);
+        line2.setVisible(true);
+      }
+      if (x == "santa") {
+        document.getElementById("textBox").innerHTML = "Santa Fe to Butler Plaza: 38 minutes, every 30 minutes <br>Santa Fe to Oaks Plaza: 30 minutes, every ~51 minutes";
+        line.setVisible(false);
+        line2.setVisible(false);
+        line = new google.maps.Polyline({
+          path: [{ lat: 29.680646, lng: -82.430331 }, { lat: 29.625140, lng: -82.387885 }],
+          icons: [{
+            icon: lineSymbol,
+            offset: '100%'
+          }],
+          map: map
+        });
+        line2 = new google.maps.Polyline({
+          path: [{ lat: 29.680646, lng: -82.430331 }, { lat: 29.645994, lng: -82.322708 }],
+          icons: [{
+            icon: lineSymbol,
+            offset: '100%'
+          }],
+          map: map
+        });
+        line.setVisible(true);
+        line2.setVisible(true);
+      }
+    }
+     function heatMap(){
+          if(toggleClick === true){
+              heatmap.setMap(heatmap.getMap() ? null : map);
+              toggleClick = false;
+            } else{
+              heatmap.setMap(map);
+              toggleClick = true;
+            }
+        }
+/*
+        else if(document.getElementById("dropbtn").value === "changeGradient"){
+          var gradient = [
+            'rgba(0, 255, 255, 0)',
+            'rgba(0, 255, 255, 1)',
+            'rgba(0, 191, 255, 1)',
+            'rgba(0, 127, 255, 1)',
+            'rgba(0, 63, 255, 1)',
+            'rgba(0, 0, 255, 1)',
+            'rgba(0, 0, 223, 1)',
+            'rgba(0, 0, 191, 1)',
+            'rgba(0, 0, 159, 1)',
+            'rgba(0, 0, 127, 1)',
+            'rgba(63, 0, 91, 1)',
+            'rgba(127, 0, 63, 1)',
+            'rgba(191, 0, 31, 1)',
+            'rgba(255, 0, 0, 1)'
+          ]
+            if(radiusClick == false){
+              heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+              gradientClick = true;
+            } else {
+              gradientClick = false;
+            }
+        } else if(document.getElementById("dropbtn").value === "changeOpacity"){
+            if(opacityClick == false){
+              heatmap.set('opacity', heatmap.get('opacity') ? null : 0.9);
+              opacityClick = true;
+            } else {
+              heatmap.set('opacity', heatmap.get('opacity') ? null : 0.5);
+              opacityClick = false;
+            }
+        }
+        */
+      //temporary data points
+      function getPoints() {
+        return [
+          new google.maps.LatLng(29.6516, -82.3248),
+          new google.maps.LatLng(29.6522516, -82.3689111),
+          new google.maps.LatLng(29.6472516, -82.4189111),
+          new google.maps.LatLng(29.6422516, -82.3289111),
+          new google.maps.LatLng(29.6577485, -82.3479016),
+          new google.maps.LatLng(29.6793128, -82.3723105),
+          new google.maps.LatLng(29.6788293, -82.4644445),
+          new google.maps.LatLng(29.647247, -82.4156829),
+          new google.maps.LatLng(29.6156734, -82.3659168),
+          new google.maps.LatLng(29.7935588, -82.2583297),
+          new google.maps.LatLng(29.6311155, -82.2365981),
+          new google.maps.LatLng(29.7429556, -82.3777335)
+        ];
+      }
+
+      function Markers() {
+        if (demo === true){
+          setMapOnAll(null);
+          demo = false;
+       }
+        else{
+          setMapOnAll(map);
+          demo = true;
+        }
       }
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY&callback=initMap">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY&libraries=visualization&callback=initMap">
     </script>
   </body>
 </html>
-
-<!--
-          var marker32601 = new google.maps.Feature({
-          position: zip32601,
-          map: map,
-          label: '32601'
-        });
-          var marker32603 = new google.maps.Feature({
-          position: zip32603,
-          map: map,
-          label: '32603'
-        });
-          var marker32605 = new google.maps.Feature({
-          position: zip32605,
-          map: map,
-          label: '32605'
-        });
-        -->
