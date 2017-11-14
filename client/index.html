@@ -72,15 +72,14 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
     //initialized globally for use across functions
     var map, heatmap;
 
+
     var toggleClick = false;
     var repeater;
-      
     var radiusClick = false;
     var opacityClick = false;
     var gradientClick = false;
     var trafficLayer, transitLayer, bikeLayer;
     //var t = setInterval(runFunction(), 1000);
-      
     var line;
     var line2;
     var lineSymbol;
@@ -97,15 +96,14 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
     var zip32641 = {lat: 29.6311155, lng: -82.2365981};
     var zip32653 = {lat: 29.7429556, lng: -82.3777335};
     var markers = [];
-      
       function initMap() {
-        map = new google.maps.Map(document.getElementById('map'),{
+        map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
           minZoom: 11,
           maxZoom: 13,
           center: gainesville
         });
-      
+     
         heatmap = new google.maps.visualization.HeatmapLayer({
           data: getPoints(),
           map: map,
@@ -117,7 +115,6 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         transitLayer.setMap(map);
         heatMap();
         //doWork();
-
 
 
         //zipcodes, markers, pop-up windows
