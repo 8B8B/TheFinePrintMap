@@ -71,12 +71,15 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
 
     //initialized globally for use across functions
     var map, heatmap;
-    var toggleClick = true;
+
+
+    var toggleClick = false;
+    var repeater;
     var radiusClick = false;
     var opacityClick = false;
     var gradientClick = false;
     var trafficLayer, transitLayer, bikeLayer;
-
+    //var t = setInterval(runFunction(), 1000);
     var line;
     var line2;
     var lineSymbol;
@@ -93,24 +96,25 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
     var zip32641 = {lat: 29.6311155, lng: -82.2365981};
     var zip32653 = {lat: 29.7429556, lng: -82.3777335};
     var markers = [];
-
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
+          minZoom: 11,
+          maxZoom: 13,
           center: gainesville
         });
-
+     
         heatmap = new google.maps.visualization.HeatmapLayer({
           data: getPoints(),
           map: map,
-          radius: 50,
+          radius: 40,
           opacity: 0.5
         });
         heatmap.setMap(map);
         transitLayer = new google.maps.TransitLayer();
         transitLayer.setMap(map);
         heatMap();
-
+        //doWork();
 
 
         //zipcodes, markers, pop-up windows
@@ -268,6 +272,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       if (demo === true) {
         setMapOnAll(null);
         demo = false;
+
       }
       else {
         setMapOnAll(map);
@@ -288,7 +293,6 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
             <option value="rosa">Rosa Park's Downtown Station</option>
             <option value="santa">Santa Fe College</option>
         </select>
-
   <script>
     document.getElementById("mySelect").addEventListener("change", myFunction);
     function myFunction() {
@@ -391,15 +395,28 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         line2.setVisible(true);
       }
     }
-     function heatMap(){
-          if(toggleClick === true){
-              heatmap.setMap(heatmap.getMap() ? null : map);
-              toggleClick = false;
-            } else{
+    
+    function heatMap(){
+          if(toggleClick == true){
+              map.setZoom(13);
               heatmap.setMap(map);
+              toggleClick = false;
+              doWork();
+            } else{
+              heatmap.setMap(heatmap.getMap() ? null : map);
               toggleClick = true;
             }
-        }
+    }
+
+    function doWork() {
+      if(map.getZoom() != 13 && toggleClick == false){
+        toggleClick = true;
+        heatMap();
+        //document.getElementById("heatmap").checked = false;
+      }
+      repeater = setTimeout(doWork, 1);
+}
+
 /*
         else if(document.getElementById("dropbtn").value === "changeGradient"){
           var gradient = [
@@ -437,6 +454,26 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       //temporary data points
       function getPoints() {
         return [
+        //red = 5 min
+        //yellow = 10 min
+        //green = 15 min
+          //oaks mall
+          new google.maps.LatLng(29.6574, -82.4114),
+          //just north of mall, along newberry rd
+          new google.maps.LatLng(29.66, -82.4114),
+          //left
+          new google.maps.LatLng(29.66, -82.418),
+          //right
+          new google.maps.LatLng(29.66, -82.414),
+          new google.maps.LatLng(29.66, -82.406),
+          //bottom
+          //new google.maps.LatLng(26.65, 82.40),
+
+
+          //lakewood apts ~25min
+          new google.maps.LatLng(29.6459, -82.4028),
+          
+
           new google.maps.LatLng(29.6516, -82.3248),
           new google.maps.LatLng(29.6522516, -82.3689111),
           new google.maps.LatLng(29.6472516, -82.4189111),
@@ -461,7 +498,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
           setMapOnAll(map);
           demo = true;
         }
-      }
+      } 
     </script>
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY&libraries=visualization&callback=initMap">
