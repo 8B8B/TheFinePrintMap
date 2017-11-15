@@ -41,6 +41,9 @@
 </div>
 <div id="map" ></div>
     <script>
+     // var directionDisplay;
+      //var directionService = new google.maps.DirectionService();
+      var i;
       function initMap() {
         var gainesville = {lat: 29.6516, lng: -82.3248};
         var zip32601 = {lat: 29.6422516, lng: -82.3289111};
@@ -53,6 +56,7 @@
         var zip32641 = {lat: 29.6311155, lng: -82.2365981};
         var zip32653 = {lat: 29.7429556, lng: -82.3777335};
         var busImage = "https://www.materialui.co/materialIcons/maps/directions_bus_black_18x18.png";
+       // directionDisplay = new google.maps.DirectionRenderer();
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
           center: gainesville
@@ -167,272 +171,184 @@
         });
 
         // Bus 20 Markers and bus route id 4001214
+        var busstop20;
+        var bus20 = {
+            "businfo":[
+                {
+                    "code": 1134, "lat": 29.644778, "lng": -82.347121
+                },
+                {
+                    "code": 13326, "lat": 29.642148, "lng": -82.368834
+                },
+                {
+                    "code": 173, "lat": 29.653183, "lng": -82.410996
+                },
+                {
+                    "code": 472, "lat": 29.646308, "lng": -82.343389
+                },
+                {
+                    "code": 473, "lat": 29.64514, "lng": -82.346983
+                },
+                {
+                    "code": 797, "lat": 29.644915, "lng": -82.352145
+                },
+                {
+                    "code": 798, "lat": 29.644962, "lng": -82.355326
+                },
+                {
+                    "code": 800, "lat": 29.644917, "lng": -82.360703
+                },
+                {
+                    "code": 801, "lat": 29.642655, "lng": -82.36404
+                },
+                {
+                    "code": 802, "lat": 29.642299, "lng": -82.366452
+                },
+                {
+                    "code": 803, "lat": 29.642291, "lng": -82.368951
+                },
+                {
+                    "code": 804, "lat": 29.641109, "lng": -82.36933
+                },
+                {
+                    "code": 806, "lat": 29.63812, "lng": -82.369333
+                },
+                {
+                    "code": 807, "lat": 29.637737, "lng": -82.37037
+                },
+                {
+                    "code": 808, "lat": 29.635891, "lng": -82.372659
+                },
+                {
+                    "code": 810, "lat": 29.634206, "lng": -82.374919
+                },
+                {
+                    "code": 811, "lat": 29.634123, "lng": -82.377023
+                },
+                {
+                    "code": 813, "lat": 29.634123, "lng": -82.382798
+                },
+                {
+                    "code": 814, "lat": 29.634482, "lng": -82.385207
+                },
+                {
+                    "code": 815, "lat": 29.635731, "lng": -82.38821
+                },
+                {
+                    "code": 816, "lat": 29.636959, "lng": -82.390186
+                },
+                {
+                    "code": 817, "lat": 29.637874, "lng": -82.397612
+                },
+                {
+                    "code": 818, "lat": 29.641168, "lng": -82.39814
+                },
+                {
+                    "code": 819, "lat": 29.644808, "lng": -82.399307
+                },
+                {
+                    "code": 820, "lat": 29.646771, "lng": -82.400893
+                },
+                {
+                    "code": 821, "lat": 29.648195, "lng": -82.402049
+                },
+                {
+                    "code": 822, "lat": 29.649886, "lng": -82.406641
+                },
+                {
+                    "code": 823, "lat": 29.652416, "lng": -82.408796
+                },
+                {
+                    "code": 824, "lat": 29.651658, "lng": -82.408971
+                },
+                {
+                    "code": 825, "lat": 29.650037, "lng": -82.407738
+                },
+                {
+                    "code": 826, "lat": 29.647812, "lng": -82.401864
+                },
+                {
+                    "code": 827, "lat": 29.646326, "lng": -82.400655
+                },
+                {
+                    "code": 828, "lat": 29.644417, "lng": -82.399106
+                },
+                {
+                    "code": 829, "lat": 29.641554, "lng": -82.398333
+                },
+                {
+                    "code": 830, "lat": 29.639517, "lng": -82.39527
+                },
+                {
+                    "code": 832, "lat": 29.635184, "lng": -82.387438
+                },
+                {
+                    "code": 833, "lat": 29.634296, "lng": -82.38484
+                },
+                {
+                    "code": 835, "lat": 29.633958, "lng": -82.381892
+                },
+                {
+                    "code": 837, "lat": 29.633951, "lng": -82.377716
+                },
+                {
+                    "code": 838, "lat": 29.634077, "lng": -82.375158
+                },
+                {
+                    "code": 839, "lat": 29.635446, "lng": -82.372376
+                },
+                {
+                    "code": 840, "lat": 29.637361, "lng": -82.372355
+                },
+                {
+                    "code": 841, "lat": 29.637554, "lng": -82.370077
+                },
+                {
+                    "code": 842, "lat": 29.638171, "lng": -82.369247
+                },
+                {
+                    "code": 844, "lat": 29.640952, "lng": -82.36921
+                },
+                {
+                    "code": 845, "lat": 29.642199, "lng": -82.366099
+                },
+                {
+                    "code": 846, "lat": 29.642241, "lng": -82.364281
+                },
+                {
+                    "code": 847, "lat": 29.644793, "lng": -82.360884
+                },
+                {
+                    "code": 848, "lat": 29.644934, "lng": -82.35673
+                },
+                {
+                    "code": 849, "lat": 29.644837, "lng": -82.351988
+                },
+                {
+                    "code": 859, "lat": 29.638078, "lng": -82.397988
+                },
+                {
+                    "code": 1236, "lat": 29.635913, "lng": -82.397884
+                }
+            ]
+        };
         var busIcon = {
             url: busImage,
             scaledSize: new google.maps.Size(13, 13), // scaled size
             origin: new google.maps.Point(0,0), // origin
             anchor: new google.maps.Point(0, 0) // anchor
         };
-        var code1134 = new google.maps.Marker({
-            position: {lat: 29.644778, lng: -82.347121},
-            map: map,
-            icon: busIcon
-        });
-        var code13326 = new google.maps.Marker({
-            position: {lat: 29.642148, lng: -82.368834},
-            map: map,
-            icon: busIcon
-        });
-        var code173 = new google.maps.Marker({
-            position: {lat: 29.653183, lng: -82.410996},
-            map: map,
-            icon: busIcon
-        });
-        var code472 = new google.maps.Marker({
-            position: {lat: 29.646308, lng: -82.343389},
-            map: map,
-            icon: busIcon
-        });
-        var code473 = new google.maps.Marker({
-            position: {lat: 29.64514, lng: -82.346983},
-            map: map,
-            icon: busIcon
-        });
-        var code797 = new google.maps.Marker({
-            position: {lat: 29.644915, lng: -82.352145},
-            map: map,
-            icon: busIcon
-        });
-        var code798 = new google.maps.Marker({
-            position: {lat: 29.644962, lng: -82.355326},
-            map: map,
-            icon: busIcon
-        });
-        var code800 = new google.maps.Marker({
-            position: {lat: 29.644917, lng: -82.360703},
-            map: map,
-            icon: busIcon
-        });
-        var code801 = new google.maps.Marker({
-            position: {lat: 29.642655, lng: -82.36404},
-            map: map,
-            icon: busIcon
-        });
-        var code802 = new google.maps.Marker({
-            position: {lat: 29.642299, lng: -82.366452},
-            map: map,
-            icon: busIcon
-        });
-        var code803 = new google.maps.Marker({
-            position: {lat: 29.642291, lng: -82.368951},
-            map: map,
-            icon: busIcon
-        });
-        var code804 = new google.maps.Marker({
-            position: {lat: 29.641109, lng: -82.36933},
-            map: map,
-            icon: busIcon
-        });
-        var code806 = new google.maps.Marker({
-            position: {lat: 29.63812, lng: -82.369333},
-            map: map,
-            icon: busIcon
-        });
-        var code807 = new google.maps.Marker({
-            position: {lat: 29.637737, lng: -82.37037},
-            map: map,
-            icon: busIcon
-        });
-        var code808 = new google.maps.Marker({
-            position: {lat: 29.635891, lng: -82.372659},
-            map: map,
-            icon: busIcon
-        });
-        var code810 = new google.maps.Marker({
-            position: {lat: 29.634206, lng: -82.374919},
-            map: map,
-            icon: busIcon
-        });
-        var code811 = new google.maps.Marker({
-            position: {lat: 29.634123, lng: -82.377023},
-            map: map,
-            icon: busIcon
-        });
-        var code813 = new google.maps.Marker({
-            position: {lat: 29.634123, lng: -82.382798},
-            map: map,
-            icon: busIcon
-        });
-        var code814 = new google.maps.Marker({
-            position: {lat: 29.634482, lng: -82.385207},
-            map: map,
-            icon: busIcon
-        });
-        var code815 = new google.maps.Marker({
-            position: {lat: 29.635731, lng: -82.38821},
-            map: map,
-            icon: busIcon
-        });
-        var code816 = new google.maps.Marker({
-            position: {lat: 29.636959, lng: -82.390186},
-            map: map,
-            icon: busIcon
-        });
-        var code817 = new google.maps.Marker({
-            position: {lat: 29.637874, lng: -82.397612},
-            map: map,
-            icon: busIcon
-        });
-        var code818 = new google.maps.Marker({
-            position: {lat: 29.641168, lng: -82.39814},
-            map: map,
-            icon: busIcon
-        });
-        var code819 = new google.maps.Marker({
-            position: {lat: 29.644808, lng: -82.399307},
-            map: map,
-            icon: busIcon
-        });
-        var code820 = new google.maps.Marker({
-            position: {lat: 29.646771, lng: -82.400893},
-            map: map,
-            icon: busIcon
-        });
-        var code821 = new google.maps.Marker({
-            position: {lat: 29.648195, lng: -82.402049},
-            map: map,
-            icon: busIcon
-        });
-        var code822 = new google.maps.Marker({
-            position: {lat: 29.649886, lng: -82.406641},
-            map: map,
-            icon: busIcon
-        });
-        var code823 = new google.maps.Marker({
-            position: {lat: 29.652416, lng: -82.408796},
-            map: map,
-            icon: busIcon
-        });
-        var code824 = new google.maps.Marker({
-            position: {lat: 29.651658, lng: -82.408971},
-            map: map,
-            icon: busIcon
-        });
-        var code825 = new google.maps.Marker({
-            position: {lat: 29.650037, lng: -82.407738},
-            map: map,
-            icon: busIcon
-        });
-        var code826 = new google.maps.Marker({
-            position: {lat: 29.647812, lng: -82.401864},
-            map: map,
-            icon: busIcon
-        });
-        var code827 = new google.maps.Marker({
-            position: {lat: 29.646326, lng: -82.400655},
-            map: map,
-            icon: busIcon
-        });
-        var code828 = new google.maps.Marker({
-            position: {lat: 29.644417, lng: -82.399106},
-            map: map,
-            icon: busIcon
-        });
-        var code829 = new google.maps.Marker({
-            position: {lat: 29.641554, lng: -82.398333},
-            map: map,
-            icon: busIcon
-        });
-        var code830 = new google.maps.Marker({
-            position: {lat: 29.639517, lng: -82.39527},
-            map: map,
-            icon: busIcon
-        });
-        var code832 = new google.maps.Marker({
-            position: {lat: 29.635184, lng: -82.387438},
-            map: map,
-            icon: busIcon
-        });
-        var code833 = new google.maps.Marker({
-            position: {lat: 29.634296, lng: -82.38484},
-            map: map,
-            icon: busIcon
-        });
-        var code835 = new google.maps.Marker({
-            position: {lat: 29.633958, lng: -82.381892},
-            map: map,
-            icon: busIcon
-        });
-        var code837 = new google.maps.Marker({
-            position: {lat: 29.633951, lng: -82.377716},
-            map: map,
-            icon: busIcon
-        });
-        var code838 = new google.maps.Marker({
-            position: {lat: 29.634077, lng: -82.375158},
-            map: map,
-            icon: busIcon
-        });
-        var code839 = new google.maps.Marker({
-            position: {lat: 29.635446, lng: -82.372376},
-            map: map,
-            icon: busIcon
-        });
-        var code840 = new google.maps.Marker({
-            position: {lat: 29.637361, lng: -82.372355},
-            map: map,
-            icon: busIcon
-        });
-        var code841 = new google.maps.Marker({
-            position: {lat: 29.637554, lng: -82.370077},
-            map: map,
-            icon: busIcon
-        });
-        var code842 = new google.maps.Marker({
-            position: {lat: 29.638171, lng: -82.369247},
-            map: map,
-            icon: busIcon
-        });
-        var code844 = new google.maps.Marker({
-            position: {lat: 29.640952, lng: -82.36921},
-            map: map,
-            icon: busIcon
-        });
-        var code845 = new google.maps.Marker({
-            position: {lat: 29.642199, lng: -82.366099},
-            map: map,
-            icon: busIcon
-        });
-        var code846 = new google.maps.Marker({
-            position: {lat: 29.642241, lng: -82.364281},
-            map: map,
-            icon: busIcon
-        });
-        var code847 = new google.maps.Marker({
-            position: {lat: 29.644793, lng: -82.360884},
-            map: map,
-            icon: busIcon
-        });
-        var code848 = new google.maps.Marker({
-            position: {lat: 29.644934, lng: -82.35673},
-            map: map,
-            icon: busIcon
-        });
-        var code849 = new google.maps.Marker({
-            position: {lat: 29.644837, lng: -82.351988},
-            map: map,
-            icon: busIcon
-        });
-        var code859 = new google.maps.Marker({
-            position: {lat: 29.638078, lng: -82.397988},
-            map: map,
-            icon: busIcon
-        });
-        var code1236 = new google.maps.Marker({
-            position: {lat: 29.635913, lng: -82.397884},
-            map: map,
-            icon: busIcon
-        });
+        console.log(bus20.businfo.length);
+        for(i = 0; i < bus20.businfo.length; i++){
+            busstop20 =  new google.maps.Marker({
+               position: new google.maps.LatLng(bus20.businfo[i].lat,bus20.businfo[i].lng),
+               map: map,
+               icon: busIcon
+            });
+        }
+
+       // directionDisplay.setMap(map);
+        //var infoWindow = new google.maps.InfoWindow();
         /*var code = new google.maps.Marker({
             position: {lat: 29.644778, lng: -82.347121},
             map: map,

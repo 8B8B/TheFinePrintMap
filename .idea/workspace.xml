@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f4ad735-790d-4ffb-90a6-d2f35b606a4f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/index.html" afterPath="$PROJECT_DIR$/client/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -19,9 +20,11 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="431" column="37" lean-forward="true" selection-start-line="431" selection-start-column="37" selection-end-line="431" selection-end-column="37" />
-              <folding />
+            <state relative-caret-position="310">
+              <caret line="334" column="23" lean-forward="true" selection-start-line="334" selection-start-column="23" selection-end-line="334" selection-end-column="23" />
+              <folding>
+                <element signature="e#7321#12874#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -156,12 +159,12 @@
       <workItem from="1509721237611" duration="5612000" />
       <workItem from="1509921165774" duration="1220000" />
       <workItem from="1510712223608" duration="43000" />
-      <workItem from="1510712665841" duration="9998000" />
+      <workItem from="1510712665841" duration="14811000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28430000" />
+    <option name="totallyTimeSpent" value="33243000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="870" y="0" width="1057" height="1047" extended-state="0" />
@@ -220,7 +223,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="12" lean-forward="true" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-          <folding />
+          <folding>
+            <element signature="e#7321#12874#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -236,7 +241,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#7321#12874#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -244,7 +251,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#7321#12874#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -260,7 +269,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#7321#12874#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -276,7 +287,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="39" column="21" lean-forward="true" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
-          <folding />
+          <folding>
+            <element signature="e#7321#12874#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -292,7 +305,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#7321#12874#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -372,9 +387,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="431" column="37" lean-forward="true" selection-start-line="431" selection-start-column="37" selection-end-line="431" selection-end-column="37" />
-          <folding />
+        <state relative-caret-position="310">
+          <caret line="334" column="23" lean-forward="true" selection-start-line="334" selection-start-column="23" selection-end-line="334" selection-end-column="23" />
+          <folding>
+            <element signature="e#7321#12874#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
