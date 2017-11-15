@@ -14,7 +14,7 @@
   </head>
 
   <body ng-app="myApp">
-  <div id="homeController" ng-controller="HomeController">
+  <div id="myApp" ng-controller="HomeController">
 
  <br>
   <div class="boxed">
@@ -25,7 +25,7 @@
         <input type="checkbox" name="demographic" value="demographic" id="demographic">
         <label for="demographic"> Demographic Information &emsp; &emsp; &emsp; &emsp; &emsp;
           </label>
-        <input type="checkbox" name="routes" value="routes" id="routes">
+        <input type="checkbox" name="routes" id="busroutes" ng-model="stdata.data">
         <label for="routes"> Bus Routes
           </label>
       </p>
@@ -52,6 +52,7 @@
         var zip32609 = {lat: 29.7935588, lng: -82.2583297};
         var zip32641 = {lat: 29.6311155, lng: -82.2365981};
         var zip32653 = {lat: 29.7429556, lng: -82.3777335};
+        var busIcon = "https://www.materialui.co/materialIcons/maps/directions_bus_black_18x18.png";
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
           center: gainesville
@@ -164,6 +165,11 @@
         marker32653.addListener('click',function() {
           info32653.open(map,marker32653);
         });
+        var marker20 = new google.maps.Marker({
+              position: {lat: 29.638824, lng: -82.3517},
+              map: map,
+              icon: busIcon,
+        });
       }
 
     </script>
@@ -173,10 +179,10 @@
         var a = document.getElementById('myApp');
         var $scope = angular.element(a).scope();
         console.log($scope.coord);
-    </script>
+    </script>-->
     <p> get agresponse : {{stdata.data[0].location}}</p>
     <p>{{coord}}</p>
-    -->
+
 
 
       <!-- Application Source Code -->
@@ -200,21 +206,3 @@
     </script>
   </body>
 </html>
-
-<!--
-          var marker32601 = new google.maps.Feature({
-          position: zip32601,
-          map: map,
-          label: '32601'
-        });
-          var marker32603 = new google.maps.Feature({
-          position: zip32603,
-          map: map,
-          label: '32603'
-        });
-          var marker32605 = new google.maps.Feature({
-          position: zip32605,
-          map: map,
-          label: '32605'
-        });
-        -->
