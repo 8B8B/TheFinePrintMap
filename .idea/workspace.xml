@@ -20,10 +20,11 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="334" column="23" lean-forward="true" selection-start-line="334" selection-start-column="23" selection-end-line="334" selection-end-column="23" />
+            <state relative-caret-position="374">
+              <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
               <folding>
-                <element signature="e#7321#12874#0" expanded="false" />
+                <element signature="e#2095#7648#0" expanded="false" />
+                <element signature="e#2119#7638#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -32,7 +33,7 @@
       <file leaf-file-name="home.client.controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/controllers/home.client.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
+            <state relative-caret-position="17">
               <caret line="19" column="95" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="95" />
               <folding />
             </state>
@@ -104,17 +105,6 @@
               <item name="TheFinePrintMap" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="TheFinePrintMap" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TheFinePrintMap" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TheFinePrintMap" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TheFinePrintMap" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -160,11 +150,12 @@
       <workItem from="1509921165774" duration="1220000" />
       <workItem from="1510712223608" duration="43000" />
       <workItem from="1510712665841" duration="14811000" />
+      <workItem from="1510762159554" duration="6705000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33243000" />
+    <option name="totallyTimeSpent" value="39948000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="870" y="0" width="1057" height="1047" extended-state="0" />
@@ -221,10 +212,30 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/client/index.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#2095#7648#0" expanded="false" />
+            <element signature="e#2119#7638#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/controllers/home.client.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="95" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/index.html">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="12" lean-forward="true" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
           <folding>
-            <element signature="e#7321#12874#0" expanded="false" />
+            <element signature="e#2095#7648#0" expanded="false" />
+            <element signature="e#2119#7638#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -242,7 +253,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#7321#12874#0" expanded="false" />
+            <element signature="e#2095#7648#0" expanded="false" />
+            <element signature="e#2119#7638#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -252,7 +264,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#7321#12874#0" expanded="false" />
+            <element signature="e#2095#7648#0" expanded="false" />
+            <element signature="e#2119#7638#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -270,7 +283,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#7321#12874#0" expanded="false" />
+            <element signature="e#2095#7648#0" expanded="false" />
+            <element signature="e#2119#7638#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -288,7 +302,8 @@
         <state relative-caret-position="663">
           <caret line="39" column="21" lean-forward="true" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
           <folding>
-            <element signature="e#7321#12874#0" expanded="false" />
+            <element signature="e#2095#7648#0" expanded="false" />
+            <element signature="e#2119#7638#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -306,7 +321,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#7321#12874#0" expanded="false" />
+            <element signature="e#2095#7648#0" expanded="false" />
+            <element signature="e#2119#7638#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -379,7 +395,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/controllers/home.client.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
+        <state relative-caret-position="17">
           <caret line="19" column="95" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="95" />
           <folding />
         </state>
@@ -387,10 +403,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="334" column="23" lean-forward="true" selection-start-line="334" selection-start-column="23" selection-end-line="334" selection-end-column="23" />
+        <state relative-caret-position="374">
+          <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
           <folding>
-            <element signature="e#7321#12874#0" expanded="false" />
+            <element signature="e#2095#7648#0" expanded="false" />
+            <element signature="e#2119#7638#0" expanded="false" />
           </folding>
         </state>
       </provider>
