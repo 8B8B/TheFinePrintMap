@@ -342,6 +342,7 @@
         };
         //console.log(bus20.businfo.length);
         directionsDisplay.setMap(map);
+        directionsDisplay.setOptions( { suppressMarkers: true } );
         var request = {
               travelMode: google.maps.TravelMode.TRANSIT
         };
