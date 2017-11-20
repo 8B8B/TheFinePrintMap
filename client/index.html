@@ -71,8 +71,10 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
 
     //initialized globally for use across functions
     var map, heatmap;
+
     var toggleClick = false;
     var repeater;
+      
     var radiusClick = false;
     var opacityClick = false;
     var gradientClick = false;
@@ -115,6 +117,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         transitLayer.setMap(map);
         heatMap();
         //doWork();
+
 
 
         //zipcodes, markers, pop-up windows
@@ -272,6 +275,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       if (demo === true) {
         setMapOnAll(null);
         demo = false;
+
       }
       else {
         setMapOnAll(map);
@@ -292,7 +296,6 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
             <option value="rosa">Rosa Park's Downtown Station</option>
             <option value="santa">Santa Fe College</option>
         </select>
-
   <script>
     document.getElementById("mySelect").addEventListener("change", myFunction);
     function myFunction() {
@@ -395,6 +398,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         line2.setVisible(true);
       }
     }
+    
     function heatMap(){
           if(toggleClick == true){
               map.setZoom(13);
@@ -415,7 +419,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       }
       repeater = setTimeout(doWork, 1);
 }
- 
+
 /*
         else if(document.getElementById("dropbtn").value === "changeGradient"){
           var gradient = [
