@@ -307,7 +307,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         line.setVisible(false);
         line2.setVisible(false);
         line = new google.maps.Polyline({
-          path: [{ lat: 29.639849, lng: -82.341958 }, { lat: 29.680646, lng: -82.430331 }],
+          path: [{ lat: 29.6400, lng: -82.3427 }, { lat: 29.6806, lng: -82.4331 }],
           icons: [{
             icon: lineSymbol,
             offset: '100%'
@@ -315,7 +315,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
           map: map
         });
         line2 = new google.maps.Polyline({
-          path: [{ lat: 29.639849, lng: -82.341958 }, { lat: 29.645994, lng: -82.322708 }],
+          path: [{ lat: 29.6400, lng: -82.3427 }, { lat: 29.645994, lng: -82.322708 }],
           icons: [{
             icon: lineSymbol,
             offset: '100%'
@@ -330,7 +330,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         line.setVisible(false);
         line2.setVisible(false);
         line = new google.maps.Polyline({
-          path: [{ lat: 29.625140, lng: -82.387885 }, { lat: 29.653164, lng: -82.411028 }],
+          path: [{ lat: 29.625140, lng: -82.387885 }, { lat: 29.6574, lng: -82.4114 }],
           icons: [{
             icon: lineSymbol,
             offset: '100%'
@@ -338,7 +338,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
           map: map
         });
         line2 = new google.maps.Polyline({
-          path: [{ lat: 29.625140, lng: -82.387885 }, { lat: 29.645994, lng: -82.322708 }],
+          path: [{ lat: 29.625140, lng: -82.387885 }, { lat: 29.6460, lng: -82.3227 }],
           icons: [{
             icon: lineSymbol,
             offset: '100%'
@@ -353,7 +353,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         line.setVisible(false);
         line2.setVisible(false);
         line = new google.maps.Polyline({
-          path: [{ lat: 29.645994, lng: -82.322708 }, { lat: 29.653164, lng: -82.411028 }],
+          path: [{ lat: 29.6460, lng: -82.3227 }, { lat: 29.6574, lng: -82.4114 }],
           icons: [{
             icon: lineSymbol,
             offset: '100%'
@@ -361,7 +361,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
           map: map
         });
         line2 = new google.maps.Polyline({
-          path: [{ lat: 29.645994, lng: -82.322708 }, { lat: 29.680646, lng: -82.430331 }],
+          path: [{ lat: 29.6460, lng: -82.3227 }, { lat: 29.6806, lng: -82.4331 }],
           icons: [{
             icon: lineSymbol,
             offset: '100%'
@@ -376,7 +376,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         line.setVisible(false);
         line2.setVisible(false);
         line = new google.maps.Polyline({
-          path: [{ lat: 29.680646, lng: -82.430331 }, { lat: 29.625140, lng: -82.387885 }],
+          path: [{ lat: 29.6806, lng: -82.4331 }, { lat: 29.625140, lng: -82.387885 }],
           icons: [{
             icon: lineSymbol,
             offset: '100%'
@@ -384,7 +384,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
           map: map
         });
         line2 = new google.maps.Polyline({
-          path: [{ lat: 29.680646, lng: -82.430331 }, { lat: 29.645994, lng: -82.322708 }],
+          path: [{ lat: 29.6806, lng: -82.4331 }, { lat: 29.6460, lng: -82.3227 }],
           icons: [{
             icon: lineSymbol,
             offset: '100%'
@@ -457,34 +457,55 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         //yellow = 10 min
         //green = 15 min
           //oaks mall
-          new google.maps.LatLng(29.6574, -82.4114),
-          //just north of mall, along newberry rd
-          new google.maps.LatLng(29.66, -82.4114),
-          //left
-          new google.maps.LatLng(29.66, -82.418),
-          //right
-          new google.maps.LatLng(29.66, -82.414),
-          new google.maps.LatLng(29.66, -82.406),
-          //bottom
-          //new google.maps.LatLng(26.65, 82.40),
+          {location: new google.maps.LatLng(29.6574, -82.4114), weight: 3},
+          {location: new google.maps.LatLng(29.6536, -82.4109), weight: 3},
+          //along bus route 23
+            //bottom right corner - newell & 55th
+            {location: new google.maps.LatLng(29.659, -82.409), weight: 3},
+            {location: new google.maps.LatLng(29.659, -82.405), weight: 3},
+            {location: new google.maps.LatLng(29.659, -82.4014), weight: 3},
+            //en route
+            {location: new google.maps.LatLng(29.663, -82.4014), weight: 2.5},
+            {location: new google.maps.LatLng(29.665, -82.4014), weight: 2.5},
+            {location: new google.maps.LatLng(29.67, -82.4014), weight: 2.5},
+            {location: new google.maps.LatLng(29.6738, -82.4018), weight: 2.5},
 
+            //top right corner - 55th & 23rd
+            {location: new google.maps.LatLng(29.6738, -82.4018), weight: 2.5},
+            
+            //left
+            {location: new google.maps.LatLng(29.66, -82.414), weight: 3},
+            {location: new google.maps.LatLng(29.66, -82.417), weight: 3},
+            {location: new google.maps.LatLng(29.66, -82.420), weight: 2.5},
+            {location: new google.maps.LatLng(29.66, -82.425), weight: 2.5},
+            {location: new google.maps.LatLng(29.66, -82.430), weight: 2},
+            {location: new google.maps.LatLng(29.661, -82.435), weight: 1.5},
+            //right
+            {location: new google.maps.LatLng(29.6576, -82.3959), weight: 2.5},
+            {location: new google.maps.LatLng(29.6557, -82.3907), weight: 1},
+            //south on 62nd blvd
+            {location: new google.maps.LatLng(29.6497, -82.4066), weight: 2},
+         
 
-          //lakewood apts ~25min
-          new google.maps.LatLng(29.6459, -82.4028),
-          
+          //santa fe college
+          {location: new google.maps.LatLng(29.6806, -82.4331), weight: 4},
+            //towards 23rd ave
+            {location: new google.maps.LatLng(29.677, -82.4303), weight: 1.5},
+            //santa fe west apts
+            {location: new google.maps.LatLng(29.6842, -82.4398), weight: 1},
+            {location: new google.maps.LatLng(29.683, -82.437), weight: 1},
+            //39th ave top right
+            {location: new google.maps.LatLng(29.688, -82.4302), weight: 1.75},
+            {location: new google.maps.LatLng(29.685, -82.4302), weight: 1.75},
 
-          new google.maps.LatLng(29.6516, -82.3248),
-          new google.maps.LatLng(29.6522516, -82.3689111),
-          new google.maps.LatLng(29.6472516, -82.4189111),
-          new google.maps.LatLng(29.6422516, -82.3289111),
-          new google.maps.LatLng(29.6577485, -82.3479016),
-          new google.maps.LatLng(29.6793128, -82.3723105),
-          new google.maps.LatLng(29.6788293, -82.4644445),
-          new google.maps.LatLng(29.647247, -82.4156829),
-          new google.maps.LatLng(29.6156734, -82.3659168),
-          new google.maps.LatLng(29.7935588, -82.2583297),
-          new google.maps.LatLng(29.6311155, -82.2365981),
-          new google.maps.LatLng(29.7429556, -82.3777335)
+          //butler  plaza
+          {location: new google.maps.LatLng(29.625140, -82.387885), weight: 3},
+
+          //rosa parks
+          {location: new google.maps.LatLng(29.6460, -82.3227), weight: 3},
+
+          //shands hospital
+          {location: new google.maps.LatLng(29.6400, -82.3427), weight: 3}
         ];
       }
 
