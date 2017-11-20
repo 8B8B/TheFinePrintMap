@@ -366,14 +366,11 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         }
       }
       function Markers() {
-        if (demo === true) {
-          setMapOnAll(null);
-          demo = false;
-
+        if (markers[0].getMap() == null) {
+          setMapOnAll(map);
         }
         else {
-          setMapOnAll(map);
-          demo = true;
+          setMapOnAll(null);
         }
       }
   </script>
@@ -418,16 +415,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
           new google.maps.LatLng(29.7429556, -82.3777335)
         ];
       }
-      function Markers() {
-        if (demo === true) {
-          setMapOnAll(null);
-          demo = false;
-        }
-        else {
-          setMapOnAll(map);
-          demo = true;
-        }
-      }
+
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY&libraries=visualization&callback=initMap">
 
