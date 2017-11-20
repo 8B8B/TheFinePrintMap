@@ -106,7 +106,6 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
     var opacityClick = false;
     var gradientClick = false;
     var trafficLayer, transitLayer, bikeLayer;
-    //var t = setInterval(runFunction(), 1000);
     var line;
     var line2;
     var lineSymbol;
@@ -130,6 +129,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
           maxZoom: 13,
           center: gainesville
         });
+        directionsDisplay.setMap(map);
      
         heatmap = new google.maps.visualization.HeatmapLayer({
           data: getPoints(),
