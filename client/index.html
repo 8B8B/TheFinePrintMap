@@ -96,7 +96,6 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       function toggleDiv(id) {
         var div = document.getElementById(id);
         div.style.display = div.style.display == "none" ? "block" : "none";
-        initMap();
       }
     </script>
 
@@ -144,7 +143,6 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         directionsDisplay4.setMap(null);
         var onChangeHandler = function () {
           if (document.getElementById('start').value == "nothing") {
-            initMap();
           }
           else {
             calculateAndDisplayRoute(directionsService, directionsDisplay1, 1);
@@ -294,8 +292,6 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         markers.push(marker32641);
         markers.push(marker32653);
         setMapOnAll(null);
-        //Markers();
-
       }
 
       function heatMapToggle() {
