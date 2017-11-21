@@ -43,8 +43,6 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
     }
   </style>
   <base href="/">
-  <link rel="stylesheet" href="/public/lib/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body ng-app="directoryApp">
@@ -80,14 +78,23 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
     <b>Start: </b>
     <select id="start">
         <option value="nothing">-- Select one --</option>
-    <option value="Majestic Oaks Apartments, Gainesville, FL 32607">Majestic Oaks</option>
-    <option value="Gainesville Place Apartments, Gainesville, FL 32608">Gainesville Place</option>
+    <option value="Reitz Student Union, Gainesville, FL 32603">Reitz Union</option>
+    <option value="Butler Plaza RTS Transfer Station, FL 32607">Butler Plaza</option>
+    <option value="2-4 W University Ave, Gainesville, FL 32601">Downtown Gainesville</option>
+    <option value="Santa Fe College, Gainesville, FL 32606">Santa Fe College</option>
   </select>
 
     <script>
       function toggleDiv(id) {
         var div = document.getElementById(id);
         div.style.display = div.style.display == "none" ? "block" : "none";
+        directionsDisplay1.setMap(null);
+        directionsDisplay2.setMap(null);
+        directionsDisplay3.setMap(null);
+        directionsDisplay4.setMap(null);
+        directionsDisplay5.setMap(null);
+        directionsDisplay6.setMap(null);
+        directionsDisplay7.setMap(null);
       }
     </script>
 
@@ -103,9 +110,16 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       var trafficLayer, transitLayer, bikeLayer;
       var line;
       var line2;
+      var directionsService;
+      var directionsDisplay1;
+      var directionsDisplay2;
+      var directionsDisplay3;
+      var directionsDisplay4;
+      var directionsDisplay5;
+      var directionsDisplay6;
+      var directionsDisplay7;
       var lineSymbol;
       var blankimage = 'https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png'
-      var demo = true;
       var gainesville = { lat: 29.6516, lng: -82.3248 };
       var zip32601 = { lat: 29.6422516, lng: -82.3289111 };
       var zip32603 = { lat: 29.6577485, lng: -82.3479016 };
@@ -118,33 +132,49 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       var zip32653 = { lat: 29.7429556, lng: -82.3777335 };
       var markers = [];
       function initMap() {
-        var directionsService = new google.maps.DirectionsService;
-        var directionsDisplay1 = new google.maps.DirectionsRenderer;
-        var directionsDisplay2 = new google.maps.DirectionsRenderer;
-        var directionsDisplay3 = new google.maps.DirectionsRenderer;
-        var directionsDisplay4 = new google.maps.DirectionsRenderer;
+        directionsService = new google.maps.DirectionsService;
+        directionsDisplay1 = new google.maps.DirectionsRenderer;
+        directionsDisplay2 = new google.maps.DirectionsRenderer;
+        directionsDisplay3 = new google.maps.DirectionsRenderer;
+        directionsDisplay4 = new google.maps.DirectionsRenderer;
+        directionsDisplay5 = new google.maps.DirectionsRenderer;
+        directionsDisplay6 = new google.maps.DirectionsRenderer;
+        directionsDisplay7 = new google.maps.DirectionsRenderer;
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
           minZoom: 11,
           maxZoom: 15,
           center: gainesville
         });
-        directionsDisplay1.setMap(null);
-        directionsDisplay2.setMap(null);
-        directionsDisplay3.setMap(null);
-        directionsDisplay4.setMap(null);
+
         var onChangeHandler = function () {
           if (document.getElementById('start').value == "nothing") {
+            directionsDisplay1.setMap(null);
+            directionsDisplay2.setMap(null);
+            directionsDisplay3.setMap(null);
+            directionsDisplay4.setMap(null);
+            directionsDisplay5.setMap(null);
+            directionsDisplay6.setMap(null);
+            directionsDisplay7.setMap(null);
           }
           else {
+            directionsDisplay1.setMap(map);
+            directionsDisplay2.setMap(map);
+            directionsDisplay3.setMap(map);
+            directionsDisplay4.setMap(map);
+            directionsDisplay5.setMap(map);
+            directionsDisplay6.setMap(map);
+            directionsDisplay7.setMap(map);
             calculateAndDisplayRoute(directionsService, directionsDisplay1, 1);
             calculateAndDisplayRoute(directionsService, directionsDisplay2, 2);
             calculateAndDisplayRoute(directionsService, directionsDisplay3, 3);
             calculateAndDisplayRoute(directionsService, directionsDisplay4, 4);
+            calculateAndDisplayRoute(directionsService, directionsDisplay5, 5);
+            calculateAndDisplayRoute(directionsService, directionsDisplay6, 6);
+            calculateAndDisplayRoute(directionsService, directionsDisplay7, 7);
           }
         };
         document.getElementById('start').addEventListener('change', onChangeHandler);
-
 
         heatmap = new google.maps.visualization.HeatmapLayer({
           data: getPoints(),
@@ -297,7 +327,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         if (route == 1) {
           directionsService.route({
             origin: document.getElementById('start').value,
-            destination: '655 Reitz Union Drive, Gainesville, FL',
+            destination: 'Majestic Oaks Apartments, Gainesville, FL 32607',
             travelMode: 'TRANSIT'
           }, function (response, status) {
             if (status === 'OK') {
@@ -310,7 +340,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         if (route == 2) {
           directionsService.route({
             origin: document.getElementById('start').value,
-            destination: 'Butler Plaza RTS Transfer Station, Florida, 32607',
+            destination: 'Gainesville Place Apartments, Gainesville, FL 32608',
             travelMode: 'TRANSIT'
           }, function (response, status) {
             if (status === 'OK') {
@@ -323,7 +353,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         if (route == 3) {
           directionsService.route({
             origin: document.getElementById('start').value,
-            destination: 'Gainesville, FL',
+            destination: 'Cabana Beach Apartments, Gainesville, FL 32607',
             travelMode: 'TRANSIT'
           }, function (response, status) {
             if (status === 'OK') {
@@ -336,7 +366,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         if (route == 4) {
           directionsService.route({
             origin: document.getElementById('start').value,
-            destination: 'Santa Fe College, Gainesville, FL',
+            destination: '3527 SW 20th Ave, Gainesville, FL 32607',
             travelMode: 'TRANSIT'
           }, function (response, status) {
             if (status === 'OK') {
@@ -346,7 +376,45 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
             }
           });
         }
-
+        if (route == 5) {
+          directionsService.route({
+            origin: document.getElementById('start').value,
+            destination: 'Tivoli Apartments in Gainesville, Gainesville, FL 32608',
+            travelMode: 'TRANSIT'
+          }, function (response, status) {
+            if (status === 'OK') {
+              directionsDisplay.setDirections(response);
+            } else {
+              window.alert('Directions request failed due to ' + status);
+            }
+          });
+        }
+        if (route == 6) {
+          directionsService.route({
+            origin: document.getElementById('start').value,
+            destination: '505 SW 2nd Ave, Gainesville, FL 32601',
+            travelMode: 'TRANSIT'
+          }, function (response, status) {
+            if (status === 'OK') {
+              directionsDisplay.setDirections(response);
+            } else {
+              window.alert('Directions request failed due to ' + status);
+            }
+          });
+        }
+        if (route == 7) {
+          directionsService.route({
+            origin: document.getElementById('start').value,
+            destination: 'Rawlings Hall, Gainesville, FL 32603',
+            travelMode: 'TRANSIT'
+          }, function (response, status) {
+            if (status === 'OK') {
+              directionsDisplay.setDirections(response);
+            } else {
+              window.alert('Directions request failed due to ' + status);
+            }
+          });
+        }
       }
       function setMapOnAll(map) {
         for (var i = 0; i < markers.length; i++) {
@@ -395,7 +463,6 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
           new google.maps.LatLng(29.7429556, -82.3777335)
         ];
       }
-
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY&libraries=visualization&callback=initMap">
 
