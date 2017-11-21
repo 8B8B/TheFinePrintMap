@@ -50,24 +50,6 @@ nav {
     margin-top: 10px;
   }
 
-  h3 {
-    background-color: lightblue;
-    width: 300px;
-    border-style: solid;
-    padding: 15px;
-    padding-bottom: 150px;
-    max-height: 75px;
-    float: left;
-    text-align: center;
-    font-family: futura, "Trebuchet MS", Arial, sans-serif;
-  }
-
-  ng-map {
-    width: 70%;
-    height: 150%;
-    margin-right: 10px;
-    float: right;
-  }
 
   h4 {
     max-width: 300px;
@@ -101,23 +83,4 @@ a:hover .header-profile-image {
 }
 .has-error .help-inline.error-text {
   display: inline;
-}
-.boxed {
-  border: 1px solid black ;
-}
-  .box{
-  width: 150px;
-  height: 80px;
-  z-index: 2;
-  display: none;
-}
- 
-.white{
-  background:#fff;
-  border:1px solid black;
-  display: block;
-}
-.zip{
-  font-size: 20px;
-  color: red;
 }
