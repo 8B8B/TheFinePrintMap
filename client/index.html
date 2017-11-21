@@ -8,8 +8,9 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
 <head>
   <style>
     #map {
-      height: 400px;
-      width: 100%;
+      height: 800px;
+      width: 1000px;
+      margin-left: 400px;
     }
 
     #floating-panel {
@@ -25,18 +26,20 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       line-height: 30px;
       padding-left: 10px;
     }
-
+    h2{
+        border: 1px solid black;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-left: 400px;
+        float: left;
+        height: 200px;
+    }
     h3 {
-      background-color: lightblue;
-      width: 300px;
-      border-style: solid;
-      padding: 15px;
-      padding-bottom: 150px;
-      max-height: 75px;
-      float: left;
+      width: 480px;
+      height: 200px;
+      border: 1px solid black;
+      margin-left: 920px;
       text-align: center;
-      font-family: futura;
-      margin: 20px;
     }
   </style>
   <base href="/">
@@ -46,41 +49,30 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
 
 <body ng-app="directoryApp">
   <br>
-  <div class="boxed">
+  <div style="display: inline-block;">
+  <h2>
     <form>
-      <legend> Toggle Between Different Displays: </legend>
-      <p> </p>
-      <p>
+      <p style="font-size: 25px;"> Toggle Between Different Displays: <br> <br>
         <input type="checkbox" name="demographic" value="demographic" id="demographic" onclick="Markers()">
-        <label for="demographic"> Demographic Information &emsp; &emsp; &emsp; &emsp; &emsp;
+        <label for="demographic" style="font-size: 16px;"> Demographic Information &emsp; &emsp; &emsp; &emsp; &emsp;
           </label>
         <input type="checkbox" name="routes" value="routes" id="routes">
-        <label for="routes"> Bus Routes
+        <label for="routes" style="font-size: 16px;"> Bus Routes
           </label>
-      </p>
-      <p>
+          <br>
         <input type="checkbox" name="comparison" value="comparison" id="comparison" onclick="toggleDiv('floating-panel')">
-        <label for="demographic">  Travel Time Comparisons &emsp; &emsp; &emsp; &emsp; &emsp;
+        <label for="demographic" style="font-size: 16px;">  Travel Time Comparisons &emsp; &emsp; &emsp; &emsp; &emsp;
           </label>
         <input type="checkbox" name="heatmap" value="heatmap" id="heatmap" onclick="heatMapToggle()">
-        <label for="routes"> Heat Map
+        <label for="routes" style="font-size: 16px;"> Heat Map
           </label>
-        <!--
-        <button class = "dropbtn"> Heat Map <i class= fa fa-caret-down"></i></button>
-        <div class = "dropdown-content">
-          <button on-click="toggleHeatmap()"> Toggle Heat Map</button>
-          <button on-click="changeGradient()"> Change Gradient</button>
-          <a href="#">changeGradient()</a>
-          <a href="#">changeRadius()</a>
-          <a href="#">changeOpacity()</a>
-        </div>
-        -->
-
-
       </p>
     </form>
-  </div>
-
+  </h2>
+  <h3>
+    Example box
+  </h3>
+</div>
   <div id="floating-panel">
     <script>
       document.getElementById('floating-panel').style.display = 'none';
@@ -369,15 +361,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
           setMapOnAll(null);
         }
       }
-  </script>
-
-  <h3 id="textBox">
-    Select a location and view the difference in travel times and frequency.
-  </h3>
- 
-  <script>
-
-      //temporary data points
+       //temporary data points
       function getPoints() {
         return [
           //red = 5 min
