@@ -79,8 +79,8 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       <li><input type="checkbox" name="heatmap" value="heatmap" id="heatmap" onclick="heatMapToggle()" /><label for="heatmap">Heat Map</label></li>
     </ul>
   </h2>
-  <h3>
-    Example box will change in future.
+  <h3 id="Instruction">
+    Welcome to our visual display showing the differences in travel times betweeen primary hub to student/non-student apartments. Please click on the checkboxes to the left to toggle overlays on the map.
   </h3>
   </div>
   <div id="floating-panel">
@@ -100,6 +100,12 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       function toggleDiv(id) {
         var div = document.getElementById(id);
         div.style.display = div.style.display == "none" ? "block" : "none";
+        if (div.style.display == "block"){
+          document.getElementById("Instruction").innerHTML = 'Click on the dropdown box under the checkboxes to display routes from hubs to apartments.';
+        }
+        else{
+          document.getElementById("Instruction").innerHTML = '';
+        }
         directionsDisplay1.setMap(null);
         directionsDisplay2.setMap(null);
         directionsDisplay3.setMap(null);
@@ -334,9 +340,12 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         if (heatmap.getMap() == null){
           heatmap.setMap(map);
           map.setZoom(13);
+          document.getElementById("Instruction").innerHTML = 'The zoom will be locked if this checkbox is clicked. Green stands for 5 minutes or less, Yellow for 5-10 minutes, and Red for more than 10 minutes.';
         }
-        else
-          heatmap.setMap(null);
+        else{
+        heatmap.setMap(null);
+        document.getElementById("Instruction").innerHTML = '';
+      }
       }
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
@@ -440,9 +449,11 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       function Markers() {
         if (markers[0].getMap() == null) {
           setMapOnAll(map);
+          document.getElementById("Instruction").innerHTML = 'Click on the zipcodes on the map to get more information about each zipcode in Gainesville';
         }
         else {
           setMapOnAll(null);
+          document.getElementById("Instruction").innerHTML = '';
         }
       }
       //temporary data points
