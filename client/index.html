@@ -341,10 +341,12 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
           heatmap.setMap(map);
           map.setZoom(13);
           document.getElementById("Instruction").innerHTML = 'The zoom will be locked if this checkbox is clicked. Green stands for 5 minutes or less, Yellow for 5-10 minutes, and Red for more than 10 minutes.';
+            map.setOptions({ minZoom: 13, maxZoom: 13 });
         }
         else{
         heatmap.setMap(null);
         document.getElementById("Instruction").innerHTML = '';
+        map.setOptions({ minZoom:11, maxZoom: 15 });
       }
       }
 
