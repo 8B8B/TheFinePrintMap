@@ -109,8 +109,9 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         heatmap = new google.maps.visualization.HeatmapLayer({
           data: getPoints(),
           map: map,
-          radius: 40,
-          opacity: 0.5
+          radius: 35,
+          opacity: 0.5,
+          gradient: getGradient()
         });
         heatmap.setMap(map);
         transitLayer = new google.maps.TransitLayer();
@@ -398,7 +399,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         line2.setVisible(true);
       }
     }
-    
+
     function heatMap(){
           if(toggleClick == true){
               map.setZoom(13);
@@ -418,48 +419,14 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         //document.getElementById("heatmap").checked = false;
       }
       repeater = setTimeout(doWork, 1);
-}
+    }
 
-/*
-        else if(document.getElementById("dropbtn").value === "changeGradient"){
-          var gradient = [
-            'rgba(0, 255, 255, 0)',
-            'rgba(0, 255, 255, 1)',
-            'rgba(0, 191, 255, 1)',
-            'rgba(0, 127, 255, 1)',
-            'rgba(0, 63, 255, 1)',
-            'rgba(0, 0, 255, 1)',
-            'rgba(0, 0, 223, 1)',
-            'rgba(0, 0, 191, 1)',
-            'rgba(0, 0, 159, 1)',
-            'rgba(0, 0, 127, 1)',
-            'rgba(63, 0, 91, 1)',
-            'rgba(127, 0, 63, 1)',
-            'rgba(191, 0, 31, 1)',
-            'rgba(255, 0, 0, 1)'
-          ]
-            if(radiusClick == false){
-              heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
-              gradientClick = true;
-            } else {
-              gradientClick = false;
-            }
-        } else if(document.getElementById("dropbtn").value === "changeOpacity"){
-            if(opacityClick == false){
-              heatmap.set('opacity', heatmap.get('opacity') ? null : 0.9);
-              opacityClick = true;
-            } else {
-              heatmap.set('opacity', heatmap.get('opacity') ? null : 0.5);
-              opacityClick = false;
-            }
-        }
-        */
-      //temporary data points
-      function getPoints() {
+    //heatmap data points
+    function getPoints() {
         return [
-        //red = 5 min
+        //green = 5 min
         //yellow = 10 min
-        //green = 15 min
+        //red = 15 min
           //oaks mall
           {location: new google.maps.LatLng(29.6574, -82.4114), weight: 3},
           {location: new google.maps.LatLng(29.6536, -82.4109), weight: 3},
@@ -503,13 +470,93 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
             {location: new google.maps.LatLng(29.685, -82.4302), weight: 1.75},
 
           //butler  plaza
-          {location: new google.maps.LatLng(29.625140, -82.387885), weight: 3},
+          {location: new google.maps.LatLng(29.625140, -82.387885), weight: 3.5},
+            {location: new google.maps.LatLng(29.6218, -82.38697), weight: 3},
+            {location: new google.maps.LatLng(29.6276, -82.3830), weight: 3},
+            //surrounding areas
+            {location: new google.maps.LatLng(29.6253, -82.38386), weight: 2},
+            //24th ave and 38th ter
+            {location: new google.maps.LatLng(29.63153, -82.3808), weight: 2},
+            //in between
+            {location: new google.maps.LatLng(29.63156, -82.3808), weight: 2},
+            //20th and 38th ter
+            {location: new google.maps.LatLng(29.6339, -82.3810), weight: 2},
+            //continuing along route 33
+            {location: new google.maps.LatLng(29.636757, -82.380765), weight: 2},
+            {location: new google.maps.LatLng(29.637242, -82.3782), weight: 2},
+            //before 34th st
+            {location: new google.maps.LatLng(29.6378, -82.3741), weight: 2},
+            //after 34th
+            {location: new google.maps.LatLng(29.6375, -82.36886), weight: 2},
+            {location: new google.maps.LatLng(29.63746, -82.36515), weight: 2},
+            //left side of lake alice
+            {location: new google.maps.LatLng(29.637484, -82.3601), weight: 2},
+            //right side of lake alice
+            {location: new google.maps.LatLng(29.63832, -82.35326), weight: 1.5},
 
-          //rosa parks
-          {location: new google.maps.LatLng(29.6460, -82.3227), weight: 3},
+            //archer route
+            {location: new google.maps.LatLng(29.6211, -82.3812), weight: 1},
+            {location: new google.maps.LatLng(29.6233, -82.3759), weight: 1},
+            {location: new google.maps.LatLng(29.62564, -82.3745), weight: 1},
+            {location: new google.maps.LatLng(29.627279, -82.37137), weight: 1},
+            {location: new google.maps.LatLng(29.63175, -82.36193), weight: 1},
 
           //shands hospital
-          {location: new google.maps.LatLng(29.6400, -82.3427), weight: 3}
+          {location: new google.maps.LatLng(29.6400, -82.3427), weight: 4.5},
+            //museum
+            {location: new google.maps.LatLng(29.6448, -82.3434), weight: 1.5},
+            //diamond village
+            {location: new google.maps.LatLng(29.64249, -82.3393), weight: 1},
+            //down 13th on bus stops
+            //oak brook condo
+            {location: new google.maps.LatLng(29.6384, -82.3390), weight: 1},
+            {location: new google.maps.LatLng(29.6278, -82.3391), weight: 1},
+            {location: new google.maps.LatLng(29.6346, -82.3395), weight: 1},
+            //boardwalk apt
+            {location: new google.maps.LatLng(29.6264, -82.3392), weight: 1},
+            //right on 16th
+            {location: new google.maps.LatLng(29.6364, -82.3351), weight: 1},
+
+            
+          //rosa parks
+          {location: new google.maps.LatLng(29.6460, -82.3227), weight: 4},
+          //downtown
+          {location: new google.maps.LatLng(29.64929, -82.3242), weight: 2},
+          //courts up the road 
+          {location: new google.maps.LatLng(29.65153, -82.3223), weight: 2},
+          //right on university
+          {location: new google.maps.LatLng(29.65166, -82.31961), weight: 1},
+          //left to 2nd ave apt
+          {location: new google.maps.LatLng(29.6504, -82.3299), weight: 1}
+          
+        ];
+      }
+
+      function getGradient() {
+        return [
+          'rgba(255, 255, 255, 0)',
+          //gradient from red to yellow
+          'rgba(229, 37, 0, 1)',
+          'rgba(231, 58, 0, 1)',
+          'rgba(234, 80, 0, 1)',
+          'rgba(226, 102, 0, 1)',
+          'rgba(239, 112, 0, 1)',
+          'rgba(242, 146, 0, 1)',
+          'rgba(244, 167, 0, 1)',
+          'rgba(247, 189, 0, 1)',
+          'rgba(249, 211, 0, 1)',
+          'rgba(252, 233, 0, 1)',
+          //yellow to green
+          'rgba(226, 224, 0, 1)',
+          'rgba(201, 216, 0, 1)',
+          'rgba(176, 208, 0, 1)',
+          'rgba(151, 199, 0, 1)',
+          'rgba(126, 191, 0, 1)',
+          'rgba(100, 183, 0, 1)',
+          'rgba(75, 174, 0, 1)',
+          'rgba(50, 166, 0, 1)',
+          'rgba(25, 158, 0, 1)',
+          'rgba(0, 150, 0, 1)'
         ];
       }
 
