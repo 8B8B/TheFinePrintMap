@@ -191,8 +191,10 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         heatmap = new google.maps.visualization.HeatmapLayer({
           data: getPoints(),
           map: map,
-          radius: 40,
-          opacity: 0.5
+          zoom: 13,
+          radius: 35,
+          opacity: 0.5,
+          gradient: getGradient()
         });
         heatmap.setMap(null);
         transitLayer = new google.maps.TransitLayer();
@@ -329,8 +331,10 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       }
 
       function heatMapToggle() {
-        if (heatmap.getMap() == null)
+        if (heatmap.getMap() == null){
           heatmap.setMap(map);
+          map.setZoom(13);
+        }
         else
           heatmap.setMap(null);
       }
@@ -442,37 +446,140 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         }
       }
       //temporary data points
-      function getPoints() {
+ function getPoints() {
         return [
-          //red = 5 min
-          //yellow = 10 min
-          //green = 15 min
+        //green = 5 min
+        //yellow = 10 min
+        //red = 15 min
           //oaks mall
-          new google.maps.LatLng(29.6574, -82.4114),
-          //just north of mall, along newberry rd
-          new google.maps.LatLng(29.66, -82.4114),
-          //left
-          new google.maps.LatLng(29.66, -82.418),
-          //right
-          new google.maps.LatLng(29.66, -82.414),
-          new google.maps.LatLng(29.66, -82.406),
-          //bottom
-          //new google.maps.LatLng(26.65, 82.40),
-          //lakewood apts ~25min
-          new google.maps.LatLng(29.6459, -82.4028),
+          {location: new google.maps.LatLng(29.6574, -82.4114), weight: 3},
+          {location: new google.maps.LatLng(29.6536, -82.4109), weight: 3},
+          //along bus route 23
+            //bottom right corner - newell & 55th
+            {location: new google.maps.LatLng(29.659, -82.409), weight: 3},
+            {location: new google.maps.LatLng(29.659, -82.405), weight: 3},
+            {location: new google.maps.LatLng(29.659, -82.4014), weight: 3},
+            //en route
+            {location: new google.maps.LatLng(29.663, -82.4014), weight: 2.5},
+            {location: new google.maps.LatLng(29.665, -82.4014), weight: 2.5},
+            {location: new google.maps.LatLng(29.67, -82.4014), weight: 2.5},
+            {location: new google.maps.LatLng(29.6738, -82.4018), weight: 2.5},
 
-          new google.maps.LatLng(29.6516, -82.3248),
-          new google.maps.LatLng(29.6522516, -82.3689111),
-          new google.maps.LatLng(29.6472516, -82.4189111),
-          new google.maps.LatLng(29.6422516, -82.3289111),
-          new google.maps.LatLng(29.6577485, -82.3479016),
-          new google.maps.LatLng(29.6793128, -82.3723105),
-          new google.maps.LatLng(29.6788293, -82.4644445),
-          new google.maps.LatLng(29.647247, -82.4156829),
-          new google.maps.LatLng(29.6156734, -82.3659168),
-          new google.maps.LatLng(29.7935588, -82.2583297),
-          new google.maps.LatLng(29.6311155, -82.2365981),
-          new google.maps.LatLng(29.7429556, -82.3777335)
+            //top right corner - 55th & 23rd
+            {location: new google.maps.LatLng(29.6738, -82.4018), weight: 2.5},
+            
+            //left
+            {location: new google.maps.LatLng(29.66, -82.414), weight: 3},
+            {location: new google.maps.LatLng(29.66, -82.417), weight: 3},
+            {location: new google.maps.LatLng(29.66, -82.420), weight: 2.5},
+            {location: new google.maps.LatLng(29.66, -82.425), weight: 2.5},
+            {location: new google.maps.LatLng(29.66, -82.430), weight: 2},
+            {location: new google.maps.LatLng(29.661, -82.435), weight: 1.5},
+            //right
+            {location: new google.maps.LatLng(29.6576, -82.3959), weight: 2.5},
+            {location: new google.maps.LatLng(29.6557, -82.3907), weight: 1},
+            //south on 62nd blvd
+            {location: new google.maps.LatLng(29.6497, -82.4066), weight: 2},
+         
+
+          //santa fe college
+          {location: new google.maps.LatLng(29.6806, -82.4331), weight: 4},
+            //towards 23rd ave
+            {location: new google.maps.LatLng(29.677, -82.4303), weight: 1.5},
+            //santa fe west apts
+            {location: new google.maps.LatLng(29.6842, -82.4398), weight: 1},
+            {location: new google.maps.LatLng(29.683, -82.437), weight: 1},
+            //39th ave top right
+            {location: new google.maps.LatLng(29.688, -82.4302), weight: 1.75},
+            {location: new google.maps.LatLng(29.685, -82.4302), weight: 1.75},
+
+          //butler  plaza
+          {location: new google.maps.LatLng(29.625140, -82.387885), weight: 3.5},
+            {location: new google.maps.LatLng(29.6218, -82.38697), weight: 3},
+            {location: new google.maps.LatLng(29.6276, -82.3830), weight: 3},
+            //surrounding areas
+            {location: new google.maps.LatLng(29.6253, -82.38386), weight: 2},
+            //24th ave and 38th ter
+            {location: new google.maps.LatLng(29.63153, -82.3808), weight: 2},
+            //in between
+            {location: new google.maps.LatLng(29.63156, -82.3808), weight: 2},
+            //20th and 38th ter
+            {location: new google.maps.LatLng(29.6339, -82.3810), weight: 2},
+            //continuing along route 33
+            {location: new google.maps.LatLng(29.636757, -82.380765), weight: 2},
+            {location: new google.maps.LatLng(29.637242, -82.3782), weight: 2},
+            //before 34th st
+            {location: new google.maps.LatLng(29.6378, -82.3741), weight: 2},
+            //after 34th
+            {location: new google.maps.LatLng(29.6375, -82.36886), weight: 2},
+            {location: new google.maps.LatLng(29.63746, -82.36515), weight: 2},
+            //left side of lake alice
+            {location: new google.maps.LatLng(29.637484, -82.3601), weight: 2},
+            //right side of lake alice
+            {location: new google.maps.LatLng(29.63832, -82.35326), weight: 1.5},
+
+            //archer route
+            {location: new google.maps.LatLng(29.6211, -82.3812), weight: 1},
+            {location: new google.maps.LatLng(29.6233, -82.3759), weight: 1},
+            {location: new google.maps.LatLng(29.62564, -82.3745), weight: 1},
+            {location: new google.maps.LatLng(29.627279, -82.37137), weight: 1},
+            {location: new google.maps.LatLng(29.63175, -82.36193), weight: 1},
+
+          //shands hospital
+          {location: new google.maps.LatLng(29.6400, -82.3427), weight: 4.5},
+            //museum
+            {location: new google.maps.LatLng(29.6448, -82.3434), weight: 1.5},
+            //diamond village
+            {location: new google.maps.LatLng(29.64249, -82.3393), weight: 1},
+            //down 13th on bus stops
+            //oak brook condo
+            {location: new google.maps.LatLng(29.6384, -82.3390), weight: 1},
+            {location: new google.maps.LatLng(29.6278, -82.3391), weight: 1},
+            {location: new google.maps.LatLng(29.6346, -82.3395), weight: 1},
+            //boardwalk apt
+            {location: new google.maps.LatLng(29.6264, -82.3392), weight: 1},
+            //right on 16th
+            {location: new google.maps.LatLng(29.6364, -82.3351), weight: 1},
+
+            
+          //rosa parks
+          {location: new google.maps.LatLng(29.6460, -82.3227), weight: 4},
+          //downtown
+          {location: new google.maps.LatLng(29.64929, -82.3242), weight: 2},
+          //courts up the road 
+          {location: new google.maps.LatLng(29.65153, -82.3223), weight: 2},
+          //right on university
+          {location: new google.maps.LatLng(29.65166, -82.31961), weight: 1},
+          //left to 2nd ave apt
+          {location: new google.maps.LatLng(29.6504, -82.3299), weight: 1}
+          
+        ];
+      }
+       function getGradient() {
+        return [
+          'rgba(255, 255, 255, 0)',
+          //gradient from red to yellow
+          'rgba(229, 37, 0, 1)',
+          'rgba(231, 58, 0, 1)',
+          'rgba(234, 80, 0, 1)',
+          'rgba(226, 102, 0, 1)',
+          'rgba(239, 112, 0, 1)',
+          'rgba(242, 146, 0, 1)',
+          'rgba(244, 167, 0, 1)',
+          'rgba(247, 189, 0, 1)',
+          'rgba(249, 211, 0, 1)',
+          'rgba(252, 233, 0, 1)',
+          //yellow to green
+          'rgba(226, 224, 0, 1)',
+          'rgba(201, 216, 0, 1)',
+          'rgba(176, 208, 0, 1)',
+          'rgba(151, 199, 0, 1)',
+          'rgba(126, 191, 0, 1)',
+          'rgba(100, 183, 0, 1)',
+          'rgba(75, 174, 0, 1)',
+          'rgba(50, 166, 0, 1)',
+          'rgba(25, 158, 0, 1)',
+          'rgba(0, 150, 0, 1)'
         ];
       }
   </script>
