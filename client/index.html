@@ -128,13 +128,13 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       var line;
       var line2;
       var directionsService;
-      var directionsDisplay1;
-      var directionsDisplay2;
-      var directionsDisplay3;
-      var directionsDisplay4;
-      var directionsDisplay5;
-      var directionsDisplay6;
-      var directionsDisplay7;
+      var directionsDisplay91;
+      var directionsDisplay92;
+      var directionsDisplay93;
+      var directionsDisplay94;
+      var directionsDisplay95;
+      var directionsDisplay96;
+      var directionsDisplay97;
       var lineSymbol;
       var blankimage = 'https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png'
       var gainesville = { lat: 29.6516, lng: -82.3248 };
@@ -150,13 +150,13 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       var markers = [];
       function initMap() {
         directionsService = new google.maps.DirectionsService;
-        directionsDisplay1 = new google.maps.DirectionsRenderer;
-        directionsDisplay2 = new google.maps.DirectionsRenderer;
-        directionsDisplay3 = new google.maps.DirectionsRenderer;
-        directionsDisplay4 = new google.maps.DirectionsRenderer;
-        directionsDisplay5 = new google.maps.DirectionsRenderer;
-        directionsDisplay6 = new google.maps.DirectionsRenderer;
-        directionsDisplay7 = new google.maps.DirectionsRenderer;
+        directionsDisplay91 = new google.maps.DirectionsRenderer;
+        directionsDisplay92 = new google.maps.DirectionsRenderer;
+        directionsDisplay93 = new google.maps.DirectionsRenderer;
+        directionsDisplay94 = new google.maps.DirectionsRenderer;
+        directionsDisplay95 = new google.maps.DirectionsRenderer;
+        directionsDisplay96 = new google.maps.DirectionsRenderer;
+        directionsDisplay97 = new google.maps.DirectionsRenderer;
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
           minZoom: 11,
@@ -166,29 +166,29 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
 
         var onChangeHandler = function () {
           if (document.getElementById('start').value == "nothing") {
-            directionsDisplay1.setMap(null);
-            directionsDisplay2.setMap(null);
-            directionsDisplay3.setMap(null);
-            directionsDisplay4.setMap(null);
-            directionsDisplay5.setMap(null);
-            directionsDisplay6.setMap(null);
-            directionsDisplay7.setMap(null);
+            directionsDisplay91.setMap(null);
+            directionsDisplay92.setMap(null);
+            directionsDisplay93.setMap(null);
+            directionsDisplay94.setMap(null);
+            directionsDisplay95.setMap(null);
+            directionsDisplay96.setMap(null);
+            directionsDisplay97.setMap(null);
           }
           else {
-            directionsDisplay1.setMap(map);
-            directionsDisplay2.setMap(map);
-            directionsDisplay3.setMap(map);
-            directionsDisplay4.setMap(map);
-            directionsDisplay5.setMap(map);
-            directionsDisplay6.setMap(map);
-            directionsDisplay7.setMap(map);
-            calculateAndDisplayRoute(directionsService, directionsDisplay1, 1);
-            calculateAndDisplayRoute(directionsService, directionsDisplay2, 2);
-            calculateAndDisplayRoute(directionsService, directionsDisplay3, 3);
-            calculateAndDisplayRoute(directionsService, directionsDisplay4, 4);
-            calculateAndDisplayRoute(directionsService, directionsDisplay5, 5);
-            calculateAndDisplayRoute(directionsService, directionsDisplay6, 6);
-            calculateAndDisplayRoute(directionsService, directionsDisplay7, 7);
+            directionsDisplay91.setMap(map);
+            directionsDisplay92.setMap(map);
+            directionsDisplay93.setMap(map);
+            directionsDisplay94.setMap(map);
+            directionsDisplay95.setMap(map);
+            directionsDisplay96.setMap(map);
+            directionsDisplay97.setMap(map);
+            calculateAndDisplayRoute(directionsService, directionsDisplay91, 1);
+            calculateAndDisplayRoute(directionsService, directionsDisplay92, 2);
+            calculateAndDisplayRoute(directionsService, directionsDisplay93, 3);
+            calculateAndDisplayRoute(directionsService, directionsDisplay94, 4);
+            calculateAndDisplayRoute(directionsService, directionsDisplay95, 5);
+            calculateAndDisplayRoute(directionsService, directionsDisplay96, 6);
+            calculateAndDisplayRoute(directionsService, directionsDisplay97, 7);
           }
         };
         document.getElementById('start').addEventListener('change', onChangeHandler);
