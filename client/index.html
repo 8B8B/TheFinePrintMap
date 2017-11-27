@@ -342,6 +342,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
           map.setZoom(13);
           document.getElementById("Instruction").innerHTML = 'The zoom will be locked if this checkbox is clicked. Green stands for 5 minutes or less, Yellow for 5-10 minutes, and Red for more than 10 minutes.';
             map.setOptions({ minZoom: 13, maxZoom: 13 });
+            map.setCenter({ lat: 29.6560626, lng: -82.3897699 });
         }
         else{
         heatmap.setMap(null);
