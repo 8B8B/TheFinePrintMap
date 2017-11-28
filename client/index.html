@@ -229,7 +229,16 @@
           }
         };
         document.getElementById('start').addEventListener('change', onChangeHandler);
+        heatmap = new google.maps.visualization.HeatmapLayer({
 
+          data: getPoints(),
+          map: map,
+          zoom: 13,
+          radius: 35,
+          opacity: 0.5,
+          gradient: getGradient()
+        });
+        heatmap.setMap(null);
         //zipcodes, markers, pop-up windows
         var content32601 = '<div>' + '<p> Zip Code: 32601<br> Population: 18,585 <br> Median Age: 24.4<br> Number of Houses: 9,182<br> Median Income: $24,272<br> Below Poverty Line: 46.90%</p>' + '</div>';
         var info32601 = new google.maps.InfoWindow({
@@ -2592,20 +2601,6 @@
         ];
       }
     </script>
-   <!--<p> get agresponse : {{stdata.data[0].location}}</p>
-    <p>{{coord}}</p>-->
-
-
-
-      <!-- Application Source Code -->
-
-      <!--
-    <script src="app/app.js"></script>
-    <script src="app/config/listings.client.routes.js"></script>
-    <script src="app/factories/listings.client.factory.js"></script>
-    -->
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY&callback=initMap">
-    </script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY&libraries=visualization&callback=initMap"></script>
   </body>
 </html>
