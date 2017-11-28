@@ -15,6 +15,11 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       width: 100%;
       font-size: 16px;
     }
+    
+    .info {
+      line-height: 2px;
+      text-align: left;
+    }
 
     .checkboxes li {
       margin-bottom: 15px;
@@ -55,8 +60,9 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
     }
 
     h3 {
-      width: 480px;
-      height: 200px;
+      padding: 10px;
+      width: 455px;
+      height: 180px;
       border: 1px solid black;
       margin-left: 920px;
       text-align: center;
@@ -69,7 +75,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
   <br>
   <!-- <div style="display: inline-block;"> -->
   <h2>
-    <p style="font-size: 25px;"> Toggle Between Different Displays: </p>
+    <p> Toggle Between Different Displays: </p>
     <ul class="checkboxes">
       <li><input type="checkbox" name="demographics" value="demographics" id="demographic" onclick="Markers()" /><label for="demographics">Demographic Information</label></li>
       <li><input type="checkbox" name="routes" value="routes" id="routes" /><label for="routes">Bus Routes</label></li>
@@ -80,7 +86,8 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
     </ul>
   </h2>
   <h3 id="Instruction">
-    Welcome to our visual display showing the differences in travel times betweeen primary hub to student/non-student apartments. Please click on the checkboxes to the left to toggle overlays on the map.
+    Welcome to our visual display showing the differences in travel times betweeen primary hub to student/non-student apartments.
+    Please click on the checkboxes to the left to toggle overlays on the map.
   </h3>
   </div>
   <div id="floating-panel">
@@ -100,10 +107,10 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       function toggleDiv(id) {
         var div = document.getElementById(id);
         div.style.display = div.style.display == "none" ? "block" : "none";
-        if (div.style.display == "block"){
+        if (div.style.display == "block") {
           document.getElementById("Instruction").innerHTML = 'Click on the dropdown box under the checkboxes to display routes from hubs to apartments.';
         }
-        else{
+        else {
           document.getElementById("Instruction").innerHTML = '';
         }
         directionsDisplay1.setMap(null);
@@ -136,6 +143,10 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       var directionsDisplay5;
       var directionsDisplay6;
       var directionsDisplay7;
+      var origin1;
+      var origin2;
+      var origin3;
+      var origin4;
       var lineSymbol;
       var blankimage = 'https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png'
       var gainesville = { lat: 29.6516, lng: -82.3248 };
@@ -151,22 +162,27 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       var markers = [];
       function initMap() {
         directionsService = new google.maps.DirectionsService;
-        directionsDisplay1 = new google.maps.DirectionsRenderer;
-        directionsDisplay2 = new google.maps.DirectionsRenderer;
-        directionsDisplay3 = new google.maps.DirectionsRenderer;
-        directionsDisplay4 = new google.maps.DirectionsRenderer;
-        directionsDisplay5 = new google.maps.DirectionsRenderer;
-        directionsDisplay6 = new google.maps.DirectionsRenderer;
-        directionsDisplay7 = new google.maps.DirectionsRenderer;
+        directionsDisplay1 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+        directionsDisplay2 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+        directionsDisplay3 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+        directionsDisplay4 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+        directionsDisplay5 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+        directionsDisplay6 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+        directionsDisplay7 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+        origin1 = "Reitz Student Union, Gainesville, FL 32603";
+        origin2 = "Butler Plaza RTS Transfer Station, FL 32607";
+        origin3 = "2-4 W University Ave, Gainesville, FL 32601";
+        origin4 = "Santa Fe College, Gainesville, FL 32606";
         map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
+          zoom: 13,
           minZoom: 11,
           maxZoom: 15,
-          center: gainesville
+          center: new google.maps.LatLng(29.643886, -82.354912),
         });
 
         var onChangeHandler = function () {
           if (document.getElementById('start').value == "nothing") {
+            document.getElementById("Instruction").innerHTML = '<p>Select a starting location</p>';
             directionsDisplay1.setMap(null);
             directionsDisplay2.setMap(null);
             directionsDisplay3.setMap(null);
@@ -176,6 +192,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
             directionsDisplay7.setMap(null);
           }
           else {
+            document.getElementById("Instruction").innerHTML = document.getElementById('start').options[document.getElementById('start').selectedIndex].innerHTML;
             directionsDisplay1.setMap(map);
             directionsDisplay2.setMap(map);
             directionsDisplay3.setMap(map);
@@ -337,17 +354,17 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       }
 
       function heatMapToggle() {
-        if (heatmap.getMap() == null){
+        if (heatmap.getMap() == null) {
           heatmap.setMap(map);
           map.setZoom(13);
           document.getElementById("Instruction").innerHTML = 'The zoom will be locked if this checkbox is clicked. Green stands for 5 minutes or less, Yellow for 5-10 minutes, and Red for more than 10 minutes.';
-            map.setOptions({ minZoom: 13, maxZoom: 13 });
+          map.setOptions({ minZoom: 13, maxZoom: 13 });
         }
-        else{
-        heatmap.setMap(null);
-        document.getElementById("Instruction").innerHTML = '';
-        map.setOptions({ minZoom:11, maxZoom: 15 });
-      }
+        else {
+          heatmap.setMap(null);
+          document.getElementById("Instruction").innerHTML = '';
+          map.setOptions({ minZoom: 11, maxZoom: 15 });
+        }
       }
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
@@ -363,6 +380,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
               window.alert('Directions request failed due to ' + status);
             }
           });
+          document.getElementById("Instruction").innerHTML += '<p class="info">To Majestic Oaks:</p>';
         }
         if (route == 2) {
           directionsService.route({
@@ -376,6 +394,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
               window.alert('Directions request failed due to ' + status);
             }
           });
+          document.getElementById("Instruction").innerHTML += '<p class="info">To Gainesville Place:</p>';
         }
         if (route == 3) {
           directionsService.route({
@@ -389,6 +408,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
               window.alert('Directions request failed due to ' + status);
             }
           });
+          document.getElementById("Instruction").innerHTML += '<p class="info">To Cabana Beach:</p>';
         }
         if (route == 4) {
           directionsService.route({
@@ -402,6 +422,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
               window.alert('Directions request failed due to ' + status);
             }
           });
+          document.getElementById("Instruction").innerHTML += '<p class="info">To West 20:</p>';
         }
         if (route == 5) {
           directionsService.route({
@@ -415,6 +436,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
               window.alert('Directions request failed due to ' + status);
             }
           });
+          document.getElementById("Instruction").innerHTML += '<p class="info">To Tivoli:</p>';
         }
         if (route == 6) {
           directionsService.route({
@@ -428,6 +450,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
               window.alert('Directions request failed due to ' + status);
             }
           });
+          document.getElementById("Instruction").innerHTML += '<p class="info">To 2nd Ave Apartments:</p>';
         }
         if (route == 7) {
           directionsService.route({
@@ -441,6 +464,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
               window.alert('Directions request failed due to ' + status);
             }
           });
+          document.getElementById("Instruction").innerHTML += '<p class="info">To Rawlings Hall:</p>';
         }
       }
       function setMapOnAll(map) {
@@ -459,116 +483,116 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         }
       }
       //temporary data points
- function getPoints() {
+      function getPoints() {
         return [
-        //green = 5 min
-        //yellow = 10 min
-        //red = 15 min
+          //green = 5 min
+          //yellow = 10 min
+          //red = 15 min
           //oaks mall
-          {location: new google.maps.LatLng(29.6574, -82.4114), weight: 3},
-          {location: new google.maps.LatLng(29.6536, -82.4109), weight: 3},
+          { location: new google.maps.LatLng(29.6574, -82.4114), weight: 3 },
+          { location: new google.maps.LatLng(29.6536, -82.4109), weight: 3 },
           //along bus route 23
-            //bottom right corner - newell & 55th
-            {location: new google.maps.LatLng(29.659, -82.409), weight: 3},
-            {location: new google.maps.LatLng(29.659, -82.405), weight: 3},
-            {location: new google.maps.LatLng(29.659, -82.4014), weight: 3},
-            //en route
-            {location: new google.maps.LatLng(29.663, -82.4014), weight: 2.5},
-            {location: new google.maps.LatLng(29.665, -82.4014), weight: 2.5},
-            {location: new google.maps.LatLng(29.67, -82.4014), weight: 2.5},
-            {location: new google.maps.LatLng(29.6738, -82.4018), weight: 2.5},
+          //bottom right corner - newell & 55th
+          { location: new google.maps.LatLng(29.659, -82.409), weight: 3 },
+          { location: new google.maps.LatLng(29.659, -82.405), weight: 3 },
+          { location: new google.maps.LatLng(29.659, -82.4014), weight: 3 },
+          //en route
+          { location: new google.maps.LatLng(29.663, -82.4014), weight: 2.5 },
+          { location: new google.maps.LatLng(29.665, -82.4014), weight: 2.5 },
+          { location: new google.maps.LatLng(29.67, -82.4014), weight: 2.5 },
+          { location: new google.maps.LatLng(29.6738, -82.4018), weight: 2.5 },
 
-            //top right corner - 55th & 23rd
-            {location: new google.maps.LatLng(29.6738, -82.4018), weight: 2.5},
-            
-            //left
-            {location: new google.maps.LatLng(29.66, -82.414), weight: 3},
-            {location: new google.maps.LatLng(29.66, -82.417), weight: 3},
-            {location: new google.maps.LatLng(29.66, -82.420), weight: 2.5},
-            {location: new google.maps.LatLng(29.66, -82.425), weight: 2.5},
-            {location: new google.maps.LatLng(29.66, -82.430), weight: 2},
-            {location: new google.maps.LatLng(29.661, -82.435), weight: 1.5},
-            //right
-            {location: new google.maps.LatLng(29.6576, -82.3959), weight: 2.5},
-            {location: new google.maps.LatLng(29.6557, -82.3907), weight: 1},
-            //south on 62nd blvd
-            {location: new google.maps.LatLng(29.6497, -82.4066), weight: 2},
-         
+          //top right corner - 55th & 23rd
+          { location: new google.maps.LatLng(29.6738, -82.4018), weight: 2.5 },
+
+          //left
+          { location: new google.maps.LatLng(29.66, -82.414), weight: 3 },
+          { location: new google.maps.LatLng(29.66, -82.417), weight: 3 },
+          { location: new google.maps.LatLng(29.66, -82.420), weight: 2.5 },
+          { location: new google.maps.LatLng(29.66, -82.425), weight: 2.5 },
+          { location: new google.maps.LatLng(29.66, -82.430), weight: 2 },
+          { location: new google.maps.LatLng(29.661, -82.435), weight: 1.5 },
+          //right
+          { location: new google.maps.LatLng(29.6576, -82.3959), weight: 2.5 },
+          { location: new google.maps.LatLng(29.6557, -82.3907), weight: 1 },
+          //south on 62nd blvd
+          { location: new google.maps.LatLng(29.6497, -82.4066), weight: 2 },
+
 
           //santa fe college
-          {location: new google.maps.LatLng(29.6806, -82.4331), weight: 4},
-            //towards 23rd ave
-            {location: new google.maps.LatLng(29.677, -82.4303), weight: 1.5},
-            //santa fe west apts
-            {location: new google.maps.LatLng(29.6842, -82.4398), weight: 1},
-            {location: new google.maps.LatLng(29.683, -82.437), weight: 1},
-            //39th ave top right
-            {location: new google.maps.LatLng(29.688, -82.4302), weight: 1.75},
-            {location: new google.maps.LatLng(29.685, -82.4302), weight: 1.75},
+          { location: new google.maps.LatLng(29.6806, -82.4331), weight: 4 },
+          //towards 23rd ave
+          { location: new google.maps.LatLng(29.677, -82.4303), weight: 1.5 },
+          //santa fe west apts
+          { location: new google.maps.LatLng(29.6842, -82.4398), weight: 1 },
+          { location: new google.maps.LatLng(29.683, -82.437), weight: 1 },
+          //39th ave top right
+          { location: new google.maps.LatLng(29.688, -82.4302), weight: 1.75 },
+          { location: new google.maps.LatLng(29.685, -82.4302), weight: 1.75 },
 
           //butler  plaza
-          {location: new google.maps.LatLng(29.625140, -82.387885), weight: 3.5},
-            {location: new google.maps.LatLng(29.6218, -82.38697), weight: 3},
-            {location: new google.maps.LatLng(29.6276, -82.3830), weight: 3},
-            //surrounding areas
-            {location: new google.maps.LatLng(29.6253, -82.38386), weight: 2},
-            //24th ave and 38th ter
-            {location: new google.maps.LatLng(29.63153, -82.3808), weight: 2},
-            //in between
-            {location: new google.maps.LatLng(29.63156, -82.3808), weight: 2},
-            //20th and 38th ter
-            {location: new google.maps.LatLng(29.6339, -82.3810), weight: 2},
-            //continuing along route 33
-            {location: new google.maps.LatLng(29.636757, -82.380765), weight: 2},
-            {location: new google.maps.LatLng(29.637242, -82.3782), weight: 2},
-            //before 34th st
-            {location: new google.maps.LatLng(29.6378, -82.3741), weight: 2},
-            //after 34th
-            {location: new google.maps.LatLng(29.6375, -82.36886), weight: 2},
-            {location: new google.maps.LatLng(29.63746, -82.36515), weight: 2},
-            //left side of lake alice
-            {location: new google.maps.LatLng(29.637484, -82.3601), weight: 2},
-            //right side of lake alice
-            {location: new google.maps.LatLng(29.63832, -82.35326), weight: 1.5},
+          { location: new google.maps.LatLng(29.625140, -82.387885), weight: 3.5 },
+          { location: new google.maps.LatLng(29.6218, -82.38697), weight: 3 },
+          { location: new google.maps.LatLng(29.6276, -82.3830), weight: 3 },
+          //surrounding areas
+          { location: new google.maps.LatLng(29.6253, -82.38386), weight: 2 },
+          //24th ave and 38th ter
+          { location: new google.maps.LatLng(29.63153, -82.3808), weight: 2 },
+          //in between
+          { location: new google.maps.LatLng(29.63156, -82.3808), weight: 2 },
+          //20th and 38th ter
+          { location: new google.maps.LatLng(29.6339, -82.3810), weight: 2 },
+          //continuing along route 33
+          { location: new google.maps.LatLng(29.636757, -82.380765), weight: 2 },
+          { location: new google.maps.LatLng(29.637242, -82.3782), weight: 2 },
+          //before 34th st
+          { location: new google.maps.LatLng(29.6378, -82.3741), weight: 2 },
+          //after 34th
+          { location: new google.maps.LatLng(29.6375, -82.36886), weight: 2 },
+          { location: new google.maps.LatLng(29.63746, -82.36515), weight: 2 },
+          //left side of lake alice
+          { location: new google.maps.LatLng(29.637484, -82.3601), weight: 2 },
+          //right side of lake alice
+          { location: new google.maps.LatLng(29.63832, -82.35326), weight: 1.5 },
 
-            //archer route
-            {location: new google.maps.LatLng(29.6211, -82.3812), weight: 1},
-            {location: new google.maps.LatLng(29.6233, -82.3759), weight: 1},
-            {location: new google.maps.LatLng(29.62564, -82.3745), weight: 1},
-            {location: new google.maps.LatLng(29.627279, -82.37137), weight: 1},
-            {location: new google.maps.LatLng(29.63175, -82.36193), weight: 1},
+          //archer route
+          { location: new google.maps.LatLng(29.6211, -82.3812), weight: 1 },
+          { location: new google.maps.LatLng(29.6233, -82.3759), weight: 1 },
+          { location: new google.maps.LatLng(29.62564, -82.3745), weight: 1 },
+          { location: new google.maps.LatLng(29.627279, -82.37137), weight: 1 },
+          { location: new google.maps.LatLng(29.63175, -82.36193), weight: 1 },
 
           //shands hospital
-          {location: new google.maps.LatLng(29.6400, -82.3427), weight: 4.5},
-            //museum
-            {location: new google.maps.LatLng(29.6448, -82.3434), weight: 1.5},
-            //diamond village
-            {location: new google.maps.LatLng(29.64249, -82.3393), weight: 1},
-            //down 13th on bus stops
-            //oak brook condo
-            {location: new google.maps.LatLng(29.6384, -82.3390), weight: 1},
-            {location: new google.maps.LatLng(29.6278, -82.3391), weight: 1},
-            {location: new google.maps.LatLng(29.6346, -82.3395), weight: 1},
-            //boardwalk apt
-            {location: new google.maps.LatLng(29.6264, -82.3392), weight: 1},
-            //right on 16th
-            {location: new google.maps.LatLng(29.6364, -82.3351), weight: 1},
+          { location: new google.maps.LatLng(29.6400, -82.3427), weight: 4.5 },
+          //museum
+          { location: new google.maps.LatLng(29.6448, -82.3434), weight: 1.5 },
+          //diamond village
+          { location: new google.maps.LatLng(29.64249, -82.3393), weight: 1 },
+          //down 13th on bus stops
+          //oak brook condo
+          { location: new google.maps.LatLng(29.6384, -82.3390), weight: 1 },
+          { location: new google.maps.LatLng(29.6278, -82.3391), weight: 1 },
+          { location: new google.maps.LatLng(29.6346, -82.3395), weight: 1 },
+          //boardwalk apt
+          { location: new google.maps.LatLng(29.6264, -82.3392), weight: 1 },
+          //right on 16th
+          { location: new google.maps.LatLng(29.6364, -82.3351), weight: 1 },
 
-            
+
           //rosa parks
-          {location: new google.maps.LatLng(29.6460, -82.3227), weight: 4},
+          { location: new google.maps.LatLng(29.6460, -82.3227), weight: 4 },
           //downtown
-          {location: new google.maps.LatLng(29.64929, -82.3242), weight: 2},
+          { location: new google.maps.LatLng(29.64929, -82.3242), weight: 2 },
           //courts up the road 
-          {location: new google.maps.LatLng(29.65153, -82.3223), weight: 2},
+          { location: new google.maps.LatLng(29.65153, -82.3223), weight: 2 },
           //right on university
-          {location: new google.maps.LatLng(29.65166, -82.31961), weight: 1},
+          { location: new google.maps.LatLng(29.65166, -82.31961), weight: 1 },
           //left to 2nd ave apt
-          {location: new google.maps.LatLng(29.6504, -82.3299), weight: 1}
-          
+          { location: new google.maps.LatLng(29.6504, -82.3299), weight: 1 }
+
         ];
       }
-       function getGradient() {
+      function getGradient() {
         return [
           'rgba(255, 255, 255, 0)',
           //gradient from red to yellow
