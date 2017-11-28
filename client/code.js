@@ -2264,12 +2264,13 @@
           }, function (response, status) {
             if (status === 'OK') {
               directionsDisplay.setDirections(response);
-              duration = response.routes[0].legs[0].duration.value;
+              console.log(response);
+                duration = response.routes[0].legs[0].duration.text;
+                document.getElementById("Instruction").innerHTML += '<p class="info">To Majestic Oaks: ' + duration + '</p>';
             } else {
               window.alert('Directions request failed due to ' + status);
             }
           });
-          document.getElementById("Instruction").innerHTML += '<p class="info">To Majestic Oaks: ' + duration + '</p>';
         }
         if (route == 2) {
           directionsService.route({
@@ -2279,12 +2280,12 @@
           }, function (response, status) {
             if (status === 'OK') {
               directionsDisplay.setDirections(response);
-              duration = response.routes[0].legs[0].duration.value;
+                duration = response.routes[0].legs[0].duration.text;
+                document.getElementById("Instruction").innerHTML += '<p class="info">To Gainesville Place: ' + duration + '</p>';
             } else {
               window.alert('Directions request failed due to ' + status);
             }
           });
-          document.getElementById("Instruction").innerHTML += '<p class="info">To Gainesville Place: ' + duration + '</p>';
         }
         if (route == 3) {
           directionsService.route({
@@ -2294,12 +2295,12 @@
           }, function (response, status) {
             if (status === 'OK') {
               directionsDisplay.setDirections(response);
-              duration = response.routes[0].legs[0].duration.value;
+                duration = response.routes[0].legs[0].duration.text;
+                document.getElementById("Instruction").innerHTML += '<p class="info">To Cabana Beach: ' + duration + '</p>';
             } else {
               window.alert('Directions request failed due to ' + status);
             }
           });
-          document.getElementById("Instruction").innerHTML += '<p class="info">To Cabana Beach: ' + duration + '</p>';
         }
         if (route == 4) {
           directionsService.route({
@@ -2309,12 +2310,12 @@
           }, function (response, status) {
             if (status === 'OK') {
               directionsDisplay.setDirections(response);
-              duration = response.routes[0].legs[0].duration.value;
+                duration = response.routes[0].legs[0].duration.text;
+                document.getElementById("Instruction").innerHTML += '<p class="info">To West 20: ' + duration + '</p>';
             } else {
               window.alert('Directions request failed due to ' + status);
             }
           });
-          document.getElementById("Instruction").innerHTML += '<p class="info">To West 20: ' + duration + '</p>';
         }
         if (route == 5) {
           directionsService.route({
@@ -2324,12 +2325,12 @@
           }, function (response, status) {
             if (status === 'OK') {
               directionsDisplay.setDirections(response);
-              duration = response.routes[0].legs[0].duration.value;
+                duration = response.routes[0].legs[0].duration.text;
+                document.getElementById("Instruction").innerHTML += '<p class="info">To Tivoli: ' + duration + '</p>';
             } else {
               window.alert('Directions request failed due to ' + status);
             }
           });
-          document.getElementById("Instruction").innerHTML += '<p class="info">To Tivoli: ' + duration + '</p>';
         }
         if (route == 6) {
           directionsService.route({
@@ -2339,12 +2340,12 @@
           }, function (response, status) {
             if (status === 'OK') {
               directionsDisplay.setDirections(response);
-              duration = response.routes[0].legs[0].duration.value;
+                duration = response.routes[0].legs[0].duration.text;
+                document.getElementById("Instruction").innerHTML += '<p class="info">To 2nd Ave Apartments: ' + duration + '</p>';
             } else {
               window.alert('Directions request failed due to ' + status);
             }
           });
-          document.getElementById("Instruction").innerHTML += '<p class="info">To 2nd Ave Apartments: ' + duration + '</p>';
         }
         if (route == 7) {
           directionsService.route({
@@ -2354,12 +2355,12 @@
           }, function (response, status) {
             if (status === 'OK') {
               directionsDisplay.setDirections(response);
-              duration = response.routes[0].legs[0].duration.value;
+                duration = response.routes[0].legs[0].duration.text;
+                document.getElementById("Instruction").innerHTML += '<p class="info">To Rawlings Hall: ' + duration + '</p>';
             } else {
               window.alert('Directions request failed due to ' + status);
             }
           });
-          document.getElementById("Instruction").innerHTML += '<p class="info">To Rawlings Hall: ' + duration + '</p>';
         }
       }
       function setMapOnAll(map) {
