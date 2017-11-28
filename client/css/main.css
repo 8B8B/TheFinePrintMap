@@ -113,3 +113,6 @@ h3 {
   line-height: 30px;
   padding-left: 10px; 
 }
+.has-error .help-inline.error-text {
+  display: inline;
+}
