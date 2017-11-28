@@ -2194,26 +2194,6 @@
       function busstop() {
         if (busstopmarkers[0].getMap() == null) {
           setBus(map);
-        directionsDisplay20.setMap(map);
-        directionsDisplay20x.setMap(map);
-        directionsDisplay20y.setMap(map);
-        directionsDisplay62.setMap(map);
-        directionsDisplay62x.setMap(map);
-        directionsDisplay62y.setMap(map);
-        directionsDisplay75.setMap(map);
-        directionsDisplay75x.setMap(map);
-        directionsDisplay75y.setMap(map);
-        directionsDisplay75z.setMap(map);
-        directionsDisplay75w.setMap(map);
-        directionsDisplay76.setMap(map);
-        directionsDisplay76x.setMap(map);
-        directionsDisplay76y.setMap(map);
-        directionsDisplay1.setMap(map);
-        directionsDisplay1x.setMap(map);
-        directionsDisplay1y.setMap(map);
-        directionsDisplay7.setMap(map);
-        directionsDisplay7x.setMap(map);
-        directionsDisplay7y.setMap(map);
         map.setZoom(13);
         map.setCenter(gainesville);
         document.getElementById("Instruction").innerHTML = 'These are the bus routes in the Gainesville region.';
