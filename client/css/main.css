@@ -1,30 +1,130 @@
+h2 {
+  text-align: center;
+  width: 440px;
+  position: absolute;
+  border: 1px solid black;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: 400px;
+  float: left;
+  height: 200px;
+}
+h3 {
+  width: 480px;
+  height: 200px;
+  border: 1px solid black;
+  margin-left: 920px;
+  text-align: center;
+}
+.checkboxes {
+  columns: 2;
+  list-style: none;
+  text-align: left;
+  padding-left: 25px;
+  width: 100%;
+  font-size: 16px;
+}
+.checkboxes li {
+  margin-bottom: 15px;
+}
+#map {
+  height: 800px;
+  width: 1000px;
+  margin-left: 400px;
+  position: absolute;
+  z-index: 1;
+}
+#floating-panel {
+  position: absolute;
+  top: 275px;
+  left: 50%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto', 'sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+#heatmapLegend {
+  position: absolute;
+  top: 325px;
+  left: 50%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto', 'sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+.my-legend .legend-title {
+  text-align: left;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 90%;
+}
+.my-legend .legend-scale ul {
+  margin: 0;
+  padding: 0;
+  float: left;
+  list-style: none;
+}
+.my-legend .legend-scale ul li {
+  display: block;
+  float: left;
+  width: 70px;
+  margin-bottom: 6px;
+  text-align: center;
+  font-size: 80%;
+  list-style: none;
+}
+.my-legend ul.legend-labels li span {
+  display: block;
+  float: left;
+  height: 15px;
+  width: 70px;
+}
+.my-legend a {
+  color: #777;
+}
+#button {
+  position: absolute;
+  top: 275px;
+  left: 50%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto', 'sans-serif';
+  line-height: 30px;
+  padding-left: 10px; 
+}
 #searchBar {
   margin: 15px 10px;
 }
-
 nav {
   margin-top: 20px;
   margin-left: 60px;
 }
-
 .tableWrapper {
   max-height: 500px;
   overflow: auto;
 }
-
 #loader {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-
 .formWrapper {
   border-radius: 5px;
   background-color: #e5f2ff;
   padding-left: 60px;
   padding-right: 60px;
 }
-
 .angular-google-map-container {
   height: 500px;
 }
@@ -41,25 +141,9 @@ nav {
 .x-ng-cloak {
   display: none !important;
 }
- form {
-    max-width: 550px;
-    margin: 0 auto;
-  }
-
-  legend {
-    margin-top: 10px;
-  }
-
-
-  h4 {
-    max-width: 300px;
-    margin-top: 300px;
-    margin-left: 20px;
-  }
-
-  .info {
-    display: none;
-  }
+.info {
+  display: none;
+}
 .header-profile-image {
   opacity: 0.8;
   height: 28px;
