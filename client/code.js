@@ -1,31 +1,11 @@
       var map, heatmap;
       var busstopmarkers = [];
       var directionsDisplay20, directionsDisplay20x, directionsDisplay20y, i;
-      var directionsService20;
-      var directionsService20x;
-      var directionsService20y;
       var directionsDisplay62, directionsDisplay62x, directionsDisplay62y;
-      var directionsService62;
-      var directionsService62x;
-      var directionsService62y;
       var directionsDisplay75, directionsDisplay75x, directionsDisplay75y, directionsDisplay75z, directionsDisplay75w;
-      var directionsService75;
-      var directionsService75x;
-      var directionsService75y;
-      var directionsService75z;
-      var directionsService75w;
       var directionsDisplay76, directionsDisplay76x, directionsDisplay76y;
-      var directionsService76;
-      var directionsService76x;
-      var directionsService76y;
       var directionsDisplay1, directionsDisplay1x,directionsDisplay1y;
-      var directionsService1;
-      var directionsService1x;
-      var directionsService1y;
       var directionsDisplay7, directionsDisplay7x, directionsDisplay7y;
-      var directionsService7;
-      var directionsService7x;
-      var directionsService7y;
       var transitLayer;
       var directionsService;
       var directionsDisplay91;
@@ -35,6 +15,9 @@
       var directionsDisplay95;
       var directionsDisplay96;
       var directionsDisplay97;
+      var request20, request20x, request20y, request62, request62x, request62y;
+      var request75, request75w, request75z, request75x, request75y, request76, request76x, request76y;
+      var request1, request1x, request1y, request7, request7x, request7y;
       var service;
       var origin1;
       var origin2;
@@ -54,26 +37,6 @@
       var markers = [];
       function initMap() {
         var busImage = "https://www.materialui.co/materialIcons/maps/directions_bus_black_18x18.png";
-        directionsService20 = new google.maps.DirectionsService();
-        directionsService20x = new google.maps.DirectionsService();
-        directionsService20y = new google.maps.DirectionsService();
-        directionsService62 = new google.maps.DirectionsService();
-        directionsService62x = new google.maps.DirectionsService();
-        directionsService62y = new google.maps.DirectionsService();
-        directionsService75 = new google.maps.DirectionsService();
-        directionsService75x = new google.maps.DirectionsService();
-        directionsService75y = new google.maps.DirectionsService();
-        directionsService75z = new google.maps.DirectionsService();
-        directionsService75w = new google.maps.DirectionsService();
-        directionsService76 = new google.maps.DirectionsService();
-        directionsService76x = new google.maps.DirectionsService();
-        directionsService76y = new google.maps.DirectionsService();
-        directionsService1 = new google.maps.DirectionsService();
-        directionsService1x = new google.maps.DirectionsService();
-        directionsService1y = new google.maps.DirectionsService();
-        directionsService7 = new google.maps.DirectionsService();
-        directionsService7x = new google.maps.DirectionsService();
-        directionsService7y = new google.maps.DirectionsService();
         directionsService = new google.maps.DirectionsService;
         directionsDisplay91 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
         directionsDisplay92 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
@@ -155,6 +118,121 @@
           }
         };
         document.getElementById('start').addEventListener('change', onChangeHandler);
+        var busOnChangeHandler = function(){
+        if(document.getElementById('bRoutes').value == "noneSelected"){
+            directionsDisplay20.setMap(null);
+            directionsDisplay20x.setMap(null);
+            directionsDisplay20y.setMap(null);
+            directionsDisplay62.setMap(null);
+            directionsDisplay62x.setMap(null);
+            directionsDisplay62y.setMap(null);
+            directionsDisplay75.setMap(null);
+            directionsDisplay75x.setMap(null);
+            directionsDisplay75y.setMap(null);
+            directionsDisplay75z.setMap(null);
+            directionsDisplay75w.setMap(null);
+            directionsDisplay76.setMap(null);
+            directionsDisplay76x.setMap(null);
+            directionsDisplay76y.setMap(null);
+            directionsDisplay1.setMap(null);
+            directionsDisplay1x.setMap(null);
+            directionsDisplay1y.setMap(null);
+            directionsDisplay7.setMap(null);
+            directionsDisplay7x.setMap(null);
+            directionsDisplay7y.setMap(null);
+        }
+        else if(document.getElementById('bRoutes').value == "bus1")
+        {
+          directionsDisplay20.setMap(map);
+          directionsDisplay20.setOptions( { suppressMarkers: true } );
+          directionsDisplay20x.setMap(map);
+          directionsDisplay20x.setOptions( { suppressMarkers: true } );
+          directionsDisplay20y.setMap(map);
+          directionsDisplay20y.setOptions( { suppressMarkers: true } );
+          directionsDisplay62.setMap(map);
+          directionsDisplay62.setOptions( { suppressMarkers: true } );
+          directionsDisplay62x.setMap(map);
+          directionsDisplay62x.setOptions( { suppressMarkers: true } );
+          directionsDisplay62y.setMap(map);
+          directionsDisplay62y.setOptions( { suppressMarkers: true } );
+          directionsDisplay75.setMap(null);
+          directionsDisplay75x.setMap(null);
+          directionsDisplay75y.setMap(null);
+          directionsDisplay75z.setMap(null);
+          directionsDisplay75w.setMap(null);
+          directionsDisplay76.setMap(null);
+          directionsDisplay76x.setMap(null);
+          directionsDisplay76y.setMap(null);
+          directionsDisplay1.setMap(null);
+          directionsDisplay1x.setMap(null);
+          directionsDisplay1y.setMap(null);
+          directionsDisplay7.setMap(null);
+          directionsDisplay7x.setMap(null);
+          directionsDisplay7y.setMap(null);
+          showingRoutesSelected(directionsService, 1);
+        }
+        else if(document.getElementById('bRoutes').value == "bus2"){
+            directionsDisplay20.setMap(null);
+            directionsDisplay20x.setMap(null);
+            directionsDisplay20y.setMap(null);
+            directionsDisplay62.setMap(null);
+            directionsDisplay62x.setMap(null);
+            directionsDisplay62y.setMap(null);
+            directionsDisplay1.setMap(null);
+            directionsDisplay1x.setMap(null);
+            directionsDisplay1y.setMap(null);
+            directionsDisplay7.setMap(null);
+            directionsDisplay7x.setMap(null);
+            directionsDisplay7y.setMap(null);
+            directionsDisplay75.setMap(map);
+            directionsDisplay75.setOptions( { suppressMarkers: true } );
+            directionsDisplay75x.setMap(map);
+            directionsDisplay75x.setOptions( { suppressMarkers: true } );
+            directionsDisplay75y.setMap(map);
+            directionsDisplay75y.setOptions( { suppressMarkers: true } );
+            directionsDisplay75z.setMap(map);
+            directionsDisplay75z.setOptions( { suppressMarkers: true } );
+            directionsDisplay75w.setMap(map);
+            directionsDisplay75w.setOptions( { suppressMarkers: true } );
+            directionsDisplay76.setMap(map);
+            directionsDisplay76.setOptions( { suppressMarkers: true } );
+            directionsDisplay76x.setMap(map);
+            directionsDisplay76x.setOptions( { suppressMarkers: true } );
+            directionsDisplay76y.setMap(map);
+            directionsDisplay76y.setOptions( { suppressMarkers: true } );
+            showingRoutesSelected(directionsService, 2);
+        }
+        else if(document.getElementById('bRoutes').value == "bus3"){
+            directionsDisplay20.setMap(null);
+            directionsDisplay20x.setMap(null);
+            directionsDisplay20y.setMap(null);
+            directionsDisplay62.setMap(null);
+            directionsDisplay62x.setMap(null);
+            directionsDisplay62y.setMap(null);
+            directionsDisplay75.setMap(null);
+            directionsDisplay75x.setMap(null);
+            directionsDisplay75y.setMap(null);
+            directionsDisplay75z.setMap(null);
+            directionsDisplay75w.setMap(null);
+            directionsDisplay76.setMap(null);
+            directionsDisplay76x.setMap(null);
+            directionsDisplay76y.setMap(null);
+            directionsDisplay1.setMap(map);
+            directionsDisplay1.setOptions( { suppressMarkers: true } );
+            directionsDisplay1x.setMap(map);
+            directionsDisplay1x.setOptions( { suppressMarkers: true } );
+            directionsDisplay1y.setMap(map);
+            directionsDisplay1y.setOptions( { suppressMarkers: true } );
+            directionsDisplay7.setMap(map);
+            directionsDisplay7.setOptions( { suppressMarkers: true } );
+            directionsDisplay7x.setMap(map);
+            directionsDisplay7x.setOptions( { suppressMarkers: true } );
+            directionsDisplay7y.setMap(map);
+            directionsDisplay7y.setOptions( { suppressMarkers: true } );
+            showingRoutesSelected(directionsService, 3);
+        }
+      };
+      document.getElementById('bRoutes').addEventListener('change', busOnChangeHandler);
         heatmap = new google.maps.visualization.HeatmapLayer({
 
           data: getPoints(),
@@ -1626,7 +1704,7 @@
         directionsDisplay7y.setMap(map);
         directionsDisplay7y.setOptions( { suppressMarkers: true } );
         var x20 = 0, y20 = 0;
-        var request20 = {
+        request20 = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = 0; i < bus20.businfo.length-30; i++){
@@ -1649,7 +1727,7 @@
         }
        //
         var busmarker20x;
-        var request20x = {
+        request20x = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = x20; i < bus20.businfo.length-5; i++){
@@ -1673,7 +1751,7 @@
           //
         y20 = y20 +x20;
         var busmarker20y;
-        var request20y = {
+        request20y = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = y20; i < bus20.businfo.length; i++){
@@ -1695,7 +1773,7 @@
         }
         // Bus 62 markers and route id 4008446
         var x62 = 0, y62 = 0;
-        var request62 = {
+        request62 = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = 0; i < bus62.businfo.length-37; i++){
@@ -1718,7 +1796,7 @@
         }
        //
         var busmarker62x;
-        var request62x = {
+        request62x = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = x62; i < bus62.businfo.length-12; i++){
@@ -1742,7 +1820,7 @@
           //
         y62 = y62 +x62;
         var busmarker62y;
-        var request62y = {
+        request62y = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = y62; i < bus62.businfo.length; i++){
@@ -1764,7 +1842,7 @@
         }
         // Bus 75 markers and route id 4001290
         var x75 = 0, y75 = 0, z75 = 0, w75 =0;
-        var request75 = {
+        request75 = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = 0; i < bus75.businfo.length-78; i++){
@@ -1787,7 +1865,7 @@
         }
        //
         var busmarker75x;
-        var request75x = {
+        request75x = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = x75; i < bus75.businfo.length-53; i++){
@@ -1811,7 +1889,7 @@
           //
         y75 = y75 +x75;
         var busmarker75y;
-        var request75y = {
+        request75y = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = y75; i < bus75.businfo.length-28; i++){
@@ -1834,7 +1912,7 @@
         }
         z75 = y75 +z75;
         var busmarker75z;
-        var request75z = {
+        request75z = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = z75; i < bus75.businfo.length-3; i++){
@@ -1857,7 +1935,7 @@
         }
         w75 = z75 +w75;
           var busmarker75w;
-          var request75w = {
+          request75w = {
               travelMode: google.maps.TravelMode.DRIVING
           };
           for(i = w75; i < bus75.businfo.length; i++){
@@ -1879,7 +1957,7 @@
           }
         // Bus 76 markers and route id 4008444
         var x76 = 0, y76 = 0;
-        var request76 = {
+        request76 = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = 0; i < bus76.businfo.length-29; i++){
@@ -1902,7 +1980,7 @@
         }
        //
         var busmarker76x;
-        var request76x = {
+        request76x = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = x76; i < bus76.businfo.length-4; i++){
@@ -1926,7 +2004,7 @@
           //
         y76 = y76 +x76;
         var busmarker76y;
-        var request76y = {
+        request76y = {
             travelMode: google.maps.TravelMode.DRIVING
         };
 
@@ -1949,7 +2027,7 @@
         }
         // Bus 1 markers and route id 4001150
         var x1 = 0, y1 = 0;
-        var request1 = {
+        request1 = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = 0; i < bus1.businfo.length-37; i++){
@@ -1972,7 +2050,7 @@
         }
        //
         var busmarker1x;
-        var request1x = {
+        request1x = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = x1-1; i < bus1.businfo.length-13; i++){
@@ -1996,7 +2074,7 @@
           //
         y1 = y1 +x1;
         var busmarker1y;
-        var request1y = {
+        request1y = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = y1; i < bus1.businfo.length; i++){
@@ -2018,7 +2096,7 @@
         }
         // Bus 7 markers and route id 4001286
         var x7 = 0, y7 = 0;
-        var request7 = {
+        request7 = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = 0; i < bus7.businfo.length-37; i++){
@@ -2041,7 +2119,7 @@
         }
        //
         var busmarker7x;
-        var request7x = {
+        request7x = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = x7; i < bus7.businfo.length-12; i++){
@@ -2065,7 +2143,7 @@
           //
         y7 = y7 +x7;
         var busmarker7y;
-        var request7y = {
+        request7y = {
             travelMode: google.maps.TravelMode.DRIVING
         };
         for(i = y7; i < bus7.businfo.length; i++){
@@ -2085,107 +2163,6 @@
                 });
             }
         }
-        //
-       directionsService20.route(request20, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay20.setDirections(results);
-           }
-       });
-       directionsService20x.route(request20x, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay20x.setDirections(results);
-           }
-       });
-       directionsService20y.route(request20y, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay20y.setDirections(results);
-           }
-       });
-       directionsService62.route(request62, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay62.setDirections(results);
-           }
-       });
-       directionsService62x.route(request62x, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay62x.setDirections(results);
-           }
-       });
-       directionsService62y.route(request62y, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay62y.setDirections(results);
-           }
-       });
-       directionsService75.route(request75, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay75.setDirections(results);
-           }
-       });
-       directionsService75x.route(request75x, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay75x.setDirections(results);
-           }
-       });
-       directionsService75y.route(request75y, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay75y.setDirections(results);
-           }
-       });
-       directionsService75z.route(request75z, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay75z.setDirections(results);
-           }
-       });
-       directionsService75w.route(request75w, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay75w.setDirections(results);
-           }
-       });
-       directionsService76.route(request76, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay76.setDirections(results);
-           }
-       });
-       directionsService76x.route(request76x, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay76x.setDirections(results);
-           }
-       });
-       directionsService76y.route(request76y, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay76y.setDirections(results);
-           }
-       });
-       directionsService1.route(request1, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay1.setDirections(results);
-           }
-       });
-       directionsService1x.route(request1x, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay1x.setDirections(results);
-           }
-       });
-       directionsService1y.route(request1y, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay1y.setDirections(results);
-           }
-       });
-       directionsService7.route(request7, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay7.setDirections(results);
-           }
-       });
-       directionsService7x.route(request7x, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay7x.setDirections(results);
-           }
-       });
-       directionsService7y.route(request7y, function(results, status){
-           if(status == google.maps.DirectionsStatus.OK){
-               directionsDisplay7y.setDirections(results);
-           }
-       });
         setBus(null);
         directionsDisplay20.setMap(null);
         directionsDisplay20x.setMap(null);
@@ -2573,4 +2550,142 @@
         directionsDisplay96.setMap(null);
         directionsDisplay97.setMap(null);
       }
-
+        function togglingDiv(id) {
+            var div = document.getElementById(id);
+            div.style.display = div.style.display == "none" ? "block" : "none";
+            if (div.style.display == "block"){
+                document.getElementById("Instruction").innerHTML = 'Click on the dropdown box under the checkboxes to display a pair of bus routes.';
+            }
+            else{
+                document.getElementById("Instruction").innerHTML = '';
+            }
+            directionsDisplay20.setMap(null);
+            directionsDisplay20x.setMap(null);
+            directionsDisplay20y.setMap(null);
+            directionsDisplay62.setMap(null);
+            directionsDisplay62x.setMap(null);
+            directionsDisplay62y.setMap(null);
+            directionsDisplay75.setMap(null);
+            directionsDisplay75x.setMap(null);
+            directionsDisplay75y.setMap(null);
+            directionsDisplay75z.setMap(null);
+            directionsDisplay75w.setMap(null);
+            directionsDisplay76.setMap(null);
+            directionsDisplay76x.setMap(null);
+            directionsDisplay76y.setMap(null);
+            directionsDisplay1.setMap(null);
+            directionsDisplay1x.setMap(null);
+            directionsDisplay1y.setMap(null);
+            directionsDisplay7.setMap(null);
+            directionsDisplay7x.setMap(null);
+            directionsDisplay7y.setMap(null);
+            busstop();
+        }
+var showingRoutesSelected = function(directionsService, selected){
+          if(selected == 1){
+              directionsService.route(request20, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay20.setDirections(results);
+                  }
+              });
+              directionsService.route(request20x, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay20x.setDirections(results);
+                  }
+              });
+              directionsService.route(request20y, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay20y.setDirections(results);
+                  }
+              });
+              directionsService.route(request62, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay62.setDirections(results);
+                  }
+              });
+              directionsService.route(request62x, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay62x.setDirections(results);
+                  }
+              });
+              directionsService.route(request62y, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay62y.setDirections(results);
+                  }
+              });
+          }
+          else if(selected == 2){
+              directionsService.route(request75, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay75.setDirections(results);
+                  }
+              });
+              directionsService.route(request75x, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay75x.setDirections(results);
+                  }
+              });
+              directionsService.route(request75y, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay75y.setDirections(results);
+                  }
+              });
+              directionsService.route(request75z, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay75z.setDirections(results);
+                  }
+              });
+              directionsService.route(request75w, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay75w.setDirections(results);
+                  }
+              });
+              directionsService.route(request76, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay76.setDirections(results);
+                  }
+              });
+              directionsService.route(request76x, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay76x.setDirections(results);
+                  }
+              });
+              directionsService.route(request76y, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay76y.setDirections(results);
+                  }
+              });
+          }
+          else if(selected == 3){
+              directionsService.route(request1, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay1.setDirections(results);
+                  }
+              });
+              directionsService.route(request1x, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay1x.setDirections(results);
+                  }
+              });
+              directionsService.route(request1y, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay1y.setDirections(results);
+                  }
+              });
+              directionsService.route(request7, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay7.setDirections(results);
+                  }
+              });
+              directionsService.route(request7x, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay7x.setDirections(results);
+                  }
+              });
+              directionsService.route(request7y, function(results, status){
+                  if(status == google.maps.DirectionsStatus.OK){
+                      directionsDisplay7y.setDirections(results);
+                  }
+              });
+          }
+      }

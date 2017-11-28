@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/main.css">
   
-<body>
+<body  ng-app="myApp" id="myApp" ng-controller="HomeController">
   <br>
   <!--
   box encapsulates 5 elements: h2, h3, map, heatmapLegend, and floating-panel
@@ -14,7 +14,7 @@
       <p style="font-size: 25px;"> Toggle Between Different Displays: </p>
       <ul class="checkboxes">
         <li><input type="checkbox" name="demographics" value="demographics" id="demographic" onclick="Markers()" /><label for="demographics">Demographic Information</label></li>
-        <li><input type="checkbox" name="routes" value="routes" id="routes" onclick="busstop()" /><label for="routes">Bus Routes</label></li>
+        <li><input type="checkbox" name="routes" value="routes" id="routes" onclick="togglingDiv('float-panel')" /><label for="routes">Bus Routes</label></li>
         <li><input type="checkbox" name="comparison" value="comparison" id="comparison" onclick="toggleDiv('floating-panel')" />
           <label for="comparison">Travel Time Comparison</label>
         </li>
@@ -56,6 +56,16 @@
       <option value="Santa Fe College, Gainesville, FL 32606">Santa Fe College</option>
     </select>
     </div>
+  <div id = "float-panel">
+    <script>
+        document.getElementById('float-panel').style.display = 'none';
+    </script>
+    <select id = "bRoutes">
+      <option value = "noneSelected"> Select one </option>
+      <option value = "bus1"> Bus 20 and 62 </option>
+      <option value = "bus2"> Bus 75 and 76 </option>
+      <option value = "bus3"> Bus 1 and 7 </option>
+    </select>
   </div>
   <!--
   <div id = "button">
