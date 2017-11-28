@@ -2196,7 +2196,7 @@
           setBus(map);
         map.setZoom(13);
         map.setCenter(gainesville);
-        document.getElementById("Instruction").innerHTML = 'These are the bus routes in the Gainesville region.';
+        document.getElementById("Instruction").innerHTML = 'These are the bus routes in the Gainesville region. As you can see, the buses tend to move from major travel hubs towards the Florida campus, not towards the other areas of Gainesville.';
         }
         else {
           setBus(null);
@@ -2233,7 +2233,7 @@
           heatmap.setMap(map);
           map.setZoom(13);
           
-          document.getElementById("Instruction").innerHTML = 'Zoom is locked. Refer to HeatMap Legend below.';
+          document.getElementById("Instruction").innerHTML = 'The zoom will be locked if this checkbox is clicked.<br> The portion in green means that the area is 5 minutes or less away from the hub by public transit, yellow inicated 5-10 minutes, and red shows more than 10 minutes away from the hub.';
           map.setOptions({ minZoom: 13, maxZoom: 13 });
           map.setCenter({ lat: 29.6560626, lng: -82.3897699 });
         }
@@ -2370,7 +2370,7 @@
       function Markers() {
         if (markers[0].getMap() == null) {
           setMapOnAll(map);
-          document.getElementById("Instruction").innerHTML = 'Click on the zipcodes on the map to get more information about each zipcode in Gainesville';
+          document.getElementById("Instruction").innerHTML = 'Click on the zipcodes on the map to get more information about each zipcode in Gainesville. The average Percent Below Poverty Line in Florida is 15.7%, so any zip below that is statistically disadvantaged.';
         }
         else {
           setMapOnAll(null);

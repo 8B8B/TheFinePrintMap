@@ -2,7 +2,10 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
     var demographicSchema = new mongoose.Schema({
-      zip: Number,
+      zip: {
+        type: Number,
+        required: true
+      },
       population: Number,
       medianAge: Number,
       numOfHousing: Number,
