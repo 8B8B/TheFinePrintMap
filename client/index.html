@@ -30,7 +30,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
 
     #floating-panel {
       position: absolute;
-      top: 275px;
+      top: 315px;
       left: 50%;
       z-index: 5;
       background-color: #fff;
@@ -40,6 +40,34 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       font-family: 'Roboto', 'sans-serif';
       line-height: 30px;
       padding-left: 10px;
+    }
+
+    #heatmapLegend {
+      position: absolute;
+      top: 355px;
+      left: 50%;
+      z-index: 5;
+      background-color: #fff;
+      padding: 5px;
+      border: 1px solid #999;
+      text-align: center;
+      font-family: 'Roboto', 'sans-serif';
+      line-height: 30px;
+      padding-left: 10px;
+    }
+
+    #button {
+      position: absolute;
+      top: 275px;
+      left: 50%;
+      z-index: 5;
+      background-color: #fff;
+      padding: 5px;
+      border: 1px solid #999;
+      text-align: center;
+      font-family: 'Roboto', 'sans-serif';
+      line-height: 30px;
+      padding-left: 10px; 
     }
 
     h2 {
@@ -61,6 +89,36 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       margin-left: 920px;
       text-align: center;
     }
+    .my-legend .legend-title {
+      text-align: left;
+      margin-bottom: 8px;
+      font-weight: bold;
+      font-size: 90%;
+    }
+    .my-legend .legend-scale ul {
+      margin: 0;
+      padding: 0;
+      float: left;
+      list-style: none;
+    }
+    .my-legend .legend-scale ul li {
+      display: block;
+      float: left;
+      width: 70px;
+      margin-bottom: 6px;
+      text-align: center;
+      font-size: 80%;
+      list-style: none;
+    }
+    .my-legend ul.legend-labels li span {
+      display: block;
+      float: left;
+      height: 15px;
+      width: 70px;
+    }
+    .my-legend a {
+      color: #777;
+    }
   </style>
   <base href="/">
 </head>
@@ -76,12 +134,33 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
       <li><input type="checkbox" name="comparison" value="comparison" id="comparison" onclick="toggleDiv('floating-panel')" />
         <label for="comparison">Travel Time Comparison</label>
       </li>
-      <li><input type="checkbox" name="heatmap" value="heatmap" id="heatmap" onclick="heatMapToggle()" /><label for="heatmap">Heat Map</label></li>
+      <li><input type="checkbox" name="heatmap" value="heatmap" id="heatmap" onclick="heatMapToggle('heatmapLegend')" /><label for="heatmap">Heat Map</label></li>
     </ul>
   </h2>
   <h3 id="Instruction">
     Welcome to our visual display showing the differences in travel times betweeen primary hub to student/non-student apartments. Please click on the checkboxes to the left to toggle overlays on the map.
   </h3>
+  <!--
+  <div id = "button">
+    <button onlick = "map.setCenter(gainesville)">Center Map</button>
+    <button onlick = "centerMap(map)">Center Map</button>
+  </div>
+  -->
+  <div id = "heatmapLegend">
+    <script type="text/javascript">
+      var legend = document.getElementById('heatmapLegend').style.display = 'none';
+    </script>
+    <div class='my-legend'>
+        <div class='legend-title'>HeatMap Legend</div>
+        <div class='legend-scale'>
+          <ul class='legend-labels'>
+            <li><span style='background:#009600;'></span>0-5 min</li>
+            <li><span style='background:#FCE900;'></span>5-10 min</li>
+            <li><span style='background:#E52500;'></span>10+ min</li>
+          </ul>
+        </div>
+    </div>
+  </div>
   <div id="floating-panel">
     <script>
       document.getElementById('floating-panel').style.display = 'none';
@@ -335,13 +414,23 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         setMapOnAll(null);
       }
 
-      function heatMapToggle() {
-        if (heatmap.getMap() == null){
+      /*function centerMap(map){
+        map.setMap(map);
+        map.setCenter(gainesville);
+        map.setZoom(12);
+      }*/
+
+      function heatMapToggle(id) {
+        var legend = document.getElementById(id);
+        legend.style.display = legend.style.display == "none" ? "block" : "none";
+
+        if (heatmap.getMap() == null && legend.style.display == "block"){
           heatmap.setMap(map);
           map.setZoom(13);
-          document.getElementById("Instruction").innerHTML = 'The zoom will be locked if this checkbox is clicked. Green stands for 5 minutes or less, Yellow for 5-10 minutes, and Red for more than 10 minutes.';
-            map.setOptions({ minZoom: 13, maxZoom: 13 });
-            map.setCenter({ lat: 29.6560626, lng: -82.3897699 });
+          
+          document.getElementById("Instruction").innerHTML = 'Zoom is locked. Refer to HeatMap Legend below.';
+          map.setOptions({ minZoom: 13, maxZoom: 13 });
+          map.setCenter({ lat: 29.6560626, lng: -82.3897699 });
         }
         else{
         heatmap.setMap(null);
@@ -459,7 +548,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
         }
       }
       //temporary data points
- function getPoints() {
+      function getPoints() {
         return [
         //green = 5 min
         //yellow = 10 min
@@ -564,8 +653,7 @@ API KEY = AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY
           //right on university
           {location: new google.maps.LatLng(29.65166, -82.31961), weight: 1},
           //left to 2nd ave apt
-          {location: new google.maps.LatLng(29.6504, -82.3299), weight: 1}
-          
+          {location: new google.maps.LatLng(29.6504, -82.3299), weight: 1}  
         ];
       }
        function getGradient() {
