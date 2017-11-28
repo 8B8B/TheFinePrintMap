@@ -2225,24 +2225,24 @@
         document.getElementById("Instruction").innerHTML = '';
         }
       }
-function heatMapToggle(id) {
-  var legend = document.getElementById(id);
-  legend.style.display = legend.style.display == "none" ? "block" : "none";
+      function heatMapToggle(id) {
+        var legend = document.getElementById(id);
+        legend.style.display = legend.style.display == "none" ? "block" : "none";
 
-  if (heatmap.getMap() == null && legend.style.display == "block"){
-    heatmap.setMap(map);
-    map.setZoom(13);
-    
-    document.getElementById("Instruction").innerHTML = 'Zoom is locked. Refer to HeatMap Legend below.';
-    map.setOptions({ minZoom: 13, maxZoom: 13 });
-    map.setCenter({ lat: 29.6560626, lng: -82.3897699 });
-  }
-  else{
-    heatmap.setMap(null);
-    document.getElementById("Instruction").innerHTML = '';
-    map.setOptions({ minZoom:11, maxZoom: 15 });
-  }
-}
+        if (heatmap.getMap() == null && legend.style.display == "block"){
+          heatmap.setMap(map);
+          map.setZoom(13);
+          
+          document.getElementById("Instruction").innerHTML = 'Zoom is locked. Refer to HeatMap Legend below.';
+          map.setOptions({ minZoom: 13, maxZoom: 13 });
+          map.setCenter({ lat: 29.6560626, lng: -82.3897699 });
+        }
+        else{
+          heatmap.setMap(null);
+          document.getElementById("Instruction").innerHTML = '';
+          map.setOptions({ minZoom:11, maxZoom: 15 });
+        }
+      }
       function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
         if (route == 1) {
           directionsService.route({
@@ -2487,7 +2487,7 @@ function heatMapToggle(id) {
           'rgba(0, 150, 0, 1)'
         ];
       }
-        function toggleDiv(id) {
+      function toggleDiv(id) {
         var div = document.getElementById(id);
         div.style.display = div.style.display == "none" ? "block" : "none";
         if (div.style.display == "block"){
