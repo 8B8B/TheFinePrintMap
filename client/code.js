@@ -35,6 +35,11 @@
       var directionsDisplay95;
       var directionsDisplay96;
       var directionsDisplay97;
+      var service;
+      var origin1;
+      var origin2;
+      var origin3;
+      var origin4;
       var blankimage = 'https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png';
       var gainesville = { lat: 29.6516, lng: -82.3248 };
       var zip32601 = { lat: 29.6422516, lng: -82.3289111 };
@@ -70,22 +75,59 @@
         directionsService7x = new google.maps.DirectionsService();
         directionsService7y = new google.maps.DirectionsService();
         directionsService = new google.maps.DirectionsService;
-        directionsDisplay91 = new google.maps.DirectionsRenderer;
-        directionsDisplay92 = new google.maps.DirectionsRenderer;
-        directionsDisplay93 = new google.maps.DirectionsRenderer;
-        directionsDisplay94 = new google.maps.DirectionsRenderer;
-        directionsDisplay95 = new google.maps.DirectionsRenderer;
-        directionsDisplay96 = new google.maps.DirectionsRenderer;
-        directionsDisplay97 = new google.maps.DirectionsRenderer;
+        directionsDisplay91 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+        directionsDisplay92 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+        directionsDisplay93 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+        directionsDisplay94 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+        directionsDisplay95 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+        directionsDisplay96 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+        directionsDisplay97 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+        origin1 = "Reitz Student Union, Gainesville, FL 32603";
+        origin2 = "Butler Plaza RTS Transfer Station, FL 32607";
+        origin3 = "2-4 W University Ave, Gainesville, FL 32601";
+        origin4 = "Santa Fe College, Gainesville, FL 32606";
         map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
+          zoom: 13,
           minZoom: 11,
           maxZoom: 15,
-          center: gainesville
+          center: new google.maps.LatLng(29.643742, -82.369694),
         });
+
+        // var service = new google.maps.DistanceMatrixService;
+        // service.getDistanceMatrix({
+        //   origins: [origin1, origin2, origin3, origin4],
+        //   destinations: [destinationA, destinationB],
+        //   travelMode: 'TRANSIT',
+        //   unitSystem: google.maps.UnitSystem.METRIC,
+        //   avoidHighways: false,
+        //   avoidTolls: false
+        // }, function(response, status) {
+        //   if (status !== 'OK') {
+        //     alert('Error was: ' + status);
+        //   } else {
+        //     var originList = response.originAddresses;
+        //     var destinationList = response.destinationAddresses;
+        //     var outputDiv = document.getElementById('output');
+        //     outputDiv.innerHTML = '';
+
+        //     for (var i = 0; i < originList.length; i++) {
+        //       var results = response.rows[i].elements;
+        //       geocoder.geocode({'address': originList[i]},
+        //           showGeocodedAddressOnMap(false));
+        //       for (var j = 0; j < results.length; j++) {
+        //         geocoder.geocode({'address': destinationList[j]},
+        //             showGeocodedAddressOnMap(true));
+        //         outputDiv.innerHTML += originList[i] + ' to ' + destinationList[j] +
+        //             ': ' + results[j].distance.text + ' in ' +
+        //             results[j].duration.text + '<br>';
+        //       }
+        //     }
+        //   }
+        // });
 
         var onChangeHandler = function () {
           if (document.getElementById('start').value == "nothing") {
+            document.getElementById("Instruction").innerHTML = '<p>Select a starting location</p>';
             directionsDisplay91.setMap(null);
             directionsDisplay92.setMap(null);
             directionsDisplay93.setMap(null);
@@ -95,6 +137,7 @@
             directionsDisplay97.setMap(null);
           }
           else {
+            document.getElementById("Instruction").innerHTML = document.getElementById('start').options[document.getElementById('start').selectedIndex].innerHTML;
             directionsDisplay91.setMap(map);
             directionsDisplay92.setMap(map);
             directionsDisplay93.setMap(map);
@@ -2244,18 +2287,32 @@
         }
       }
       function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
+          var duration = 0;
         if (route == 1) {
           directionsService.route({
+            
+            // var totalDistance = 0;
+            // var totalDuration = 0;
+            // var legs = directionsResult.routes[0].legs;
+            // for(var i=0; i<legs.length; ++i) {
+            //     totalDistance += legs[i].distance.value;
+            //     totalDuration += legs[i].duration.value;
+            // }
+            // $('#distance').text(totalDistance);
+            // $('#duration').text(totalDuration);
+
             origin: document.getElementById('start').value,
             destination: 'Majestic Oaks Apartments, Gainesville, FL 32607',
             travelMode: 'TRANSIT'
           }, function (response, status) {
             if (status === 'OK') {
               directionsDisplay.setDirections(response);
+              duration = response.routes[0].legs[0].duration.value;
             } else {
               window.alert('Directions request failed due to ' + status);
             }
           });
+          document.getElementById("Instruction").innerHTML += '<p class="info">To Majestic Oaks: ' + duration + '</p>';
         }
         if (route == 2) {
           directionsService.route({
@@ -2265,10 +2322,12 @@
           }, function (response, status) {
             if (status === 'OK') {
               directionsDisplay.setDirections(response);
+              duration = response.routes[0].legs[0].duration.value;
             } else {
               window.alert('Directions request failed due to ' + status);
             }
           });
+          document.getElementById("Instruction").innerHTML += '<p class="info">To Gainesville Place: ' + duration + '</p>';
         }
         if (route == 3) {
           directionsService.route({
@@ -2278,10 +2337,12 @@
           }, function (response, status) {
             if (status === 'OK') {
               directionsDisplay.setDirections(response);
+              duration = response.routes[0].legs[0].duration.value;
             } else {
               window.alert('Directions request failed due to ' + status);
             }
           });
+          document.getElementById("Instruction").innerHTML += '<p class="info">To Cabana Beach: ' + duration + '</p>';
         }
         if (route == 4) {
           directionsService.route({
@@ -2291,10 +2352,12 @@
           }, function (response, status) {
             if (status === 'OK') {
               directionsDisplay.setDirections(response);
+              duration = response.routes[0].legs[0].duration.value;
             } else {
               window.alert('Directions request failed due to ' + status);
             }
           });
+          document.getElementById("Instruction").innerHTML += '<p class="info">To West 20: ' + duration + '</p>';
         }
         if (route == 5) {
           directionsService.route({
@@ -2304,10 +2367,12 @@
           }, function (response, status) {
             if (status === 'OK') {
               directionsDisplay.setDirections(response);
+              duration = response.routes[0].legs[0].duration.value;
             } else {
               window.alert('Directions request failed due to ' + status);
             }
           });
+          document.getElementById("Instruction").innerHTML += '<p class="info">To Tivoli: ' + duration + '</p>';
         }
         if (route == 6) {
           directionsService.route({
@@ -2317,10 +2382,12 @@
           }, function (response, status) {
             if (status === 'OK') {
               directionsDisplay.setDirections(response);
+              duration = response.routes[0].legs[0].duration.value;
             } else {
               window.alert('Directions request failed due to ' + status);
             }
           });
+          document.getElementById("Instruction").innerHTML += '<p class="info">To 2nd Ave Apartments: ' + duration + '</p>';
         }
         if (route == 7) {
           directionsService.route({
@@ -2330,10 +2397,12 @@
           }, function (response, status) {
             if (status === 'OK') {
               directionsDisplay.setDirections(response);
+              duration = response.routes[0].legs[0].duration.value;
             } else {
               window.alert('Directions request failed due to ' + status);
             }
           });
+          document.getElementById("Instruction").innerHTML += '<p class="info">To Rawlings Hall: ' + duration + '</p>';
         }
       }
       function setMapOnAll(map) {
