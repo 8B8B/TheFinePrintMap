@@ -2196,7 +2196,8 @@
           setBus(map);
         map.setZoom(13);
         map.setCenter(gainesville);
-        document.getElementById("Instruction").innerHTML = 'These are the bus routes in the Gainesville region. As you can see, the buses tend to move from major travel hubs towards the Florida campus, not towards the other areas of Gainesville.';
+        document.getElementById("Instruction").innerHTML = 'These are the bus routes in the Gainesville region. As you can see, the buses tend to move from major travel hubs towards the Florida campus, not towards the other areas of Gainesville.' +
+            ' Bus 20 is the blue route. Bus 62 is the orange route. Bus 75 is the grey route. Bus 76 is the pink route. Bus 1 is the green route. Bus 7 is the red route.';
         }
         else {
           setBus(null);
