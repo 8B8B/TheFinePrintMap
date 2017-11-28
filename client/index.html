@@ -1,99 +1,69 @@
 <!DOCTYPE html>
-<html>
-
 <head>
-  <style>
-    .checkboxes {
-      columns: 2;
-      list-style: none;
-      text-align: left;
-      padding-left: 25px;
-      width: 100%;
-      font-size: 16px;
-    }
-
-    .checkboxes li {
-      margin-bottom: 15px;
-    }
-
-    #map {
-      height: 800px;
-      width: 1000px;
-      margin-left: 400px;
-      position: absolute;
-      z-index: 1;
-    }
-
-    #floating-panel {
-      position: absolute;
-      top: 275px;
-      left: 50%;
-      z-index: 5;
-      background-color: #fff;
-      padding: 5px;
-      border: 1px solid #999;
-      text-align: center;
-      font-family: 'Roboto', 'sans-serif';
-      line-height: 30px;
-      padding-left: 10px;
-    }
-
-    h2 {
-      text-align: center;
-      width: 440px;
-      position: absolute;
-      border: 1px solid black;
-      padding-left: 30px;
-      padding-right: 30px;
-      margin-left: 400px;
-      float: left;
-      height: 200px;
-    }
-
-    h3 {
-      width: 480px;
-      height: 200px;
-      border: 1px solid black;
-      margin-left: 920px;
-      text-align: center;
-    }
-  </style>
-  <base href="/">
-</head>
-
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+  
 <body>
   <br>
-  <!-- <div style="display: inline-block;"> -->
-  <h2>
-    <p style="font-size: 25px;"> Toggle Between Different Displays: </p>
-    <ul class="checkboxes">
-      <li><input type="checkbox" name="demographics" value="demographics" id="demographic" onclick="Markers()" /><label for="demographics">Demographic Information</label></li>
-      <li><input type="checkbox" name="routes" value="routes" id="routes" onclick="busstop()"/><label for="routes">Bus Routes</label></li>
-      <li><input type="checkbox" name="comparison" value="comparison" id="comparison" onclick="toggleDiv('floating-panel')" />
-        <label for="comparison">Travel Time Comparison</label>
-      </li>
-      <li><input type="checkbox" name="heatmap" value="heatmap" id="heatmap" onclick="heatMapToggle()" /><label for="heatmap">Heat Map</label></li>
-    </ul>
-  </h2>
-  <h3 id="Instruction">
-    Welcome to our visual display showing the differences in travel times betweeen primary hub to student/non-student apartments. Please click on the checkboxes to the left to toggle overlays on the map.
-  </h3>
-  <div id="floating-panel">
-    <script>
-      document.getElementById('floating-panel').style.display = 'none';
-    </script>
-    <b>Start: </b>
-    <select id="start">
-        <option value="nothing">-- Select one --</option>
-    <option value="Reitz Student Union, Gainesville, FL 32603">Reitz Union</option>
-    <option value="Butler Plaza RTS Transfer Station, FL 32607">Butler Plaza</option>
-    <option value="2-4 W University Ave, Gainesville, FL 32601">Downtown Gainesville</option>
-    <option value="Santa Fe College, Gainesville, FL 32606">Santa Fe College</option>
-  </select>
-
+  <!--
+  box encapsulates 5 elements: h2, h3, map, heatmapLegend, and floating-panel
+  their positions are absolute to the relative position of the box
+  -->
+  <div id="box">
+  <!-- Toggle Map Features -->
+    <h2>
+      <p style="font-size: 25px;"> Toggle Between Different Displays: </p>
+      <ul class="checkboxes">
+        <li><input type="checkbox" name="demographics" value="demographics" id="demographic" onclick="Markers()" /><label for="demographics">Demographic Information</label></li>
+        <li><input type="checkbox" name="routes" value="routes" id="routes" /><label for="routes">Bus Routes</label></li>
+        <li><input type="checkbox" name="comparison" value="comparison" id="comparison" onclick="toggleDiv('floating-panel')" />
+          <label for="comparison">Travel Time Comparison</label>
+        </li>
+        <li><input type="checkbox" name="heatmap" value="heatmap" id="heatmap" onclick="heatMapToggle('heatmapLegend')" /><label for="heatmap">Heat Map</label></li>
+      </ul>
+    </h2>
+    <!-- Dynamically updated side info -->
+    <h3 id="Instruction">
+      Welcome to our visual display showing the differences in travel times betweeen primary hub to student/non-student apartments. Please click on the checkboxes to the left to toggle overlays on the map.
+    </h3>
+    <div id="map"></div>
+    <!-- HeatMap Color Coded Legend -->
+    <div id = "heatmapLegend">
+      <script type="text/javascript">
+        var legend = document.getElementById('heatmapLegend').style.display = 'none';
+      </script>
+      <div class='my-legend'>
+          <div class='legend-title'>HeatMap Legend</div>
+          <div class='legend-scale'>
+            <ul class='legend-labels'>
+              <li><span style='background:#009600;'></span>0-5 min</li>
+              <li><span style='background:#FCE900;'></span>5-10 min</li>
+              <li><span style='background:#E52500;'></span>10+ min</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <!-- Drop Down Menu for Travel Time Comparisons -->
+    <div id="floating-panel">
+      <script>
+        document.getElementById('floating-panel').style.display = 'none';
+      </script>
+      <b>Start: </b>
+      <select id="start">
+          <option value="nothing">-- Select one --</option>
+      <option value="Reitz Student Union, Gainesville, FL 32603">Reitz Union</option>
+      <option value="Butler Plaza RTS Transfer Station, FL 32607">Butler Plaza</option>
+      <option value="2-4 W University Ave, Gainesville, FL 32601">Downtown Gainesville</option>
+      <option value="Santa Fe College, Gainesville, FL 32606">Santa Fe College</option>
+    </select>
+    </div>
   </div>
-  <div id="map"></div>
-    <script src="code.js"></script>
-      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY&libraries=visualization&callback=initMap"></script>
-  </body>
-</html>
+  <!--
+  <div id = "button">
+    <button onlick = "map.setCenter(gainesville)">Center Map</button>
+    <button onlick = "centerMap(map)">Center Map</button>
+  </div>
+  -->
+  <script src="code.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcplqLGgsRpnPIhCr_1MhVk2qsVNZwcY&libraries=visualization&callback=initMap">
+  </script>
+</body>

@@ -1,4 +1,4 @@
- var map, heatmap;
+      var map, heatmap;
       var busstopmarkers = [];
       var directionsDisplay20, directionsDisplay20x, directionsDisplay20y, i;
       var directionsService20;
@@ -2225,20 +2225,24 @@
         document.getElementById("Instruction").innerHTML = '';
         }
       }
-      function heatMapToggle() {
-        if (heatmap.getMap() == null){
-          heatmap.setMap(map);
-          map.setZoom(13);
-          document.getElementById("Instruction").innerHTML = 'The zoom will be locked if this checkbox is clicked. Green stands for 5 minutes or less, Yellow for 5-10 minutes, and Red for more than 10 minutes.';
-            map.setOptions({ minZoom: 13, maxZoom: 13 });
-            map.setCenter({ lat: 29.6560626, lng: -82.3897699 });
-        }
-        else{
-        heatmap.setMap(null);
-        document.getElementById("Instruction").innerHTML = '';
-        map.setOptions({ minZoom:11, maxZoom: 15 });
-       }
-      }
+function heatMapToggle(id) {
+  var legend = document.getElementById(id);
+  legend.style.display = legend.style.display == "none" ? "block" : "none";
+
+  if (heatmap.getMap() == null && legend.style.display == "block"){
+    heatmap.setMap(map);
+    map.setZoom(13);
+    
+    document.getElementById("Instruction").innerHTML = 'Zoom is locked. Refer to HeatMap Legend below.';
+    map.setOptions({ minZoom: 13, maxZoom: 13 });
+    map.setCenter({ lat: 29.6560626, lng: -82.3897699 });
+  }
+  else{
+    heatmap.setMap(null);
+    document.getElementById("Instruction").innerHTML = '';
+    map.setOptions({ minZoom:11, maxZoom: 15 });
+  }
+}
       function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
         if (route == 1) {
           directionsService.route({
@@ -2500,3 +2504,4 @@
         directionsDisplay96.setMap(null);
         directionsDisplay97.setMap(null);
       }
+
