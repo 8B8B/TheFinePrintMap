@@ -25,3 +25,5 @@ Here are examples of other manual testing that we completed:
    to the API is still functioning
 4) Making sure that the boxes all do the correct task and show the correct information
 5) Checking that the queries from the database are pulling the correct Information
+6) Making sure the get request from RTS API is succesfully processed through the browser
+   inspector tool which prints to console.
