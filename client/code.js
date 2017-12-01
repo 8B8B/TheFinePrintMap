@@ -2172,7 +2172,7 @@ function initMap() {
         }
       }
       function busstop() {
-        if (busstopmarkers1[0].getMap() == null) {
+        if (busstopmarkers1[0].getMap() == null && busstopmarkers2[0].getMap() == null && busstopmarkers3[0].getMap() == null) {
         map.setZoom(13);
         map.setCenter(gainesville);
         document.getElementById("Instruction").innerHTML = 'These are the bus routes in the Gainesville region. As you can see, the buses tend to move from major travel hubs towards the Florida campus, not towards the other areas of Gainesville.';
