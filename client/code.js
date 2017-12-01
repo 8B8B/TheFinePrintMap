@@ -108,6 +108,9 @@ function initMap() {
         }
         else if(document.getElementById('bRoutes').value == "bus1")
         {
+          setBus(null, busstopmarkers1);
+          setBus(null, busstopmarkers2);
+          setBus(null, busstopmarkers3);
           directionsDisplay20.setMap(map);
           directionsDisplay20.setOptions( { suppressMarkers: true } );
           directionsDisplay20x.setMap(map);
@@ -138,6 +141,9 @@ function initMap() {
           showingRoutesSelected(directionsService, 1);
         }
         else if(document.getElementById('bRoutes').value == "bus2"){
+            setBus(null, busstopmarkers1);
+            setBus(null, busstopmarkers2);
+            setBus(null, busstopmarkers3);
             directionsDisplay20.setMap(null);
             directionsDisplay20x.setMap(null);
             directionsDisplay20y.setMap(null);
@@ -170,6 +176,9 @@ function initMap() {
             showingRoutesSelected(directionsService, 2);
         }
         else if(document.getElementById('bRoutes').value == "bus3"){
+            setBus(null, busstopmarkers1);
+            setBus(null, busstopmarkers2);
+            setBus(null, busstopmarkers3);
             directionsDisplay20.setMap(null);
             directionsDisplay20x.setMap(null);
             directionsDisplay20y.setMap(null);
