@@ -13,12 +13,11 @@
     <h2>
       <p style="font-size: 25px;"> Toggle Between Different Displays: </p>
       <ul class="checkboxes">
-        <li><input type="checkbox" name="demographics" value="demographics" id="demographic" onclick="Markers()" /><label for="demographics">Demographic Information</label></li>
-        <li><input type="checkbox" name="routes" value="routes" id="routes" onclick="togglingDiv('float-panel')" /><label for="routes">Bus Routes</label></li>
-        <li><input type="checkbox" name="comparison" value="comparison" id="comparison" onclick="toggleDiv('floating-panel')" />
-          <label for="comparison">Travel Time Comparison</label>
+        <li><input type="button" name="Demographic Infomation" value="Demographic Infomation" id="demographic" onclick="Markers()" /></li>
+        <li><input type="button" name="Travel Time Comparison" value="Travel Time Comparison" id="comparison" onclick="toggleDiv('floating-panel')" />
         </li>
-        <li><input type="checkbox" name="heatmap" value="heatmap" id="heatmap" onclick="heatMapToggle('heatmapLegend')" /><label for="heatmap">Heat Map</label></li>
+        <li><input type="button" name="Bus Routes" value="Bus Routes" id="routes" onclick="togglingDiv('float-panel')" /></li>
+        <li><input type="button" name="Heat Map" value="Heat Map" id="heatmap" onclick="heatMapToggle('heatmapLegend')" /></li>
       </ul>
     </h2>
     <!-- Dynamically updated side info -->
