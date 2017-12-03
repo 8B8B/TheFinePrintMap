@@ -2166,18 +2166,18 @@ function initMap() {
         directionsDisplay7y.setMap(null);
       }
 
-      function setBus(map, busarray) {
-        for (var i = 0; i < busarray.length; i++) {
-          busarray[i].setMap(map);
-        }
-      }
-      function busstop() {
-        if (busstopmarkers1[0].getMap() == null && busstopmarkers2[0].getMap() == null && busstopmarkers3[0].getMap() == null) {
+function setBus(map, busarray) {
+    for (var i = 0; i < busarray.length; i++) {
+        busarray[i].setMap(map);
+    }
+}
+function busstop() {
+    if (busstopmarkers1[0].getMap() == null && busstopmarkers2[0].getMap() == null && busstopmarkers3[0].getMap() == null) {
         map.setZoom(13);
         map.setCenter(gainesville);
         document.getElementById("Instruction").innerHTML = 'These are the bus routes in the Gainesville region. As you can see, the buses tend to move from major travel hubs towards the Florida campus, not towards the other areas of Gainesville.';
-        }
-        else {
+    }
+    else {
         setBus(null, busstopmarkers1);
         setBus(null, busstopmarkers2);
         setBus(null, busstopmarkers3);
@@ -2204,8 +2204,8 @@ function initMap() {
         map.setZoom(13);
         map.setCenter(gainesville);
         document.getElementById("Instruction").innerHTML = '';
-        }
-      }
+    }
+}
 function heatMapToggle(id) {
     var legend = document.getElementById(id);
     legend.style.display = legend.style.display == "none" ? "block" : "none";
@@ -2574,12 +2574,12 @@ var showingRoutesSelected = function (directionsService, selected) {
         });
         directionsService.route(request20x, function (results, status) {
             if (status == google.maps.DirectionsStatus.OK) {
-                directionsDisplay20x.setDirections(results);
+               directionsDisplay20x.setDirections(results);
             }
         });
         directionsService.route(request20y, function (results, status) {
             if (status == google.maps.DirectionsStatus.OK) {
-                directionsDisplay20y.setDirections(results);
+               directionsDisplay20y.setDirections(results);
             }
         });
         directionsService.route(request62, function (results, status) {
@@ -2672,4 +2672,4 @@ var showingRoutesSelected = function (directionsService, selected) {
             }
         });
     }
-}
+};
