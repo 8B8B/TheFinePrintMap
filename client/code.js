@@ -35,12 +35,12 @@ var markers = [];
 function initMap() {
     var busImage = "https://www.materialui.co/materialIcons/maps/directions_bus_black_18x18.png";
     directionsService = new google.maps.DirectionsService;
-    directionsDisplay91 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+    directionsDisplay91 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, polylineOptions: { strokeColor: 'red' }, markerOptions:{icon:"http://maps.google.com/mapfiles/ms/icons/blue-dot.png"} });
     directionsDisplay92 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
     directionsDisplay93 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
     directionsDisplay94 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
     directionsDisplay95 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
-    directionsDisplay96 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+    directionsDisplay96 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, polylineOptions: { strokeColor: 'red' } });
     directionsDisplay97 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
