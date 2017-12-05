@@ -1,3 +1,4 @@
+//Variables for map, markers, directional services and directional displays
 var map, heatmap;
 var busstopmarkers1 = [];
 var busstopmarkers2 = [];
@@ -32,6 +33,7 @@ var zip32609 = { lat: 29.7935588, lng: -82.2583297 };
 var zip32641 = { lat: 29.6311155, lng: -82.2365981 };
 var zip32653 = { lat: 29.7429556, lng: -82.3777335 };
 var markers = [];
+//initilizes the map with all elements hidden
 function initMap() {
     var busImage = "https://www.materialui.co/materialIcons/maps/directions_bus_black_18x18.png";
     directionsService = new google.maps.DirectionsService;
@@ -42,13 +44,14 @@ function initMap() {
     directionsDisplay95 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
     directionsDisplay96 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
     directionsDisplay97 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+    //Displays map
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
         minZoom: 12,
         maxZoom: 15,
         center: new google.maps.LatLng(29.643742, -82.369694),
     });
-
+    //Time comparison onchange display
     var onChangeHandler = function () {
         directionsDisplay91.setMap(null);
         directionsDisplay92.setMap(null);
@@ -80,6 +83,7 @@ function initMap() {
         }
     };
         document.getElementById('start').addEventListener('change', onChangeHandler);
+        //Bus route onchange display
         var busOnChangeHandler = function(){
         if(document.getElementById('bRoutes').value == "noneSelected"){
             directionsDisplay20.setMap(null);
@@ -210,6 +214,7 @@ function initMap() {
         }
       };
     document.getElementById('bRoutes').addEventListener('change', busOnChangeHandler);
+    //Initilize heatmap
     heatmap = new google.maps.visualization.HeatmapLayer({
 
         data: getPoints(),
@@ -220,7 +225,7 @@ function initMap() {
         gradient: getGradient()
     });
     heatmap.setMap(null);
-    //zipcodes, markers, pop-up windows
+    //Demogrpahic markers
     var content32601 = '<div>' + '<p> Zip Code: 32601<br> Population: 18,585 <br> Median Age: 24.4<br> Number of Houses: 9,182<br> Median Income: $24,272<br> Below Poverty Line: 46.90%</p>' + '</div>';
     var info32601 = new google.maps.InfoWindow({
         content: content32601
@@ -228,7 +233,11 @@ function initMap() {
     var marker32601 = new google.maps.Marker({
         position: zip32601,
         map: map,
-        label: '32601',
+        label: {
+            text: '32601',
+            color: 'red',
+            fontSize: "18px"
+        },
         icon: blankimage
     });
     marker32601.addListener('click', function () {
@@ -241,7 +250,11 @@ function initMap() {
     var marker32603 = new google.maps.Marker({
         position: zip32603,
         map: map,
-        label: '32603',
+        label: {
+            text: '32603',
+            color: 'red',
+            fontSize: "18px"
+        },
         icon: blankimage
     });
     marker32603.addListener('click', function () {
@@ -254,7 +267,11 @@ function initMap() {
     var marker32605 = new google.maps.Marker({
         position: zip32605,
         map: map,
-        label: '32605',
+        label: {
+            text: '32605',
+            color: 'red',
+            fontSize: "18px"
+        },
         icon: blankimage
     });
     marker32605.addListener('click', function () {
@@ -267,7 +284,11 @@ function initMap() {
     var marker32606 = new google.maps.Marker({
         position: zip32606,
         map: map,
-        label: '32606',
+        label: {
+            text: '32606',
+            color: 'red',
+            fontSize: "18px"
+        },
         icon: blankimage
     });
     marker32606.addListener('click', function () {
@@ -280,7 +301,11 @@ function initMap() {
     var marker32607 = new google.maps.Marker({
         position: zip32607,
         map: map,
-        label: '32607',
+        label: {
+            text: '32607',
+            color: 'red',
+            fontSize: "18px"
+        },
         icon: blankimage
     });
     marker32607.addListener('click', function () {
@@ -293,7 +318,11 @@ function initMap() {
     var marker32608 = new google.maps.Marker({
         position: zip32608,
         map: map,
-        label: '32608',
+        label: {
+            text: '32608',
+            color: 'red',
+            fontSize: "18px"
+        },
         icon: blankimage
     });
     marker32608.addListener('click', function () {
@@ -306,7 +335,11 @@ function initMap() {
     var marker32609 = new google.maps.Marker({
         position: zip32609,
         map: map,
-        label: '32609',
+        label: {
+            text: '32609',
+            color: 'red',
+            fontSize: "18px"
+        },
         icon: blankimage
     });
     marker32609.addListener('click', function () {
@@ -319,7 +352,11 @@ function initMap() {
     var marker32641 = new google.maps.Marker({
         position: zip32641,
         map: map,
-        label: '32641',
+        label: {
+            text: '32641',
+            color: 'red',
+            fontSize: "18px"
+        },
         icon: blankimage
     });
     marker32641.addListener('click', function () {
@@ -332,7 +369,11 @@ function initMap() {
     var marker32653 = new google.maps.Marker({
         position: zip32653,
         map: map,
-        label: '32653',
+        label: {
+            text: '32653',
+            color: 'red',
+            fontSize: "18px"
+        },
         icon: blankimage
     });
     marker32653.addListener('click', function () {
