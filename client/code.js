@@ -379,6 +379,7 @@ function initMap() {
     marker32653.addListener('click', function () {
         info32653.open(map, marker32653);
     });
+    //Puts all markers into an array
     markers.push(marker32601);
     markers.push(marker32603);
     markers.push(marker32605);
@@ -389,7 +390,7 @@ function initMap() {
     markers.push(marker32641);
     markers.push(marker32653);
     setMapOnAll(null);
-
+    //Bus 20 bus stops
     var bus20 = {
         "businfo": [
             {
@@ -556,6 +557,7 @@ function initMap() {
             }
         ]
     };
+    //Bus 62 bus stops
     var bus62 = {
         "businfo": [
             {
@@ -743,6 +745,7 @@ function initMap() {
             }
         ]
     };
+    //Bus 75 bus stops
     var bus75 = {
         "businfo": [
             {
@@ -1056,6 +1059,7 @@ function initMap() {
             }
         ]
     };
+    //Bus 76 bus stops
     var bus76 = {
         "businfo": [
             {
@@ -1222,6 +1226,7 @@ function initMap() {
             }
         ]
     };
+    //Bus 1 bus stops
     var bus1 = {
         "businfo": [
             {
@@ -1412,6 +1417,7 @@ function initMap() {
             }
         ]
     };
+    //Bus 7 bus stops
     var bus7 = {
         "businfo": [
             {
@@ -1593,6 +1599,7 @@ function initMap() {
             }
         ]
     };
+    //Sets up bus route display
     directionsDisplay20 = new google.maps.DirectionsRenderer({
         map: map,
         polylineOptions: { strokeColor: "blue" }
@@ -1681,6 +1688,7 @@ function initMap() {
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(0, 0)
     };
+    //Sets displays to map and removes unnessesary markers
     directionsDisplay20.setMap(map);
     directionsDisplay20.setOptions({ suppressMarkers: true });
     directionsDisplay20x.setMap(map);
@@ -1721,7 +1729,7 @@ function initMap() {
     directionsDisplay7x.setOptions({ suppressMarkers: true });
     directionsDisplay7y.setMap(map);
     directionsDisplay7y.setOptions( { suppressMarkers: true } );
-
+    //each of these set of for loops creates markers for the bus stops and pushes them into arrays by pair
      var x20 = 0, y20 = 0;
         request20 = {
             travelMode: google.maps.TravelMode.DRIVING
@@ -2182,6 +2190,7 @@ function initMap() {
                 });
             }
         }
+        //makes all bus stops and routes disappear
         setBus(null, busstopmarkers1);
         setBus(null, busstopmarkers2);
         setBus(null, busstopmarkers3);
@@ -2206,12 +2215,13 @@ function initMap() {
         directionsDisplay7x.setMap(null);
         directionsDisplay7y.setMap(null);
       }
-
+//makes bus stops appear and disappear
 function setBus(map, busarray) {
     for (var i = 0; i < busarray.length; i++) {
         busarray[i].setMap(map);
     }
 }
+//makes bus routes appear and disappear
 function busstop() {
     if (busstopmarkers1[0].getMap() == null && busstopmarkers2[0].getMap() == null && busstopmarkers3[0].getMap() == null) {
         map.setZoom(13);
@@ -2247,6 +2257,7 @@ function busstop() {
         document.getElementById("Instruction").innerHTML = '';
     }
 }
+//makes heatmap and its legend appear and disappear
 function heatMapToggle(id) {
     var legend = document.getElementById(id);
     legend.style.display = legend.style.display == "none" ? "block" : "none";
@@ -2264,6 +2275,7 @@ function heatMapToggle(id) {
     }
 }
 var delayFactor = 0;
+//calculates travel times between hubs and apartments
 function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
     var duration = 0;
     if (route == 1) {
@@ -2407,6 +2419,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
         });
     }
 }
+//Sets demographics markers to appear and disappear
 function setMapOnAll(map) {
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(map);
@@ -2422,6 +2435,7 @@ function Markers() {
         document.getElementById("Instruction").innerHTML = '';
     }
 }
+//points for heatmap
 function getPoints() {
     return [
         //green = 5 min
@@ -2531,6 +2545,7 @@ function getPoints() {
 
     ];
 }
+//Gradient from green to red for heatmap
 function getGradient() {
     return [
         'rgba(255, 255, 255, 0)',
@@ -2558,6 +2573,7 @@ function getGradient() {
         'rgba(0, 150, 0, 1)'
     ];
 }
+//toggles timecomparison dropdown menu
 function toggleDiv(id) {
     var div = document.getElementById(id);
     div.style.display = div.style.display == "none" ? "block" : "none";
@@ -2575,6 +2591,7 @@ function toggleDiv(id) {
     directionsDisplay96.setMap(null);
     directionsDisplay97.setMap(null);
 }
+//toggles bus routes and bus stops dropdown menu
 function togglingDiv(id) {
     var div = document.getElementById(id);
     div.style.display = div.style.display == "none" ? "block" : "none";
@@ -2606,6 +2623,7 @@ function togglingDiv(id) {
     directionsDisplay7y.setMap(null);
     busstop();
 }
+//toggles between pairs of routes for bus stops
 var showingRoutesSelected = function (directionsService, selected) {
     if (selected == 1) {
         directionsService.route(request20, function (results, status) {
