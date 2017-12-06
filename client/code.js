@@ -2328,7 +2328,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x = document.getElementById("myTable").rows[1].cells;
+                x = document.getElementById("myTable").rows[8].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
@@ -2460,7 +2460,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x = document.getElementById("myTable").rows[5].cells;
+                x = document.getElementById("myTable").rows[9].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
@@ -2493,7 +2493,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x = document.getElementById("myTable").rows[6].cells;
+                x = document.getElementById("myTable").rows[5].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
@@ -2526,7 +2526,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x = document.getElementById("myTable").rows[7].cells;
+                x = document.getElementById("myTable").rows[6].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
