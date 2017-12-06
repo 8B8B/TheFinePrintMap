@@ -2687,6 +2687,7 @@ function toggleDiv(id) {
     directionsDisplay95.setMap(null);
     directionsDisplay96.setMap(null);
     directionsDisplay97.setMap(null);
+    setBus(null,markerArray);
 }
 //toggles bus routes and bus stops dropdown menu
 function togglingDiv(id) {
