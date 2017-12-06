@@ -14,7 +14,19 @@ Open your Internet broswer:
 - type into address bar: localhost:8080
 
 Project Features Implemented:
-- Displays demographic information of Gainesville
+- Map of Gainesville
+- Demographic Information
+    - Zipcode
+    - Population
+    - Median Age
+    - Total Housing Units
+    - Median Household Income
+    - % Below Poverty Line
+- Bus Routes
+    - Displays Pairs of Bus Routes
+        - Route 1 and 7
+        - Route 62 and 20
+        - Route 75 and 76
 - Travel time comparisons:
     - From 4 popular sources:
         - Reitz Union
