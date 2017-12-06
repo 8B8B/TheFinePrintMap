@@ -2226,9 +2226,10 @@ function busstop() {
     if (busstopmarkers1[0].getMap() == null && busstopmarkers2[0].getMap() == null && busstopmarkers3[0].getMap() == null) {
         map.setZoom(13);
         map.setCenter(gainesville);
-        document.getElementById("Instruction").innerHTML = 'These are the bus routes in the Gainesville region. As you can see, the buses tend to move from major travel hubs towards the Florida campus, not towards the other areas of Gainesville.';
+        document.getElementById("Instruction").innerHTML = 'You can display pairs of bus routes by using the dropdown menu on the map.';
     }
     else {
+        document.getElementById("Instruction").innerHTML = '';
         setBus(null, busstopmarkers1);
         setBus(null, busstopmarkers2);
         setBus(null, busstopmarkers3);
@@ -2265,7 +2266,7 @@ function heatMapToggle(id) {
     if (heatmap.getMap() == null && legend.style.display == "block") {
         heatmap.setMap(map);
         map.setZoom(13);
-        document.getElementById("Instruction").innerHTML = 'The zoom will be locked if this checkbox is clicked.<br> The portion in green means that the area is 5 minutes or less away from the hub by public transit, yellow indicates 5-10 minutes, and red shows more than 10 minutes away from the hub.';
+        document.getElementById("Instruction").innerHTML = 'The zoom will be locked if this button is clicked.<br> Check the legend on the map for travel times around these hubs.';
         map.setOptions({ minZoom: 13, maxZoom: 13 });
     }
     else {
@@ -2578,7 +2579,7 @@ function toggleDiv(id) {
     var div = document.getElementById(id);
     div.style.display = div.style.display == "none" ? "block" : "none";
     if (div.style.display == "block") {
-        document.getElementById("Instruction").innerHTML = 'Click on the dropdown box under the checkboxes to display routes from hubs to apartments.';
+        document.getElementById("Instruction").innerHTML = 'Click on the dropdown menu to display routes from hubs to apartments this box will also display travel times.';
     }
     else {
         document.getElementById("Instruction").innerHTML = '';
