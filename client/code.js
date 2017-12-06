@@ -61,10 +61,8 @@ function initMap() {
         directionsDisplay96.setMap(null);
         directionsDisplay97.setMap(null);
         if (document.getElementById('start').value == "nothing") {
-            document.getElementById("Instruction").innerHTML = '<p>Select a starting location</p>';
         }
         else {
-            document.getElementById("Instruction").innerHTML = document.getElementById('start').options[document.getElementById('start').selectedIndex].innerHTML;
             directionsDisplay91.setMap(map);
             directionsDisplay92.setMap(map);
             directionsDisplay93.setMap(map);
@@ -2275,10 +2273,11 @@ function heatMapToggle(id) {
         map.setOptions({ minZoom: 11, maxZoom: 15 });
     }
 }
-var delayFactor = 0;
 //calculates travel times between hubs and apartments
+var delayFactor = 0;
 function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
     var duration = 0;
+    var x;
     if (route == 1) {
         directionsService.route({
             origin: document.getElementById('start').value,
@@ -2288,7 +2287,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                document.getElementById("Instruction").innerHTML += '<p class="info">To Majestic Oaks: ' + duration + '</p>';
+                x=document.getElementById("myTable").rows[1].cells;
+                x[1].innerHTML = duration;
+                //document.getElementById("majestic").insertCell(1).innerHTML = duration;
+                //document.getElementById("Instruction").innerHTML += '<p class="info">To Majestic Oaks: ' + duration + '</p>';
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
@@ -2308,7 +2310,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                document.getElementById("Instruction").innerHTML += '<p class="info">To Gainesville Place: ' + duration + '</p>';
+                x=document.getElementById("myTable").rows[2].cells;
+                x[1].innerHTML = duration;
+                //document.getElementById("gp").insertCell(1).innerHTML = duration;
+                //document.getElementById("Instruction").innerHTML += '<p class="info">To Gainesville Place: ' + duration + '</p>';
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
@@ -2328,7 +2333,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                document.getElementById("Instruction").innerHTML += '<p class="info">To Cabana Beach: ' + duration + '</p>';
+                x=document.getElementById("myTable").rows[3].cells;
+                x[1].innerHTML = duration;
+                //document.getElementById("cabana").insertCell(1).innerHTML = duration;
+                //document.getElementById("Instruction").innerHTML += '<p class="info">To Cabana Beach: ' + duration + '</p>';
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
@@ -2348,7 +2356,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                document.getElementById("Instruction").innerHTML += '<p class="info">To West 20: ' + duration + '</p>';
+                x=document.getElementById("myTable").rows[4].cells;
+                x[1].innerHTML = duration;
+                //document.getElementById("west20").insertCell(1).innerHTML = duration;
+                //document.getElementById("Instruction").innerHTML += '<p class="info">To West 20: ' + duration + '</p>';
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
@@ -2368,7 +2379,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                document.getElementById("Instruction").innerHTML += '<p class="info">To Tivoli: ' + duration + '</p>';
+                x=document.getElementById("myTable").rows[5].cells;
+                x[1].innerHTML = duration;
+                //document.getElementById("tivoli").insertCell(1).innerHTML = duration;
+                //document.getElementById("Instruction").innerHTML += '<p class="info">To Tivoli: ' + duration + '</p>';
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
@@ -2388,7 +2402,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                document.getElementById("Instruction").innerHTML += '<p class="info">To 2nd Ave Apartments: ' + duration + '</p>';
+                x=document.getElementById("myTable").rows[6].cells;
+                x[1].innerHTML = duration;
+                //document.getElementById("avenue").insertCell(1).innerHTML = duration;
+                //document.getElementById("Instruction").innerHTML += '<p class="info">To 2nd Ave Apartments: ' + duration + '</p>';
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
@@ -2408,7 +2425,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                document.getElementById("Instruction").innerHTML += '<p class="info">To Rawlings Hall: ' + duration + '</p>';
+                x=document.getElementById("myTable").rows[7].cells;
+                x[1].innerHTML = duration;
+                //document.getElementById("rawlings").insertCell(1).innerHTML = duration;
+                //document.getElementById("Instruction").innerHTML += '<p class="info">To Rawlings Hall: ' + duration + '</p>';
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
@@ -2578,8 +2598,11 @@ function getGradient() {
 function toggleDiv(id) {
     var div = document.getElementById(id);
     div.style.display = div.style.display == "none" ? "block" : "none";
+    var table = document.getElementById("timeTable");
+    table.style.display = table.style.display == "none" ? "block" : "none";
     if (div.style.display == "block") {
-        document.getElementById("Instruction").innerHTML = 'Click on the dropdown menu to display routes from hubs to apartments this box will also display travel times.';
+        document.getElementById("Instruction").innerHTML = '';
+
     }
     else {
         document.getElementById("Instruction").innerHTML = '';

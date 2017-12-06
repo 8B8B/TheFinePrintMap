@@ -23,6 +23,45 @@
       Welcome to our visual display showing the differences in travel times betweeen primary hub to student/non-student apartments. Please click on the buttons on top of this box to toggle overlays on the map.
     </h3>
     <div id="map"></div>
+    <div id = "timeTable">
+      <script type="text/javascript">
+        document.getElementById('timeTable').style.display = 'none';
+      </script>
+      <table id = "myTable">
+        <tr>
+          <th> To: Destination </th>
+          <th>  Time (mins) </th>
+        </tr>
+        <tr id = "majestic">
+          <td> Majestic</td>
+          <td></td>
+        </tr>
+        <tr id = "gp">
+          <td> Gainesville Place </td>
+          <td></td>
+        </tr>
+        <tr id = "cabana">
+          <td> Cabana Beach </td>
+          <td></td>
+        </tr>
+        <tr id = "west20">
+          <td> West 20 </td>
+          <td></td>
+        </tr>
+        <tr id = "tivoli">
+          <td> Tivoli</td>
+          <td></td>
+        </tr>
+        <tr id = "avenue">
+          <td> 2nd Avenue </td>
+          <td></td>
+        </tr>
+        <tr id = "rawlings">
+          <td> Rawlings Hall </td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
     <div id="legend"><h7>Marker Legend</h7>
       <script type="text/javascript">
         var legend = document.getElementById('legend').style.display = 'none';
