@@ -30,3 +30,19 @@ function initMap() {
   var content32608 = '<div>' + '<p> Zip Code: 32608<br> Population: 45,832 <br> Median Age: 28<br> Number of Houses: 23,245 <br> Median Income: $40,465<br> Below Poverty Line: 29.40%</p>' + '</div>';
   return content32608;
 }
+
+function initmap2(){
+  var iconBase = 'https://maps.google.com/mapfiles/kml/paddle/';
+  var icons = {
+    student: {
+      name: 'Student Apartment',
+      icon: iconBase + 'blu-stars.png'
+    },
+    regular: {
+      name: 'Regular Apartment',
+      icon: iconBase + 'orange-stars.png'
+    },
+  };
+
+  return icons;
+}

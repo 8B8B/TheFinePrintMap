@@ -30,6 +30,19 @@
       console.log("Zip codes are returning different information");
     }
   }
+
+  function test3(){
+    results.total++;
+    var result = initmap2();
+    if(result.student.name !='Student Apartment'){
+      result.bad++;
+      console.log("Test 3 didn't pass");
+    }
+    else{
+      console.log("The marker returns the correct color")
+    }
+  }
+
   var results = {
     total: 0,
     bad: 0
@@ -58,6 +71,8 @@
     'rgba(0, 150, 0, 1)'
   ])
   test2('<div>' + '<p> Zip Code: 32607<br> Population: 29,750 <br> Median Age: 25.1<br> Number of Houses: 14,802 <br> Median Income: $33,724<br> Below Poverty Line: 35.40%</p>' + '</div>' );
+
+  test3();
   console.log("Of " + results.total + " tests, " +
     results.bad + " failed, " +
     (results.total - results.bad) + " passed.");
