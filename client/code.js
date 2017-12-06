@@ -18,7 +18,6 @@ var directionsDisplay94;
 var directionsDisplay95;
 var directionsDisplay96;
 var directionsDisplay97;
-var originMarker;
 var request20, request20x, request20y, request62, request62x, request62y;
 var request75, request75w, request75z, request75x, request75y, request76, request76x, request76y;
 var request1, request1x, request1y, request7, request7x, request7y;
@@ -34,7 +33,6 @@ var zip32609 = { lat: 29.7935588, lng: -82.2583297 };
 var zip32641 = { lat: 29.6311155, lng: -82.2365981 };
 var zip32653 = { lat: 29.7429556, lng: -82.3777335 };
 var markers = [];
-<<<<<<< HEAD
 //initilizes the map with all elements hidden
 function initMap() {
     var busImage = "https://www.materialui.co/materialIcons/maps/directions_bus_black_18x18.png";
@@ -47,58 +45,14 @@ function initMap() {
     directionsDisplay96 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
     directionsDisplay97 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
     //Displays map
-=======
-var markerArray = []; //will contain number of stops + 1 for starting location
-
-function initMap() {
-    var busImage = "https://www.materialui.co/materialIcons/maps/directions_bus_black_18x18.png";
-    directionsService = new google.maps.DirectionsService;
-    directionsDisplay91 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
-    directionsDisplay92 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
-    directionsDisplay93 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
-    directionsDisplay94 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
-    directionsDisplay95 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
-    directionsDisplay96 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
-    directionsDisplay97 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
->>>>>>> timeCompare
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
         minZoom: 12,
         maxZoom: 15,
         center: new google.maps.LatLng(29.643742, -82.369694),
     });
-<<<<<<< HEAD
     //Time comparison onchange display
-=======
-
-    var iconBase = 'https://maps.google.com/mapfiles/kml/paddle/';
-    var icons = {
-      student: {
-        name: 'Student Apartment',
-        icon: iconBase + 'blu-stars.png'
-      },
-      regular: {
-        name: 'Regular Apartment',
-        icon: iconBase + 'orange-stars.png'
-      },
-    };
-    
-    var legend = document.getElementById('legend');
-    for (var key in icons) {
-      var type = icons[key];
-      var name = type.name;
-      var icon = type.icon;
-      var div = document.createElement('div');
-      div.innerHTML = '<img src="' + icon + '"> ' + name;
-      legend.appendChild(div);
-    }
-    
-    map.controls[google.maps.ControlPosition.LEFT_TOP].push(legend);
->>>>>>> timeCompare
     var onChangeHandler = function () {
-        for (var i = 0; i < markerArray.length; i++) {
-            markerArray[i].setMap(null);
-        }
         directionsDisplay91.setMap(null);
         directionsDisplay92.setMap(null);
         directionsDisplay93.setMap(null);
@@ -110,18 +64,6 @@ function initMap() {
             document.getElementById("Instruction").innerHTML = '<p>Select a starting location</p>';
         }
         else {
-            var geocoder = new google.maps.Geocoder();
-            geocoder.geocode({ 'address': document.getElementById('start').value }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    markerArray.push(new google.maps.Marker({
-                        position: results[0].geometry.location,
-                        map: map,
-                        icon: "http://maps.google.com/mapfiles/kml/paddle/wht-circle.png"
-                    }));
-                } else {
-                    alert('Geocode was not successful for the following reason: ' + status);
-                }
-            });
             document.getElementById("Instruction").innerHTML = document.getElementById('start').options[document.getElementById('start').selectedIndex].innerHTML;
             directionsDisplay91.setMap(map);
             directionsDisplay92.setMap(map);
@@ -130,26 +72,20 @@ function initMap() {
             directionsDisplay95.setMap(map);
             directionsDisplay96.setMap(map);
             directionsDisplay97.setMap(map);
-            calculateAndDisplayRoute(directionsService, directionsDisplay91, markerArray, 1);
-            calculateAndDisplayRoute(directionsService, directionsDisplay92, markerArray, 2);
-            calculateAndDisplayRoute(directionsService, directionsDisplay93, markerArray, 3);
-            calculateAndDisplayRoute(directionsService, directionsDisplay94, markerArray, 4);
-            calculateAndDisplayRoute(directionsService, directionsDisplay95, markerArray, 5);
-            calculateAndDisplayRoute(directionsService, directionsDisplay96, markerArray, 6);
-            calculateAndDisplayRoute(directionsService, directionsDisplay97, markerArray, 7);
+            calculateAndDisplayRoute(directionsService, directionsDisplay91, 1);
+            calculateAndDisplayRoute(directionsService, directionsDisplay92, 2);
+            calculateAndDisplayRoute(directionsService, directionsDisplay93, 3);
+            calculateAndDisplayRoute(directionsService, directionsDisplay94, 4);
+            calculateAndDisplayRoute(directionsService, directionsDisplay95, 5);
+            calculateAndDisplayRoute(directionsService, directionsDisplay96, 6);
+            calculateAndDisplayRoute(directionsService, directionsDisplay97, 7);
 
         }
     };
-<<<<<<< HEAD
         document.getElementById('start').addEventListener('change', onChangeHandler);
         //Bus route onchange display
         var busOnChangeHandler = function(){
         if(document.getElementById('bRoutes').value == "noneSelected"){
-=======
-    document.getElementById('start').addEventListener('change', onChangeHandler);
-    var busOnChangeHandler = function () {
-        if (document.getElementById('bRoutes').value == "noneSelected") {
->>>>>>> timeCompare
             directionsDisplay20.setMap(null);
             directionsDisplay20x.setMap(null);
             directionsDisplay20y.setMap(null);
@@ -174,40 +110,41 @@ function initMap() {
             setBus(null, busstopmarkers2);
             setBus(null, busstopmarkers3);
         }
-        else if (document.getElementById('bRoutes').value == "bus1") {
-            setBus(null, busstopmarkers1);
-            setBus(null, busstopmarkers2);
-            setBus(null, busstopmarkers3);
-            directionsDisplay20.setMap(map);
-            directionsDisplay20.setOptions({ suppressMarkers: true });
-            directionsDisplay20x.setMap(map);
-            directionsDisplay20x.setOptions({ suppressMarkers: true });
-            directionsDisplay20y.setMap(map);
-            directionsDisplay20y.setOptions({ suppressMarkers: true });
-            directionsDisplay62.setMap(map);
-            directionsDisplay62.setOptions({ suppressMarkers: true });
-            directionsDisplay62x.setMap(map);
-            directionsDisplay62x.setOptions({ suppressMarkers: true });
-            directionsDisplay62y.setMap(map);
-            directionsDisplay62y.setOptions({ suppressMarkers: true });
-            directionsDisplay75.setMap(null);
-            directionsDisplay75x.setMap(null);
-            directionsDisplay75y.setMap(null);
-            directionsDisplay75z.setMap(null);
-            directionsDisplay75w.setMap(null);
-            directionsDisplay76.setMap(null);
-            directionsDisplay76x.setMap(null);
-            directionsDisplay76y.setMap(null);
-            directionsDisplay1.setMap(null);
-            directionsDisplay1x.setMap(null);
-            directionsDisplay1y.setMap(null);
-            directionsDisplay7.setMap(null);
-            directionsDisplay7x.setMap(null);
-            directionsDisplay7y.setMap(null);
-            setBus(map, busstopmarkers1);
-            showingRoutesSelected(directionsService, 1);
+        else if(document.getElementById('bRoutes').value == "bus1")
+        {
+          setBus(null, busstopmarkers1);
+          setBus(null, busstopmarkers2);
+          setBus(null, busstopmarkers3);
+          directionsDisplay20.setMap(map);
+          directionsDisplay20.setOptions( { suppressMarkers: true } );
+          directionsDisplay20x.setMap(map);
+          directionsDisplay20x.setOptions( { suppressMarkers: true } );
+          directionsDisplay20y.setMap(map);
+          directionsDisplay20y.setOptions( { suppressMarkers: true } );
+          directionsDisplay62.setMap(map);
+          directionsDisplay62.setOptions( { suppressMarkers: true } );
+          directionsDisplay62x.setMap(map);
+          directionsDisplay62x.setOptions( { suppressMarkers: true } );
+          directionsDisplay62y.setMap(map);
+          directionsDisplay62y.setOptions( { suppressMarkers: true } );
+          directionsDisplay75.setMap(null);
+          directionsDisplay75x.setMap(null);
+          directionsDisplay75y.setMap(null);
+          directionsDisplay75z.setMap(null);
+          directionsDisplay75w.setMap(null);
+          directionsDisplay76.setMap(null);
+          directionsDisplay76x.setMap(null);
+          directionsDisplay76y.setMap(null);
+          directionsDisplay1.setMap(null);
+          directionsDisplay1x.setMap(null);
+          directionsDisplay1y.setMap(null);
+          directionsDisplay7.setMap(null);
+          directionsDisplay7x.setMap(null);
+          directionsDisplay7y.setMap(null);
+          setBus(map, busstopmarkers1);
+          showingRoutesSelected(directionsService, 1);
         }
-        else if (document.getElementById('bRoutes').value == "bus2") {
+        else if(document.getElementById('bRoutes').value == "bus2"){
             setBus(null, busstopmarkers1);
             setBus(null, busstopmarkers2);
             setBus(null, busstopmarkers3);
@@ -224,25 +161,25 @@ function initMap() {
             directionsDisplay7x.setMap(null);
             directionsDisplay7y.setMap(null);
             directionsDisplay75.setMap(map);
-            directionsDisplay75.setOptions({ suppressMarkers: true });
+            directionsDisplay75.setOptions( { suppressMarkers: true } );
             directionsDisplay75x.setMap(map);
-            directionsDisplay75x.setOptions({ suppressMarkers: true });
+            directionsDisplay75x.setOptions( { suppressMarkers: true } );
             directionsDisplay75y.setMap(map);
-            directionsDisplay75y.setOptions({ suppressMarkers: true });
+            directionsDisplay75y.setOptions( { suppressMarkers: true } );
             directionsDisplay75z.setMap(map);
-            directionsDisplay75z.setOptions({ suppressMarkers: true });
+            directionsDisplay75z.setOptions( { suppressMarkers: true } );
             directionsDisplay75w.setMap(map);
-            directionsDisplay75w.setOptions({ suppressMarkers: true });
+            directionsDisplay75w.setOptions( { suppressMarkers: true } );
             directionsDisplay76.setMap(map);
-            directionsDisplay76.setOptions({ suppressMarkers: true });
+            directionsDisplay76.setOptions( { suppressMarkers: true } );
             directionsDisplay76x.setMap(map);
-            directionsDisplay76x.setOptions({ suppressMarkers: true });
+            directionsDisplay76x.setOptions( { suppressMarkers: true } );
             directionsDisplay76y.setMap(map);
-            directionsDisplay76y.setOptions({ suppressMarkers: true });
+            directionsDisplay76y.setOptions( { suppressMarkers: true } );
             setBus(map, busstopmarkers2);
             showingRoutesSelected(directionsService, 2);
         }
-        else if (document.getElementById('bRoutes').value == "bus3") {
+        else if(document.getElementById('bRoutes').value == "bus3"){
             setBus(null, busstopmarkers1);
             setBus(null, busstopmarkers2);
             setBus(null, busstopmarkers3);
@@ -261,21 +198,21 @@ function initMap() {
             directionsDisplay76x.setMap(null);
             directionsDisplay76y.setMap(null);
             directionsDisplay1.setMap(map);
-            directionsDisplay1.setOptions({ suppressMarkers: true });
+            directionsDisplay1.setOptions( { suppressMarkers: true } );
             directionsDisplay1x.setMap(map);
-            directionsDisplay1x.setOptions({ suppressMarkers: true });
+            directionsDisplay1x.setOptions( { suppressMarkers: true } );
             directionsDisplay1y.setMap(map);
-            directionsDisplay1y.setOptions({ suppressMarkers: true });
+            directionsDisplay1y.setOptions( { suppressMarkers: true } );
             directionsDisplay7.setMap(map);
-            directionsDisplay7.setOptions({ suppressMarkers: true });
+            directionsDisplay7.setOptions( { suppressMarkers: true } );
             directionsDisplay7x.setMap(map);
-            directionsDisplay7x.setOptions({ suppressMarkers: true });
+            directionsDisplay7x.setOptions( { suppressMarkers: true } );
             directionsDisplay7y.setMap(map);
-            directionsDisplay7y.setOptions({ suppressMarkers: true });
+            directionsDisplay7y.setOptions( { suppressMarkers: true } );
             setBus(map, busstopmarkers3);
             showingRoutesSelected(directionsService, 3);
         }
-    };
+      };
     document.getElementById('bRoutes').addEventListener('change', busOnChangeHandler);
     //Initilize heatmap
     heatmap = new google.maps.visualization.HeatmapLayer({
@@ -1791,7 +1728,6 @@ function initMap() {
     directionsDisplay7x.setMap(map);
     directionsDisplay7x.setOptions({ suppressMarkers: true });
     directionsDisplay7y.setMap(map);
-<<<<<<< HEAD
     directionsDisplay7y.setOptions( { suppressMarkers: true } );
     //each of these set of for loops creates markers for the bus stops and pushes them into arrays by pair
      var x20 = 0, y20 = 0;
@@ -1803,470 +1739,457 @@ function initMap() {
                 position: new google.maps.LatLng(bus20.businfo[i].lat, bus20.businfo[i].lng),
                 map: map,
                 icon: busIcon
-=======
-    directionsDisplay7y.setOptions({ suppressMarkers: true });
+            });
+            busstopmarkers1.push(busmarker20);
+            x20++;
+            if (i == 0) request20.origin = busmarker20.getPosition();
+            else if (i == bus20.businfo.length - 31) request20.destination = busmarker20.getPosition();
+            else{
+                 if(!request20.waypoints) request20.waypoints = [];
+                 request20.waypoints.push({
+                     location: busmarker20.getPosition(),
+                     stopover: true
+                 });
+             }
+        }
+       //
+        var busmarker20x;
+        request20x = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = x20; i < bus20.businfo.length-5; i++){
+            busmarker20x =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus20.businfo[i].lat, bus20.businfo[i].lng),
+                map: map,
+                icon: busIcon
+            });
+            busstopmarkers1.push(busmarker20x);
+            y20++;
+            if (i == x20) request20x.origin = busmarker20x.getPosition();
+            else if (i == bus20.businfo.length - 6) request20x.destination = busmarker20x.getPosition();
+            else{
+                if(!request20x.waypoints) request20x.waypoints = [];
+                request20x.waypoints.push({
+                    location: busmarker20x.getPosition(),
+                    stopover: true
+                });
+            }
+        }
+          //
+        y20 = y20 +x20;
+        var busmarker20y;
+        request20y = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = y20; i < bus20.businfo.length; i++){
+            busmarker20y =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus20.businfo[i].lat, bus20.businfo[i].lng),
+                map: map,
+                icon: busIcon
+            });
+            busstopmarkers1.push(busmarker20y);
+            if (i == y20) request20y.origin = busmarker20y.getPosition();
+            else if (i == bus20.businfo.length - 1) request20y.destination = busmarker20y.getPosition();
+            else{
+                if(!request20y.waypoints) request20y.waypoints = [];
+                request20y.waypoints.push({
+                    location: busmarker20y.getPosition(),
+                    stopover: true
+                });
+            }
+        }
+        // Bus 62 markers and route id 4008446
+        var x62 = 0, y62 = 0;
+        request62 = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = 0; i < bus62.businfo.length-37; i++){
+            busmarker62 =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus62.businfo[i].lat, bus62.businfo[i].lng),
+                map: map,
+                icon: busIcon
+            });
+            busstopmarkers1.push(busmarker62);
+            x62++;
+            if (i == 0) request62.origin = busmarker62.getPosition();
+            else if (i == bus62.businfo.length - 38) request62.destination = busmarker62.getPosition();
+            else{
+                 if(!request62.waypoints) request62.waypoints = [];
+                 request62.waypoints.push({
+                     location: busmarker62.getPosition(),
+                     stopover: true
+                 });
+             }
+        }
+       //
+        var busmarker62x;
+        request62x = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = x62; i < bus62.businfo.length-12; i++){
+            busmarker62x =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus62.businfo[i].lat, bus62.businfo[i].lng),
+                map: map,
+                icon: busIcon
+            });
+            busstopmarkers1.push(busmarker62x);
+            y62++;
+            if (i == x62) request62x.origin = busmarker62x.getPosition();
+            else if (i == bus62.businfo.length - 13) request62x.destination = busmarker62x.getPosition();
+            else{
+                if(!request62x.waypoints) request62x.waypoints = [];
+                request62x.waypoints.push({
+                    location: busmarker62x.getPosition(),
+                    stopover: true
+                });
+            }
+        }
+          //
+        y62 = y62 +x62;
+        var busmarker62y;
+        request62y = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = y62; i < bus62.businfo.length; i++){
+            busmarker62y =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus62.businfo[i].lat, bus62.businfo[i].lng),
+                map: map,
+                icon: busIcon
+            });
+            busstopmarkers1.push(busmarker62y);
+            if (i == y62) request62y.origin = busmarker62y.getPosition();
+            else if (i == bus62.businfo.length - 1) request62y.destination = busmarker62y.getPosition();
+            else{
+                if(!request62y.waypoints) request62y.waypoints = [];
+                request62y.waypoints.push({
+                    location: busmarker62y.getPosition(),
+                    stopover: true
+                });
+            }
+        }
+        // Bus 75 markers and route id 4001290
+        var x75 = 0, y75 = 0, z75 = 0, w75 =0;
+        request75 = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = 0; i < bus75.businfo.length-78; i++){
+            busmarker75 =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
+                map: map,
+                icon: busIcon
+            });
+            busstopmarkers2.push(busmarker75);
+            x75++;
+            if (i == 0) request75.origin = busmarker75.getPosition();
+            else if (i == bus75.businfo.length - 79) request75.destination = busmarker75.getPosition();
+            else{
+                 if(!request75.waypoints) request75.waypoints = [];
+                 request75.waypoints.push({
+                     location: busmarker75.getPosition(),
+                     stopover: true
+                 });
+             }
+        }
+       //
+        var busmarker75x;
+        request75x = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = x75; i < bus75.businfo.length-53; i++){
+            busmarker75x =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
+                map: map,
+                icon: busIcon
+            });
+            busstopmarkers2.push(busmarker75x);
+            y75++;
+            if (i == x75) request75x.origin = busmarker75x.getPosition();
+            else if (i == bus75.businfo.length - 54) request75x.destination = busmarker75x.getPosition();
+            else{
+                if(!request75x.waypoints) request75x.waypoints = [];
+                request75x.waypoints.push({
+                    location: busmarker75x.getPosition(),
+                    stopover: true
+                });
+            }
+        }
+          //
+        y75 = y75 +x75;
+        var busmarker75y;
+        request75y = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = y75; i < bus75.businfo.length-28; i++){
+            busmarker75y =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
+                map: map,
+                icon: busIcon
+            });
+            busstopmarkers2.push(busmarker75y);
+            z75++;
+            if (i == y75) request75y.origin = busmarker75y.getPosition();
+            else if (i == bus75.businfo.length - 29) request75y.destination = busmarker75y.getPosition();
+            else{
+                if(!request75y.waypoints) request75y.waypoints = [];
+                request75y.waypoints.push({
+                    location: busmarker75y.getPosition(),
+                    stopover: true
+                });
+            }
+        }
+        z75 = y75 +z75;
+        var busmarker75z;
+        request75z = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = z75; i < bus75.businfo.length-3; i++){
+            busmarker75z =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
+                map: map,
+                icon: busIcon
+            });
+            busstopmarkers2.push(busmarker75z);
+            w75++;
+            if (i == z75) request75z.origin = busmarker75z.getPosition();
+            else if (i == bus75.businfo.length - 4) request75z.destination = busmarker75z.getPosition();
+            else{
+                if(!request75z.waypoints) request75z.waypoints = [];
+                request75z.waypoints.push({
+                    location: busmarker75z.getPosition(),
+                    stopover: true
+                });
+            }
+        }
+        w75 = z75 +w75;
+          var busmarker75w;
+          request75w = {
+              travelMode: google.maps.TravelMode.DRIVING
+          };
+          for(i = w75; i < bus75.businfo.length; i++){
+              busmarker75w =  new google.maps.Marker({
+                  position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
+                  map: map,
+                  icon: busIcon
+              });
+              busstopmarkers2.push(busmarker75w);
+              if (i == w75) request75w.origin = busmarker75w.getPosition();
+              else if (i == bus75.businfo.length - 1) request75w.destination = busmarker75w.getPosition();
+              else{
+                  if(!request75w.waypoints) request75w.waypoints = [];
+                  request75w.waypoints.push({
+                      location: busmarker75w.getPosition(),
+                      stopover: true
+                  });
+              }
+          }
+        // Bus 76 markers and route id 4008444
+        var x76 = 0, y76 = 0;
+        request76 = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = 0; i < bus76.businfo.length-29; i++){
+            busmarker76 =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus76.businfo[i].lat, bus76.businfo[i].lng),
+                map: map,
+                icon: busIcon
+            });
+            busstopmarkers2.push(busmarker76);
+            x76++;
+            if (i == 0) request76.origin = busmarker76.getPosition();
+            else if (i == bus76.businfo.length - 30) request76.destination = busmarker76.getPosition();
+            else{
+                if(!request76.waypoints) request76.waypoints = [];
+                request76.waypoints.push({
+                    location: busmarker76.getPosition(),
+                    stopover: true
+                });
+            }
+        }
+       //
+        var busmarker76x;
+        request76x = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = x76; i < bus76.businfo.length-4; i++){
+            busmarker76x =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus76.businfo[i].lat, bus76.businfo[i].lng),
+                map: map,
+                icon: busIcon
+            });
+            busstopmarkers2.push(busmarker76x);
+            y76++;
+            if (i == x76) request76x.origin = busmarker76x.getPosition();
+            else if (i == bus76.businfo.length - 5) request76x.destination = busmarker76x.getPosition();
+            else{
+                if(!request76x.waypoints) request76x.waypoints = [];
+                request76x.waypoints.push({
+                    location: busmarker76x.getPosition(),
+                    stopover: true
+                });
+            }
+        }
+          //
+        y76 = y76 +x76;
+        var busmarker76y;
+        request76y = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
 
-    var x20 = 0, y20 = 0;
-    request20 = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = 0; i < bus20.businfo.length - 30; i++) {
-        busmarker20 = new google.maps.Marker({
-            position: new google.maps.LatLng(bus20.businfo[i].lat, bus20.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers1.push(busmarker20);
-        x20++;
-        if (i == 0) request20.origin = busmarker20.getPosition();
-        else if (i == bus20.businfo.length - 31) request20.destination = busmarker20.getPosition();
-        else {
-            if (!request20.waypoints) request20.waypoints = [];
-            request20.waypoints.push({
-                location: busmarker20.getPosition(),
-                stopover: true
->>>>>>> timeCompare
+        for(i = y76; i < bus76.businfo.length; i++){
+            busmarker76y =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus76.businfo[i].lat, bus76.businfo[i].lng),
+                map: map,
+                icon: busIcon
             });
+            busstopmarkers2.push(busmarker76y);
+            if (i == y76) request76y.origin = busmarker76y.getPosition();
+            else if (i == bus76.businfo.length - 1) request76y.destination = busmarker76y.getPosition();
+            else{
+                if(!request76y.waypoints) request76y.waypoints = [];
+                request76y.waypoints.push({
+                    location: busmarker76y.getPosition(),
+                    stopover: true
+                });
+            }
         }
-    }
-    //
-    var busmarker20x;
-    request20x = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = x20; i < bus20.businfo.length - 5; i++) {
-        busmarker20x = new google.maps.Marker({
-            position: new google.maps.LatLng(bus20.businfo[i].lat, bus20.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers1.push(busmarker20x);
-        y20++;
-        if (i == x20) request20x.origin = busmarker20x.getPosition();
-        else if (i == bus20.businfo.length - 6) request20x.destination = busmarker20x.getPosition();
-        else {
-            if (!request20x.waypoints) request20x.waypoints = [];
-            request20x.waypoints.push({
-                location: busmarker20x.getPosition(),
-                stopover: true
+        // Bus 1 markers and route id 4001150
+        var x1 = 0, y1 = 0;
+        request1 = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = 0; i < bus1.businfo.length-37; i++){
+            busmarker1 =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus1.businfo[i].lat, bus1.businfo[i].lng),
+                map: map,
+                icon: busIcon
             });
+            busstopmarkers3.push(busmarker1);
+            x1++;
+            if (i == 0) request1.origin = busmarker1.getPosition();
+            else if (i == bus1.businfo.length - 38) request1.destination = busmarker1.getPosition();
+            else{
+                if(!request1.waypoints) request1.waypoints = [];
+                request1.waypoints.push({
+                    location: busmarker1.getPosition(),
+                    stopover: true
+                });
+            }
         }
-    }
-    //
-    y20 = y20 + x20;
-    var busmarker20y;
-    request20y = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = y20; i < bus20.businfo.length; i++) {
-        busmarker20y = new google.maps.Marker({
-            position: new google.maps.LatLng(bus20.businfo[i].lat, bus20.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers1.push(busmarker20y);
-        if (i == y20) request20y.origin = busmarker20y.getPosition();
-        else if (i == bus20.businfo.length - 1) request20y.destination = busmarker20y.getPosition();
-        else {
-            if (!request20y.waypoints) request20y.waypoints = [];
-            request20y.waypoints.push({
-                location: busmarker20y.getPosition(),
-                stopover: true
+       //
+        var busmarker1x;
+        request1x = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = x1-1; i < bus1.businfo.length-13; i++){
+            busmarker1x =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus1.businfo[i].lat, bus1.businfo[i].lng),
+                map: map,
+                icon: busIcon
             });
+            busstopmarkers3.push(busmarker1x);
+            y1++;
+            if (i == x1-1) request1x.origin = busmarker1x.getPosition();
+            else if (i == bus1.businfo.length - 14) request1x.destination = busmarker1x.getPosition();
+            else{
+                if(!request1x.waypoints) request1x.waypoints = [];
+                request1x.waypoints.push({
+                    location: busmarker1x.getPosition(),
+                    stopover: true
+                });
+            }
         }
-    }
-    // Bus 62 markers and route id 4008446
-    var x62 = 0, y62 = 0;
-    request62 = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = 0; i < bus62.businfo.length - 37; i++) {
-        busmarker62 = new google.maps.Marker({
-            position: new google.maps.LatLng(bus62.businfo[i].lat, bus62.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers1.push(busmarker62);
-        x62++;
-        if (i == 0) request62.origin = busmarker62.getPosition();
-        else if (i == bus62.businfo.length - 38) request62.destination = busmarker62.getPosition();
-        else {
-            if (!request62.waypoints) request62.waypoints = [];
-            request62.waypoints.push({
-                location: busmarker62.getPosition(),
-                stopover: true
+          //
+        y1 = y1 +x1;
+        var busmarker1y;
+        request1y = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = y1; i < bus1.businfo.length; i++){
+            busmarker1y =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus1.businfo[i].lat, bus1.businfo[i].lng),
+                map: map,
+                icon: busIcon
             });
+            busstopmarkers3.push(busmarker1y);
+            if (i == y1) request1y.origin = busmarker1y.getPosition();
+            else if (i == bus1.businfo.length - 1) request1y.destination = busmarker1y.getPosition();
+            else{
+                if(!request1y.waypoints) request1y.waypoints = [];
+                request1y.waypoints.push({
+                    location: busmarker1y.getPosition(),
+                    stopover: true
+                });
+            }
         }
-    }
-    //
-    var busmarker62x;
-    request62x = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = x62; i < bus62.businfo.length - 12; i++) {
-        busmarker62x = new google.maps.Marker({
-            position: new google.maps.LatLng(bus62.businfo[i].lat, bus62.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers1.push(busmarker62x);
-        y62++;
-        if (i == x62) request62x.origin = busmarker62x.getPosition();
-        else if (i == bus62.businfo.length - 13) request62x.destination = busmarker62x.getPosition();
-        else {
-            if (!request62x.waypoints) request62x.waypoints = [];
-            request62x.waypoints.push({
-                location: busmarker62x.getPosition(),
-                stopover: true
+        // Bus 7 markers and route id 4001286
+        var x7 = 0, y7 = 0;
+        request7 = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = 0; i < bus7.businfo.length-37; i++){
+            busmarker7 =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus7.businfo[i].lat, bus7.businfo[i].lng),
+                map: map,
+                icon: busIcon
             });
+            busstopmarkers3.push(busmarker7);
+            x7++;
+            if (i == 0) request7.origin = busmarker7.getPosition();
+            else if (i == bus7.businfo.length - 38) request7.destination = busmarker7.getPosition();
+            else{
+                if(!request7.waypoints) request7.waypoints = [];
+                request7.waypoints.push({
+                    location: busmarker7.getPosition(),
+                    stopover: true
+                });
+            }
         }
-    }
-    //
-    y62 = y62 + x62;
-    var busmarker62y;
-    request62y = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = y62; i < bus62.businfo.length; i++) {
-        busmarker62y = new google.maps.Marker({
-            position: new google.maps.LatLng(bus62.businfo[i].lat, bus62.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers1.push(busmarker62y);
-        if (i == y62) request62y.origin = busmarker62y.getPosition();
-        else if (i == bus62.businfo.length - 1) request62y.destination = busmarker62y.getPosition();
-        else {
-            if (!request62y.waypoints) request62y.waypoints = [];
-            request62y.waypoints.push({
-                location: busmarker62y.getPosition(),
-                stopover: true
+       //
+        var busmarker7x;
+        request7x = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = x7; i < bus7.businfo.length-12; i++){
+            busmarker7x =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus7.businfo[i].lat, bus7.businfo[i].lng),
+                map: map,
+                icon: busIcon
             });
+            busstopmarkers3.push(busmarker7x);
+            y7++;
+            if (i == x7) request7x.origin = busmarker7x.getPosition();
+            else if (i == bus7.businfo.length - 13) request7x.destination = busmarker7x.getPosition();
+            else{
+                if(!request7x.waypoints) request7x.waypoints = [];
+                request7x.waypoints.push({
+                    location: busmarker7x.getPosition(),
+                    stopover: true
+                });
+            }
         }
-    }
-    // Bus 75 markers and route id 4001290
-    var x75 = 0, y75 = 0, z75 = 0, w75 = 0;
-    request75 = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = 0; i < bus75.businfo.length - 78; i++) {
-        busmarker75 = new google.maps.Marker({
-            position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers2.push(busmarker75);
-        x75++;
-        if (i == 0) request75.origin = busmarker75.getPosition();
-        else if (i == bus75.businfo.length - 79) request75.destination = busmarker75.getPosition();
-        else {
-            if (!request75.waypoints) request75.waypoints = [];
-            request75.waypoints.push({
-                location: busmarker75.getPosition(),
-                stopover: true
+          //
+        y7 = y7 +x7;
+        var busmarker7y;
+        request7y = {
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        for(i = y7; i < bus7.businfo.length; i++){
+            busmarker7y =  new google.maps.Marker({
+                position: new google.maps.LatLng(bus7.businfo[i].lat, bus7.businfo[i].lng),
+                map: map,
+                icon: busIcon
             });
+            busstopmarkers3.push(busmarker7y);
+            if (i == y7) request7y.origin = busmarker7y.getPosition();
+            else if (i == bus7.businfo.length - 1) request7y.destination = busmarker7y.getPosition();
+            else{
+                if(!request7y.waypoints) request7y.waypoints = [];
+                request7y.waypoints.push({
+                    location: busmarker7y.getPosition(),
+                    stopover: true
+                });
+            }
         }
-    }
-    //
-    var busmarker75x;
-    request75x = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = x75; i < bus75.businfo.length - 53; i++) {
-        busmarker75x = new google.maps.Marker({
-            position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers2.push(busmarker75x);
-        y75++;
-        if (i == x75) request75x.origin = busmarker75x.getPosition();
-        else if (i == bus75.businfo.length - 54) request75x.destination = busmarker75x.getPosition();
-        else {
-            if (!request75x.waypoints) request75x.waypoints = [];
-            request75x.waypoints.push({
-                location: busmarker75x.getPosition(),
-                stopover: true
-            });
-        }
-    }
-    //
-    y75 = y75 + x75;
-    var busmarker75y;
-    request75y = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = y75; i < bus75.businfo.length - 28; i++) {
-        busmarker75y = new google.maps.Marker({
-            position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers2.push(busmarker75y);
-        z75++;
-        if (i == y75) request75y.origin = busmarker75y.getPosition();
-        else if (i == bus75.businfo.length - 29) request75y.destination = busmarker75y.getPosition();
-        else {
-            if (!request75y.waypoints) request75y.waypoints = [];
-            request75y.waypoints.push({
-                location: busmarker75y.getPosition(),
-                stopover: true
-            });
-        }
-    }
-    z75 = y75 + z75;
-    var busmarker75z;
-    request75z = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = z75; i < bus75.businfo.length - 3; i++) {
-        busmarker75z = new google.maps.Marker({
-            position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers2.push(busmarker75z);
-        w75++;
-        if (i == z75) request75z.origin = busmarker75z.getPosition();
-        else if (i == bus75.businfo.length - 4) request75z.destination = busmarker75z.getPosition();
-        else {
-            if (!request75z.waypoints) request75z.waypoints = [];
-            request75z.waypoints.push({
-                location: busmarker75z.getPosition(),
-                stopover: true
-            });
-        }
-    }
-    w75 = z75 + w75;
-    var busmarker75w;
-    request75w = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = w75; i < bus75.businfo.length; i++) {
-        busmarker75w = new google.maps.Marker({
-            position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers2.push(busmarker75w);
-        if (i == w75) request75w.origin = busmarker75w.getPosition();
-        else if (i == bus75.businfo.length - 1) request75w.destination = busmarker75w.getPosition();
-        else {
-            if (!request75w.waypoints) request75w.waypoints = [];
-            request75w.waypoints.push({
-                location: busmarker75w.getPosition(),
-                stopover: true
-            });
-        }
-    }
-    // Bus 76 markers and route id 4008444
-    var x76 = 0, y76 = 0;
-    request76 = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = 0; i < bus76.businfo.length - 29; i++) {
-        busmarker76 = new google.maps.Marker({
-            position: new google.maps.LatLng(bus76.businfo[i].lat, bus76.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers2.push(busmarker76);
-        x76++;
-        if (i == 0) request76.origin = busmarker76.getPosition();
-        else if (i == bus76.businfo.length - 30) request76.destination = busmarker76.getPosition();
-        else {
-            if (!request76.waypoints) request76.waypoints = [];
-            request76.waypoints.push({
-                location: busmarker76.getPosition(),
-                stopover: true
-            });
-        }
-    }
-    //
-    var busmarker76x;
-    request76x = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = x76; i < bus76.businfo.length - 4; i++) {
-        busmarker76x = new google.maps.Marker({
-            position: new google.maps.LatLng(bus76.businfo[i].lat, bus76.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers2.push(busmarker76x);
-        y76++;
-        if (i == x76) request76x.origin = busmarker76x.getPosition();
-        else if (i == bus76.businfo.length - 5) request76x.destination = busmarker76x.getPosition();
-        else {
-            if (!request76x.waypoints) request76x.waypoints = [];
-            request76x.waypoints.push({
-                location: busmarker76x.getPosition(),
-                stopover: true
-            });
-        }
-    }
-    //
-    y76 = y76 + x76;
-    var busmarker76y;
-    request76y = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-
-    for (i = y76; i < bus76.businfo.length; i++) {
-        busmarker76y = new google.maps.Marker({
-            position: new google.maps.LatLng(bus76.businfo[i].lat, bus76.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers2.push(busmarker76y);
-        if (i == y76) request76y.origin = busmarker76y.getPosition();
-        else if (i == bus76.businfo.length - 1) request76y.destination = busmarker76y.getPosition();
-        else {
-            if (!request76y.waypoints) request76y.waypoints = [];
-            request76y.waypoints.push({
-                location: busmarker76y.getPosition(),
-                stopover: true
-            });
-        }
-    }
-    // Bus 1 markers and route id 4001150
-    var x1 = 0, y1 = 0;
-    request1 = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = 0; i < bus1.businfo.length - 37; i++) {
-        busmarker1 = new google.maps.Marker({
-            position: new google.maps.LatLng(bus1.businfo[i].lat, bus1.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers3.push(busmarker1);
-        x1++;
-        if (i == 0) request1.origin = busmarker1.getPosition();
-        else if (i == bus1.businfo.length - 38) request1.destination = busmarker1.getPosition();
-        else {
-            if (!request1.waypoints) request1.waypoints = [];
-            request1.waypoints.push({
-                location: busmarker1.getPosition(),
-                stopover: true
-            });
-        }
-    }
-    //
-    var busmarker1x;
-    request1x = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = x1 - 1; i < bus1.businfo.length - 13; i++) {
-        busmarker1x = new google.maps.Marker({
-            position: new google.maps.LatLng(bus1.businfo[i].lat, bus1.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers3.push(busmarker1x);
-        y1++;
-        if (i == x1 - 1) request1x.origin = busmarker1x.getPosition();
-        else if (i == bus1.businfo.length - 14) request1x.destination = busmarker1x.getPosition();
-        else {
-            if (!request1x.waypoints) request1x.waypoints = [];
-            request1x.waypoints.push({
-                location: busmarker1x.getPosition(),
-                stopover: true
-            });
-        }
-    }
-    //
-    y1 = y1 + x1;
-    var busmarker1y;
-    request1y = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = y1; i < bus1.businfo.length; i++) {
-        busmarker1y = new google.maps.Marker({
-            position: new google.maps.LatLng(bus1.businfo[i].lat, bus1.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers3.push(busmarker1y);
-        if (i == y1) request1y.origin = busmarker1y.getPosition();
-        else if (i == bus1.businfo.length - 1) request1y.destination = busmarker1y.getPosition();
-        else {
-            if (!request1y.waypoints) request1y.waypoints = [];
-            request1y.waypoints.push({
-                location: busmarker1y.getPosition(),
-                stopover: true
-            });
-        }
-    }
-    // Bus 7 markers and route id 4001286
-    var x7 = 0, y7 = 0;
-    request7 = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = 0; i < bus7.businfo.length - 37; i++) {
-        busmarker7 = new google.maps.Marker({
-            position: new google.maps.LatLng(bus7.businfo[i].lat, bus7.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers3.push(busmarker7);
-        x7++;
-        if (i == 0) request7.origin = busmarker7.getPosition();
-        else if (i == bus7.businfo.length - 38) request7.destination = busmarker7.getPosition();
-        else {
-            if (!request7.waypoints) request7.waypoints = [];
-            request7.waypoints.push({
-                location: busmarker7.getPosition(),
-                stopover: true
-            });
-        }
-    }
-    //
-    var busmarker7x;
-    request7x = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = x7; i < bus7.businfo.length - 12; i++) {
-        busmarker7x = new google.maps.Marker({
-            position: new google.maps.LatLng(bus7.businfo[i].lat, bus7.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers3.push(busmarker7x);
-        y7++;
-        if (i == x7) request7x.origin = busmarker7x.getPosition();
-        else if (i == bus7.businfo.length - 13) request7x.destination = busmarker7x.getPosition();
-        else {
-            if (!request7x.waypoints) request7x.waypoints = [];
-            request7x.waypoints.push({
-                location: busmarker7x.getPosition(),
-                stopover: true
-            });
-        }
-    }
-    //
-    y7 = y7 + x7;
-    var busmarker7y;
-    request7y = {
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    for (i = y7; i < bus7.businfo.length; i++) {
-        busmarker7y = new google.maps.Marker({
-            position: new google.maps.LatLng(bus7.businfo[i].lat, bus7.businfo[i].lng),
-            map: map,
-            icon: busIcon
-        });
-        busstopmarkers3.push(busmarker7y);
-        if (i == y7) request7y.origin = busmarker7y.getPosition();
-        else if (i == bus7.businfo.length - 1) request7y.destination = busmarker7y.getPosition();
-        else {
-            if (!request7y.waypoints) request7y.waypoints = [];
-            request7y.waypoints.push({
-                location: busmarker7y.getPosition(),
-                stopover: true
-            });
-        }
-<<<<<<< HEAD
         //makes all bus stops and routes disappear
         setBus(null, busstopmarkers1);
         setBus(null, busstopmarkers2);
@@ -2293,34 +2216,6 @@ function initMap() {
         directionsDisplay7y.setMap(null);
       }
 //makes bus stops appear and disappear
-=======
-    }
-    setBus(null, busstopmarkers1);
-    setBus(null, busstopmarkers2);
-    setBus(null, busstopmarkers3);
-    directionsDisplay20.setMap(null);
-    directionsDisplay20x.setMap(null);
-    directionsDisplay20y.setMap(null);
-    directionsDisplay62.setMap(null);
-    directionsDisplay62x.setMap(null);
-    directionsDisplay62y.setMap(null);
-    directionsDisplay75.setMap(null);
-    directionsDisplay75x.setMap(null);
-    directionsDisplay75y.setMap(null);
-    directionsDisplay75z.setMap(null);
-    directionsDisplay75w.setMap(null);
-    directionsDisplay76.setMap(null);
-    directionsDisplay76x.setMap(null);
-    directionsDisplay76y.setMap(null);
-    directionsDisplay1.setMap(null);
-    directionsDisplay1x.setMap(null);
-    directionsDisplay1y.setMap(null);
-    directionsDisplay7.setMap(null);
-    directionsDisplay7x.setMap(null);
-    directionsDisplay7y.setMap(null);
-}
-
->>>>>>> timeCompare
 function setBus(map, busarray) {
     for (var i = 0; i < busarray.length; i++) {
         busarray[i].setMap(map);
@@ -2381,12 +2276,8 @@ function heatMapToggle(id) {
     }
 }
 var delayFactor = 0;
-<<<<<<< HEAD
 //calculates travel times between hubs and apartments
 function calculateAndDisplayRoute(directionsService, directionsDisplay, route) {
-=======
-function calculateAndDisplayRoute(directionsService, directionsDisplay, markerArray, route) {
->>>>>>> timeCompare
     var duration = 0;
     if (route == 1) {
         directionsService.route({
@@ -2398,15 +2289,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
                 document.getElementById("Instruction").innerHTML += '<p class="info">To Majestic Oaks: ' + duration + '</p>';
-                markerArray.push(new google.maps.Marker({
-                    position: response.routes[0].legs[0].end_location,
-                    map: map,
-                    icon: "http://maps.google.com/mapfiles/kml/paddle/orange-stars.png"
-                }));
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, markerArray, route);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, route);
                 }, delayFactor * 100);
             } else {
                 window.alert('Directions request failed due to ' + status);
@@ -2423,15 +2309,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
                 document.getElementById("Instruction").innerHTML += '<p class="info">To Gainesville Place: ' + duration + '</p>';
-                markerArray.push(new google.maps.Marker({
-                    position: response.routes[0].legs[0].end_location,
-                    map: map,
-                    icon: "http://maps.google.com/mapfiles/kml/paddle/blu-stars.png"
-                }));
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, markerArray, route);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, route);
                 }, delayFactor * 100);
             } else {
                 window.alert('Directions request failed due to ' + status);
@@ -2448,15 +2329,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
                 document.getElementById("Instruction").innerHTML += '<p class="info">To Cabana Beach: ' + duration + '</p>';
-                markerArray.push(new google.maps.Marker({
-                    position: response.routes[0].legs[0].end_location,
-                    map: map,
-                    icon: "http://maps.google.com/mapfiles/kml/paddle/blu-stars.png"
-                }));
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, markerArray, route);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, route);
                 }, delayFactor * 100);
             } else {
                 window.alert('Directions request failed due to ' + status);
@@ -2473,15 +2349,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
                 document.getElementById("Instruction").innerHTML += '<p class="info">To West 20: ' + duration + '</p>';
-                markerArray.push(new google.maps.Marker({
-                    position: response.routes[0].legs[0].end_location,
-                    map: map,
-                    icon: "http://maps.google.com/mapfiles/kml/paddle/blu-stars.png"
-                }));
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, markerArray, route);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, route);
                 }, delayFactor * 250);
             } else {
                 window.alert('Directions request failed due to ' + status);
@@ -2498,15 +2369,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
                 document.getElementById("Instruction").innerHTML += '<p class="info">To Tivoli: ' + duration + '</p>';
-                markerArray.push(new google.maps.Marker({
-                    position: response.routes[0].legs[0].end_location,
-                    map: map,
-                    icon: "http://maps.google.com/mapfiles/kml/paddle/orange-stars.png"
-                }));
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, markerArray, route);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, route);
                 }, delayFactor * 100);
             } else {
                 window.alert('Directions request failed due to ' + status);
@@ -2523,15 +2389,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
                 document.getElementById("Instruction").innerHTML += '<p class="info">To 2nd Ave Apartments: ' + duration + '</p>';
-                markerArray.push(new google.maps.Marker({
-                    position: response.routes[0].legs[0].end_location,
-                    map: map,
-                    icon: "http://maps.google.com/mapfiles/kml/paddle/blu-stars.png"
-                }));
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, markerArray, route);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, route);
                 }, delayFactor * 100);
             } else {
                 window.alert('Directions request failed due to ' + status);
@@ -2548,15 +2409,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
                 document.getElementById("Instruction").innerHTML += '<p class="info">To Rawlings Hall: ' + duration + '</p>';
-                markerArray.push(new google.maps.Marker({
-                    position: response.routes[0].legs[0].end_location,
-                    map: map,
-                    icon: "http://maps.google.com/mapfiles/kml/paddle/blu-stars.png"
-                }));
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, markerArray, route);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, route);
                 }, delayFactor * 100);
             } else {
                 window.alert('Directions request failed due to ' + status);
@@ -2564,20 +2420,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
         });
     }
 }
-<<<<<<< HEAD
 //Sets demographics markers to appear and disappear
-=======
-
-function getLatLng(addy) {
-    var geocoder = new google.maps.Geocoder();
-    var yes;
-    geocoder.geocode({ 'address': addy }, function (results, status) {
-        yes = results[0].geometry.location;
-    });
-    return yes;
-}
-
->>>>>>> timeCompare
 function setMapOnAll(map) {
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(map);
@@ -2741,8 +2584,6 @@ function toggleDiv(id) {
     else {
         document.getElementById("Instruction").innerHTML = '';
     }
-    var div2 = document.getElementById('legend');
-    div2.style.display = div2.style.display == "none" ? "block" : "none";
     directionsDisplay91.setMap(null);
     directionsDisplay92.setMap(null);
     directionsDisplay93.setMap(null);
@@ -2751,11 +2592,7 @@ function toggleDiv(id) {
     directionsDisplay96.setMap(null);
     directionsDisplay97.setMap(null);
 }
-<<<<<<< HEAD
 //toggles bus routes and bus stops dropdown menu
-=======
-
->>>>>>> timeCompare
 function togglingDiv(id) {
     var div = document.getElementById(id);
     div.style.display = div.style.display == "none" ? "block" : "none";
@@ -2797,12 +2634,12 @@ var showingRoutesSelected = function (directionsService, selected) {
         });
         directionsService.route(request20x, function (results, status) {
             if (status == google.maps.DirectionsStatus.OK) {
-                directionsDisplay20x.setDirections(results);
+               directionsDisplay20x.setDirections(results);
             }
         });
         directionsService.route(request20y, function (results, status) {
             if (status == google.maps.DirectionsStatus.OK) {
-                directionsDisplay20y.setDirections(results);
+               directionsDisplay20y.setDirections(results);
             }
         });
         directionsService.route(request62, function (results, status) {
