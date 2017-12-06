@@ -10,17 +10,15 @@
   -->
   <div id="box">
   <!-- Toggle Map Features -->
-    <h2>
-      <p style="font-size: 25px;"> Toggle Between Different Displays: </p>
-      <ul class="checkboxes">
-        <li><input type="button" name="Demographic Infomation" value="Demographic Infomation" id="demographic" onclick="Markers()" /></li>
-        <li><input type="button" name="Travel Time Comparison" value="Travel Time Comparison" id="comparison" onclick="toggleDiv('floating-panel')" />
-        </li>
-        <li><input type="button" name="Bus Routes" value="Bus Routes" id="routes" onclick="togglingDiv('float-panel')" /></li>
-        <li><input type="button" name="Heat Map" value="Heat Map" id="heatmap" onclick="heatMapToggle('heatmapLegend')" /></li>
-      </ul>
-    </h2>
-    <!-- Dynamically updated side info -->
+  <div style="display: inline-block;">
+    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+        <input type="button" name="Demographic Infomation" value="Demographic Infomation" id="demographic" onclick="Markers()" /> &emsp; &emsp; &emsp; &emsp;
+        <input type="button" name="Travel Time Comparison" value="Travel Time Comparison" id="comparison" onclick="toggleDiv('floating-panel')" /> &emsp; &emsp; &emsp; &emsp;
+        <input type="button" name="Bus Routes" value="Bus Routes" id="routes" onclick="togglingDiv('float-panel')" /> &emsp; &emsp; &emsp; &emsp;
+        <input type="button" name="Heat Map" value="Heat Map" id="heatmap" onclick="heatMapToggle('heatmapLegend')" />
+      </div>
+      <br>
+          <!-- Dynamically updated side info -->
     <h3 id="Instruction">
       Welcome to our visual display showing the differences in travel times betweeen primary hub to student/non-student apartments. Please click on the buttonsgit to the left to toggle overlays on the map.
     </h3>
