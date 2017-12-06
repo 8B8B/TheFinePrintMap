@@ -2328,11 +2328,16 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x=document.getElementById("myTable").rows[1].cells;
+                x = document.getElementById("myTable").rows[1].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
                     map: map,
+                    label: {
+                        text: 'Majestic Oaks',
+                        color: 'black',
+                        fontWeight: '900'
+                    },
                     icon: "http://maps.google.com/mapfiles/kml/paddle/orange-stars.png"
                 }));
                 //document.getElementById("majestic").insertCell(1).innerHTML = duration;
@@ -2340,7 +2345,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, route);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, markerArray, route);
                 }, delayFactor * 100);
             } else {
                 window.alert('Directions request failed due to ' + status);
@@ -2356,11 +2361,16 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x=document.getElementById("myTable").rows[2].cells;
+                x = document.getElementById("myTable").rows[2].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
                     map: map,
+                    label: {
+                        text: 'Gainesville Place',
+                        color: 'black',
+                        fontWeight: '900'
+                    },
                     icon: "http://maps.google.com/mapfiles/kml/paddle/blu-stars.png"
                 }));
                 //document.getElementById("gp").insertCell(1).innerHTML = duration;
@@ -2368,7 +2378,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, route);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, markerArray, route);
                 }, delayFactor * 100);
             } else {
                 window.alert('Directions request failed due to ' + status);
@@ -2384,11 +2394,16 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x=document.getElementById("myTable").rows[3].cells;
+                x = document.getElementById("myTable").rows[3].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
                     map: map,
+                    label: {
+                        text: 'Cabana Beach',
+                        color: 'black',
+                        fontWeight: '900'
+                    },
                     icon: "http://maps.google.com/mapfiles/kml/paddle/blu-stars.png"
                 }));
                 //document.getElementById("cabana").insertCell(1).innerHTML = duration;
@@ -2396,7 +2411,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, route);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, markerArray, route);
                 }, delayFactor * 100);
             } else {
                 window.alert('Directions request failed due to ' + status);
@@ -2412,11 +2427,16 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x=document.getElementById("myTable").rows[4].cells;
+                x = document.getElementById("myTable").rows[4].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
                     map: map,
+                    label: {
+                        text: 'West 20',
+                        color: 'black',
+                        fontWeight: '900'
+                    },
                     icon: "http://maps.google.com/mapfiles/kml/paddle/blu-stars.png"
                 }));
                 //document.getElementById("west20").insertCell(1).innerHTML = duration;
@@ -2424,7 +2444,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, route);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, markerArray, route);
                 }, delayFactor * 250);
             } else {
                 window.alert('Directions request failed due to ' + status);
@@ -2440,11 +2460,16 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x=document.getElementById("myTable").rows[5].cells;
+                x = document.getElementById("myTable").rows[5].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
                     map: map,
+                    label: {
+                        text: 'Tivoli Apartments',
+                        color: 'black',
+                        fontWeight: '900'
+                    },
                     icon: "http://maps.google.com/mapfiles/kml/paddle/orange-stars.png"
                 }));
                 //document.getElementById("tivoli").insertCell(1).innerHTML = duration;
@@ -2452,7 +2477,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, route);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, markerArray, route);
                 }, delayFactor * 100);
             } else {
                 window.alert('Directions request failed due to ' + status);
@@ -2468,11 +2493,16 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x=document.getElementById("myTable").rows[6].cells;
+                x = document.getElementById("myTable").rows[6].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
                     map: map,
+                    label: {
+                        text: '2nd Ave',
+                        color: 'black',
+                        fontWeight: '900'
+                    },
                     icon: "http://maps.google.com/mapfiles/kml/paddle/blu-stars.png"
                 }));
                 //document.getElementById("avenue").insertCell(1).innerHTML = duration;
@@ -2480,7 +2510,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, route);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, markerArray, route);
                 }, delayFactor * 100);
             } else {
                 window.alert('Directions request failed due to ' + status);
@@ -2496,11 +2526,16 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x=document.getElementById("myTable").rows[7].cells;
+                x = document.getElementById("myTable").rows[7].cells;
                 x[1].innerHTML = duration;
-                 markerArray.push(new google.maps.Marker({
+                markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
                     map: map,
+                    label: {
+                        text: 'Rawlings Hall',
+                        color: 'black',
+                        fontWeight: '900'
+                    },
                     icon: "http://maps.google.com/mapfiles/kml/paddle/blu-stars.png"
                 }));
                 //document.getElementById("rawlings").insertCell(1).innerHTML = duration;
@@ -2508,7 +2543,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
                 delayFactor++;
                 setTimeout(function () {
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, route);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, markerArray, route);
                 }, delayFactor * 100);
             } else {
                 window.alert('Directions request failed due to ' + status);
