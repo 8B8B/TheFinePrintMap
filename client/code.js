@@ -74,7 +74,7 @@ function initMap() {
       legend.appendChild(div);
     }
     
-    map.controls[google.maps.ControlPosition.LEFT_TOP].push(legend);
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(legend);
     var onChangeHandler = function () {
         for (var i = 0; i < markerArray.length; i++) {
             markerArray[i].setMap(null);
