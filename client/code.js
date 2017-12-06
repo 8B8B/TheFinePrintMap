@@ -2561,7 +2561,7 @@ function Markers() {
     if (markers[0].getMap() == null) {
         setMapOnAll(map);
         document.getElementById("timeTable").style.display = "none";
-        document.getElementById("Instruction").innerHTML = 'Click on the zipcodes on the map to get more information about each zipcode in Gainesville. <br>Red: Households below poverty line is greater then average <br>Blue: Households below poverty line is less then average ';
+        document.getElementById("Instruction").innerHTML = 'Click on the zipcodes on the map to get more information about each zipcode in Gainesville. <br>Red: Households below poverty line is greater than average <br>Blue: Households below poverty line is less than average ';
     }
     else {
         setMapOnAll(null);

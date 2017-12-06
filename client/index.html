@@ -28,10 +28,15 @@
       </h3>
       <div id="map"></div>
       <div id="markerLegend">
-        <h7>Marker Legend</h7>
-        <script type="text/javascript">
+      <script type="text/javascript">
           var legend = document.getElementById('markerLegend').style.display = 'none';
+          legend = document.getElementById('markerLegend').style.fontSize = 'medium';
         </script>
+        <p><font size = "4">
+          <div class='my-legend'>
+            <div class='legend-title'>Marker Legend</div>
+          </div>
+        </font></p>
       </div>
       <div id="timeTable">
         <script type="text/javascript">
@@ -77,12 +82,6 @@
             <td></td>
           </tr>
         </table>
-      </div>
-      <div id="legend">
-        <h7>Marker Legend</h7>
-        <script type="text/javascript">
-          var legend = document.getElementById('legend').style.display = 'none';
-        </script>
       </div>
       <!-- HeatMap Color Coded Legend -->
       <div id="heatmapLegend">
