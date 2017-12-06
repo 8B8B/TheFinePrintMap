@@ -17,18 +17,25 @@ Project Features Implemented:
 - Displays demographic information of Gainesville
 - Travel time comparisons:
     - From 4 popular sources:
-        -Reitz
-        -Butler
-        -Downtown Gainesville
-        -Santa Fe College
+        - Reitz Union
+        - Butler Plaza
+        - Downtown Gainesville
+        - Santa Fe College
     - To 7 Student and Low-Income Apartments
-        -Majestic
-        -Gainesville Place
-        -Cabana Beach
-        -West 20
-        -Tivoli
-        -2nd Avenue
-        -Rawlings Hall
-        
- To update server connections:
+        - Majestic
+        - Gainesville Place
+        - Cabana Beach
+        - West 20
+        - Tivoli
+        - 2nd Avenue
+        - Rawlings Hall
+- HeatMap of Travel Time
+    - 5 popular spots:
+        - Santa Fe College
+        - Oaks Mall
+        - Butler Plaza
+        - Shands Hospital
+        - Downtown Gainesville
+
+To update server connections:
  - Press F5
