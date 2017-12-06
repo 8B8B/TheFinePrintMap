@@ -91,6 +91,8 @@ function initMap() {
         }
         else {
             var geocoder = new google.maps.Geocoder();
+            document.getElementById("timeTable").style.display = "block";
+            document.getElementById("Instruction").innerHTML = '';
             geocoder.geocode({ 'address': document.getElementById('start').value }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     markerArray.push(new google.maps.Marker({
@@ -2262,6 +2264,7 @@ function busstop() {
     if (busstopmarkers1[0].getMap() == null && busstopmarkers2[0].getMap() == null && busstopmarkers3[0].getMap() == null) {
         map.setZoom(13);
         map.setCenter(gainesville);
+        document.getElementById("timeTable").style.display = "none";
         document.getElementById("Instruction").innerHTML = 'You can display pairs of bus routes by using the dropdown menu on the map.';
     }
     else {
@@ -2298,7 +2301,7 @@ function busstop() {
 function heatMapToggle(id) {
     var legend = document.getElementById(id);
     legend.style.display = legend.style.display == "none" ? "block" : "none";
-
+    document.getElementById("timeTable").style.display = "none";
     if (heatmap.getMap() == null && legend.style.display == "block") {
         heatmap.setMap(map);
         map.setZoom(13);
@@ -2522,6 +2525,7 @@ function setMapOnAll(map) {
 function Markers() {
     if (markers[0].getMap() == null) {
         setMapOnAll(map);
+        document.getElementById("timeTable").style.display = "none";
         document.getElementById("Instruction").innerHTML = 'Click on the zipcodes on the map to get more information about each zipcode in Gainesville. <br>Red: Households below poverty line is greater then average <br>Blue: Households below poverty line is less then average ';
     }
     else {
@@ -2672,16 +2676,10 @@ function toggleDiv(id) {
     var div = document.getElementById(id);
     div.style.display = div.style.display == "none" ? "block" : "none";
     var table = document.getElementById("timeTable");
-    table.style.display = table.style.display == "none" ? "block" : "none";
-    if (div.style.display == "block") {
-        document.getElementById("Instruction").innerHTML = '';
-
-    }
-    else {
-        document.getElementById("Instruction").innerHTML = '';
-    }
+    table.style.display = div.style.display;
+    document.getElementById("Instruction").innerHTML = '';
     var div2 = document.getElementById('markerLegend');
-    div2.style.display = div2.style.display == "none" ? "block" : "none";
+    div2.style.display = div.style.display;
     directionsDisplay91.setMap(null);
     directionsDisplay92.setMap(null);
     directionsDisplay93.setMap(null);
