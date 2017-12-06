@@ -33,17 +33,18 @@ var zip32609 = { lat: 29.7935588, lng: -82.2583297 };
 var zip32641 = { lat: 29.6311155, lng: -82.2365981 };
 var zip32653 = { lat: 29.7429556, lng: -82.3777335 };
 var markers = [];
+var markerArray = []; //will contain number of stops + 1 for starting location
 //initilizes the map with all elements hidden
 function initMap() {
     var busImage = "https://www.materialui.co/materialIcons/maps/directions_bus_black_18x18.png";
     directionsService = new google.maps.DirectionsService;
-    directionsDisplay91 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
-    directionsDisplay92 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
-    directionsDisplay93 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
-    directionsDisplay94 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
-    directionsDisplay95 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
-    directionsDisplay96 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
-    directionsDisplay97 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true });
+    directionsDisplay91 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
+    directionsDisplay92 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
+    directionsDisplay93 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
+    directionsDisplay94 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
+    directionsDisplay95 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
+    directionsDisplay96 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
+    directionsDisplay97 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
     //Displays map
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
@@ -51,8 +52,34 @@ function initMap() {
         maxZoom: 15,
         center: new google.maps.LatLng(29.643742, -82.369694),
     });
-    //Time comparison onchange display
+
+    var iconBase = 'https://maps.google.com/mapfiles/kml/paddle/';
+    var icons = {
+      student: {
+        name: 'Student Apartment',
+        icon: iconBase + 'blu-stars.png'
+      },
+      regular: {
+        name: 'Regular Apartment',
+        icon: iconBase + 'orange-stars.png'
+      },
+    };
+    
+    var legend = document.getElementById('legend');
+    for (var key in icons) {
+      var type = icons[key];
+      var name = type.name;
+      var icon = type.icon;
+      var div = document.createElement('div');
+      div.innerHTML = '<img src="' + icon + '"> ' + name;
+      legend.appendChild(div);
+    }
+    
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(legend);
     var onChangeHandler = function () {
+        for (var i = 0; i < markerArray.length; i++) {
+            markerArray[i].setMap(null);
+        }
         directionsDisplay91.setMap(null);
         directionsDisplay92.setMap(null);
         directionsDisplay93.setMap(null);
@@ -2607,6 +2634,8 @@ function toggleDiv(id) {
     else {
         document.getElementById("Instruction").innerHTML = '';
     }
+    var div2 = document.getElementById('legend');
+    div2.style.display = div2.style.display == "none" ? "block" : "none";
     directionsDisplay91.setMap(null);
     directionsDisplay92.setMap(null);
     directionsDisplay93.setMap(null);
