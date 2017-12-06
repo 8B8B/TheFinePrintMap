@@ -65,7 +65,7 @@ function initMap() {
       },
     };
     
-    var legend = document.getElementById('legend');
+    var legend = document.getElementById('markerLegend');
     for (var key in icons) {
       var type = icons[key];
       var name = type.name;
@@ -2680,7 +2680,7 @@ function toggleDiv(id) {
     else {
         document.getElementById("Instruction").innerHTML = '';
     }
-    var div2 = document.getElementById('legend');
+    var div2 = document.getElementById('markerLegend');
     div2.style.display = div2.style.display == "none" ? "block" : "none";
     directionsDisplay91.setMap(null);
     directionsDisplay92.setMap(null);
