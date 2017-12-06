@@ -1,7 +1,7 @@
 #box {
   position: relative;
   width: 1000px;
-  height: 1050px;
+  height: 1130px;
 }
 
 .info {
@@ -36,10 +36,10 @@ h3 {
   top: 0;
   right: 0;
   border: 1px solid black;
-  margin-top: 20px;
+  margin-top: 30px;
   padding: 10px;
   width: 950px;
-  height: 180px;
+  height: 235px;
   margin-left: 50px;
   text-align: center;
 }
@@ -49,7 +49,6 @@ h3 {
   left: 0;
   height: 800px;
   width: 1000px;
-
   padding-left: 30px;
   z-index: 1;
 }
@@ -60,19 +59,26 @@ h3 {
   margin-top: 40px;
   margin-left: 400px;
 }
-table, th, td{
+table, td{
   border-collapse: collapse;
   border: 1px solid black;
-  padding-left: : 100px;
+  padding: 3px;
   text-align: left;
 }
+th{
+  border-collapse: collapse;
+  border: 1px solid black;
+  padding: 3px;
+  text-align: center;
+}
+
 #myTable tr:nth-child(even){background-color: #e5e5e5;}
 
 #myTable tr:hover {background-color: #ddd;}
 
 #floating-panel {
   position: absolute;
-  top: 275px;
+  top: 340px;
   right: 0px;
   z-index: 5;
   background-color: #fff;
@@ -99,7 +105,7 @@ table, th, td{
 }
 #float-panel {
   position: absolute;
-  top: 325px;
+  top: 390px;
   right: 0px;
   z-index: 5;
   background-color: #fff;
@@ -112,7 +118,7 @@ table, th, td{
 }
 #heatmapLegend {
   position: absolute;
-  top: 720px;
+  top: 787px;
   right: 0px;
   z-index: 5;
   background-color: #fff;
