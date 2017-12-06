@@ -196,6 +196,29 @@ th{
 .has-error .help-inline.error-text {
   display: inline;
 }
+/*If it cant be fix just delete everything below that has input[type=button]*/
+input[type=button] {
+  background-color:#007dc1;
+  -moz-border-radius:28px;
+  -webkit-border-radius:28px;
+  border-radius:28px;
+  border:1px solid #124d77;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:12px;
+  padding: 7px 20px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #154682;
+}
+input[type=button]:hover {
+  background-color:#0061a7;
+}  input[type=button]:active {
+  position:relative;
+  top:1px;
+}
+
 /*
 .button {
     background-color: green;
