@@ -269,7 +269,7 @@ function initMap() {
         map: map,
         label: {
             text: '32605',
-            color: 'red',
+            color: 'blue',
             fontSize: "18px"
         },
         icon: blankimage
@@ -286,7 +286,7 @@ function initMap() {
         map: map,
         label: {
             text: '32606',
-            color: 'red',
+            color: 'blue',
             fontSize: "18px"
         },
         icon: blankimage
@@ -371,7 +371,7 @@ function initMap() {
         map: map,
         label: {
             text: '32653',
-            color: 'red',
+            color: 'blue',
             fontSize: "18px"
         },
         icon: blankimage
@@ -2429,7 +2429,7 @@ function setMapOnAll(map) {
 function Markers() {
     if (markers[0].getMap() == null) {
         setMapOnAll(map);
-        document.getElementById("Instruction").innerHTML = 'Click on the zipcodes on the map to get more information about each zipcode in Gainesville. The average Percent Below Poverty Line in Florida is 15.7%, so any zip below that is statistically disadvantaged.';
+        document.getElementById("Instruction").innerHTML = 'Click on the zipcodes on the map to get more information about each zipcode in Gainesville. <br>Red: Households below poverty line is greater then average <br>Blue: Households below poverty line is less then average ';
     }
     else {
         setMapOnAll(null);
