@@ -6,7 +6,7 @@
   <body ng-app="myApp" id="myApp" ng-controller="HomeController">
     <br>
     <!--
-  box encapsulates 5 elements: h2, h3, map, heatmapLegend, and floating-panel
+  box encapsulates 5 elements: h3, map, markerLegend, timeTable, heatmapLegend, floating-panel, and float-panel
   their positions are absolute to the relative position of the box
   -->
     <div id="box">
@@ -15,7 +15,7 @@
 
       <div style="display: inline-block;">
         &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
-        <input type="button" name="Demographic Infomation" value="Demographic Infomation" id="demographic" onclick="Markers()" />        &emsp; &emsp; &emsp; &emsp;
+        <input type="button" name="Demographic Infomation" value="Demographic Infomation" id="demographic" onclick="Markers('demoTable')" />        &emsp; &emsp; &emsp; &emsp;
         <input type="button" name="Travel Time Comparison" value="Travel Time Comparison" id="comparison" onclick="toggleDiv('floating-panel')"
         /> &emsp; &emsp; &emsp; &emsp;
         <input type="button" name="Bus Routes" value="Bus Routes" id="routes" onclick="togglingDiv('float-panel')" /> &emsp;
@@ -29,6 +29,49 @@
         Please click on the buttons on top of this box to toggle overlays on the map.
       </h3>
       <div id="map"></div>
+
+      <!--Demographics Table -->
+      <div id="demoTable">
+        <script type="text/javascript">
+          document.getElementById('demoTable').style.display = 'none';
+        </script>
+        <table id="myTable">
+          <tr>
+            <th> Click on Zipcodes on Map for Info On: </th>
+          </tr>
+          <tr>
+            <td>Population</td>
+          </tr>
+          <tr>
+            <td>Median Age</td>
+          </tr>
+          <tr>
+            <td>Total Housing Units</td>
+          </tr>
+          <tr>
+            <td>Median Household Income</td>
+          </tr>
+          <tr>
+            <td>% Below Poverty Line</td>
+          </tr>
+        </table>
+      </div>
+
+
+      <!-- Drop Down Menu for Travel Time Comparisons -->
+      <div id="floating-panel">
+        <script>
+          document.getElementById('floating-panel').style.display = 'none';
+        </script>
+        <b>Start: </b>
+        <select id="start">
+          <option value="nothing">-- Select one --</option>
+          <option name = "Reitz Union" value="Reitz Student Union, Gainesville, FL 32603">Reitz Union</option>
+          <option name = "Butler Plaza" value="Butler Plaza RTS Transfer Station, FL 32607">Butler Plaza</option>
+          <option name = "Downtown Gainesville" value="2-4 W University Ave, Gainesville, FL 32601">Downtown Gainesville</option>
+          <option name = "Santa Fe College" value="Santa Fe College, Gainesville, FL 32606">Santa Fe College</option>
+        </select>
+      </div>
       <div id="markerLegend">
       <script type="text/javascript">
           var legend = document.getElementById('markerLegend').style.display = 'none';
@@ -44,7 +87,7 @@
         <script type="text/javascript">
           document.getElementById('timeTable').style.display = 'none';
         </script>
-        <table id="myTable">
+        <table id="timeCompTable">
           <tr>
             <th> Destination </th>
             <th> Time (mins) </th>
@@ -85,36 +128,7 @@
           </tr>
         </table>
       </div>
-      <!-- HeatMap Color Coded Legend -->
-      <div id="heatmapLegend">
-        <script type="text/javascript">
-          var legend = document.getElementById('heatmapLegend').style.display = 'none';
-        </script>
-        <div class='my-legend'>
-          <div class='legend-title'>HeatMap Legend</div>
-          <div class='legend-scale'>
-            <ul class='legend-labels'>
-              <li><span style='background:#009600;'></span>0-5 min</li>
-              <li><span style='background:#FCE900;'></span>5-10 min</li>
-              <li><span style='background:#E52500;'></span>10+ min</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <!-- Drop Down Menu for Travel Time Comparisons -->
-      <div id="floating-panel">
-        <script>
-          document.getElementById('floating-panel').style.display = 'none';
-        </script>
-        <b>Start: </b>
-        <select id="start">
-          <option value="nothing">-- Select one --</option>
-      <option name = "Reitz Union" value="Reitz Student Union, Gainesville, FL 32603">Reitz Union</option>
-      <option name = "Butler Plaza" value="Butler Plaza RTS Transfer Station, FL 32607">Butler Plaza</option>
-      <option name = "Downtown Gainesville" value="2-4 W University Ave, Gainesville, FL 32601">Downtown Gainesville</option>
-      <option name = "Santa Fe College" value="Santa Fe College, Gainesville, FL 32606">Santa Fe College</option>
-    </select>
-      </div>
+
       <!-- Drop Down Menu for Bus Routes -->
       <div id="float-panel">
         <script>
@@ -145,6 +159,72 @@
             </ul>
           </div>
         </div>
+      </div>
+      <div id="busRoutesTable">
+        <script type="text/javascript">
+          document.getElementById('busRoutesTable').style.display = 'none';
+        </script>
+        <table id="myTable">
+          <tr>
+            <th colspan="2"> Bus Route Pairs </th>
+          </tr>
+          <tr>
+            <td>Bus 20</td>
+            <td>Bus 62</td>
+          </tr>
+          <tr>
+            <td>Bus 75</td>
+            <td>Bus 76</td>
+          </tr>
+          <tr>
+            <td>Bus 1</td>
+            <td>Bus 7</td>
+          </tr>
+        </table>
+      </div>
+      <!-- HeatMap Color Coded Legend -->
+      <div id="heatmapLegend">
+        <script type="text/javascript">
+          var legend = document.getElementById('heatmapLegend').style.display = 'none';
+        </script>
+        <div class='my-legend'>
+          <div class='legend-title'>HeatMap Legend</div>
+          <div class='legend-scale'>
+            <ul class='legend-labels'>
+              <li><span style='background:#009600;'></span>0-5 min</li>
+              <li><span style='background:#FCE900;'></span>5-10 min</li>
+              <li><span style='background:#E52500;'></span>10+ min</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="heatTable">
+        <script type="text/javascript">
+          document.getElementById('heatTable').style.display = 'none';
+        </script>
+        <table id="myTable">
+          <tr>
+            <th> HeatMap Locations </th>
+          </tr>
+          <tr>
+            <td>Santa Fe</td>
+          </tr>
+          <tr>
+            <td>Oaks Mall</td>
+          </tr>
+          <tr>
+            <td>Butler Plaza</td>
+          </tr>
+          <tr>
+            <td>Shands Hospital</td>
+          </tr>
+          <tr>
+            <td>Downtown Gainesville</td>
+          </tr>
+          <tr>
+            <th> Legend Below </th>
+          </tr>
+        </table>
       </div>
     </div>
     <script src="code.js"></script>

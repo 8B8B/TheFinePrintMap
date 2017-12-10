@@ -7,12 +7,10 @@ body {
   width: 1000px;
   height: 1130px;
 }
-
 .info {
   line-height: 2px;
   text-align: left;
 }
-
 h2 {
   background: url(/img/cream_dust.png) repeat 0 0;
   border-radius: 15px;
@@ -27,7 +25,7 @@ h2 {
   padding-left: 30px;
   padding-right: 30px;
 }
-/*.checkboxes {
+checkboxes {
   columns: 2;
   list-style: none;
   text-align: left;
@@ -37,7 +35,7 @@ h2 {
 }
 .checkboxes li {
   margin-bottom: 15px;
-}*/
+}
 h3 {
   background: url(/img/cream_dust.png) repeat 0 0;
   border-radius: 15px;
@@ -75,7 +73,30 @@ h3 {
   margin-top: 40px;
   margin-left: 400px;
 }
-table, td{
+#myTable tr:nth-child(even){background-color: #e5e5e5;}
+
+#myTable tr:hover {background-color: #ddd;}
+
+#timeCompTable{
+  width: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 40px;
+  margin-left: 400px;
+}
+#timeCompTable tr:nth-child(even){background-color: #e5e5e5;}
+
+#timeCompTable tr:hover {background-color: #ddd;}
+
+table{
+  width: 200px;
+  border-collapse: collapse;
+  border: 1px solid black;
+  padding: 3px;
+  text-align: left;
+}
+td{
   border-collapse: collapse;
   border: 1px solid black;
   padding: 3px;
@@ -87,11 +108,6 @@ th{
   padding: 3px;
   text-align: center;
 }
-
-#myTable tr:nth-child(even){background-color: #e5e5e5;}
-
-#myTable tr:hover {background-color: #ddd;}
-
 #floating-panel {
   background: url(/img/cream_dust.png) repeat 0 0;
   position: absolute;

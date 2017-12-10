@@ -2484,7 +2484,6 @@ function busstop() {
         map.setZoom(13);
         map.setCenter(gainesville);
         document.getElementById("timeTable").style.display = "none";
-        document.getElementById("Instruction").innerHTML = 'You can display pairs of bus routes by using the dropdown menu on the map.';
     }
     else {
         document.getElementById("Instruction").innerHTML = '';
@@ -2518,13 +2517,17 @@ function busstop() {
 }
 //makes heatmap and its legend appear and disappear
 function heatMapToggle(id) {
-    var legend = document.getElementById(id);
-    legend.style.display = legend.style.display == "none" ? "block" : "none";
+    var div = document.getElementById(id);
+    div.style.display = div.style.display == "none" ? "block" : "none";
+    var table = document.getElementById("heatTable");
+    table.style.display = div.style.display;
     document.getElementById("timeTable").style.display = "none";
-    if (heatmap.getMap() == null && legend.style.display == "block") {
+    document.getElementById("busRoutesTable").style.display = "none";
+    document.getElementById('demoTable').style.display = 'none';
+    if (heatmap.getMap() == null && div.style.display == "block") {
         heatmap.setMap(map);
         map.setZoom(13);
-        document.getElementById("Instruction").innerHTML = 'The zoom will be locked if this button is clicked.<br> Check the legend on the map for travel times around these hubs.';
+        document.getElementById("Instruction").innerHTML = '';
         map.setOptions({ minZoom: 13, maxZoom: 13 });
     }
     else {
@@ -2547,7 +2550,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x = document.getElementById("myTable").rows[8].cells;
+                x = document.getElementById("timeCompTable").rows[8].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
@@ -2580,7 +2583,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x = document.getElementById("myTable").rows[2].cells;
+                x = document.getElementById("timeCompTable").rows[2].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
@@ -2613,7 +2616,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x = document.getElementById("myTable").rows[3].cells;
+                x = document.getElementById("timeCompTable").rows[3].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
@@ -2646,7 +2649,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x = document.getElementById("myTable").rows[4].cells;
+                x = document.getElementById("timeCompTable").rows[4].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
@@ -2679,7 +2682,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x = document.getElementById("myTable").rows[9].cells;
+                x = document.getElementById("timeCompTable").rows[9].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
@@ -2712,7 +2715,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x = document.getElementById("myTable").rows[5].cells;
+                x = document.getElementById("timeCompTable").rows[5].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
@@ -2745,7 +2748,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, markerAr
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 duration = response.routes[0].legs[0].duration.text;
-                x = document.getElementById("myTable").rows[6].cells;
+                x = document.getElementById("timeCompTable").rows[6].cells;
                 x[1].innerHTML = duration;
                 markerArray.push(new google.maps.Marker({
                     position: response.routes[0].legs[0].end_location,
@@ -2776,15 +2779,26 @@ function setMapOnAll(map) {
         markers[i].setMap(map);
     }
 }
-function Markers() {
+function Markers(id) {
     if (markers[0].getMap() == null) {
         setMapOnAll(map);
+        var div = document.getElementById(id);
+        div.style.display = div.style.display == "none" ? "block" : "none";
+        var table = document.getElementById("demoTable");
+        table.style.display = div.style.display;
+        document.getElementById("Instruction").innerHTML = '';
         document.getElementById("timeTable").style.display = "none";
-        document.getElementById("Instruction").innerHTML = 'Click on the zipcodes on the map to get more information about each zipcode in Gainesville. <br>Red: Households below poverty line is greater than average <br>Blue: Households below poverty line is less than average ';
+        document.getElementById("busRoutesTable").style.display = "none";
+        document.getElementById("heatTable").style.display = "none";
+        //document.getElementById("Instruction").innerHTML = 'Click on the zipcodes on the map to get more information about each zipcode in Gainesville. <br>Red: Households below poverty line is greater than average <br>Blue: Households below poverty line is less than average ';
     }
     else {
         setMapOnAll(null);
         document.getElementById("Instruction").innerHTML = '';
+        document.getElementById("timeTable").style.display = "none";
+        document.getElementById("busRoutesTable").style.display = "none";
+        document.getElementById("demoTable").style.display = "none";
+        document.getElementById("heatTable").style.display = "none";
     }
 }
 //points for heatmap
@@ -2880,7 +2894,7 @@ function getPoints() {
         { location: new google.maps.LatLng(29.6346, -82.3395), weight: 1 },
         //boardwalk apt
         { location: new google.maps.LatLng(29.6264, -82.3392), weight: 1 },
-        //right on 16th
+        //right on 16 th
         { location: new google.maps.LatLng(29.6364, -82.3351), weight: 1 },
 
 
@@ -2932,6 +2946,9 @@ function toggleDiv(id) {
     var table = document.getElementById("timeTable");
     table.style.display = div.style.display;
     document.getElementById("Instruction").innerHTML = '';
+    document.getElementById("busRoutesTable").style.display = "none";
+    document.getElementById("heatTable").style.display = "none";
+    document.getElementById('demoTable').style.display = 'none';
     var div2 = document.getElementById('markerLegend');
     div2.style.display = div.style.display;
     directionsDisplay91.setMap(null);
@@ -2947,12 +2964,13 @@ function toggleDiv(id) {
 function togglingDiv(id) {
     var div = document.getElementById(id);
     div.style.display = div.style.display == "none" ? "block" : "none";
-    if (div.style.display == "block") {
-        document.getElementById("Instruction").innerHTML = 'Click on the dropdown box under the checkboxes to display a pair of bus routes.';
-    }
-    else {
-        document.getElementById("Instruction").innerHTML = '';
-    }
+    var table = document.getElementById("busRoutesTable");
+    table.style.display = div.style.display;
+    document.getElementById("Instruction").innerHTML = '';
+    document.getElementById("heatTable").style.display = "none";
+    document.getElementById('demoTable').style.display = 'none';
+    document.getElementById('timeTable').style.display = 'none';
+ 
     directionsDisplay20.setMap(null);
     directionsDisplay20x.setMap(null);
     directionsDisplay20y.setMap(null);
