@@ -1,5 +1,9 @@
+body {
+    background: url(/img/dust_scratches.png) repeat 0 0;
+}
 #box {
   position: relative;
+  margin: auto;
   width: 1000px;
   height: 1130px;
 }
@@ -7,7 +11,21 @@
   line-height: 2px;
   text-align: left;
 }
-.checkboxes {
+h2 {
+  background: url(/img/cream_dust.png) repeat 0 0;
+  border-radius: 15px;
+  text-shadow: 1px 1px 1px #ccc;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  width: 440px;
+  height: 200px;
+  border: 1px solid black;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+checkboxes {
   columns: 2;
   list-style: none;
   text-align: left;
@@ -19,6 +37,9 @@
   margin-bottom: 15px;
 }
 h3 {
+  background: url(/img/cream_dust.png) repeat 0 0;
+  border-radius: 15px;
+  text-shadow: 1px 1px 1px #ccc;
   position: absolute;
   top: 0;
   right: 0;
@@ -26,11 +47,17 @@ h3 {
   margin-top: 30px;
   padding: 10px;
   width: 950px;
-  height: 235px;
+  height: 270px;
   margin-left: 50px;
   text-align: center;
+  vertical-align: text-bottom;
+  img {
+    margin-top:-7px;
+    vertical-align: middle;
+}
 }
 #map {
+  border-radius: 15px;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -82,6 +109,7 @@ th{
   text-align: center;
 }
 #floating-panel {
+  background: url(/img/cream_dust.png) repeat 0 0;
   position: absolute;
   top: 340px;
   right: 0px;
@@ -95,6 +123,7 @@ th{
   padding-left: 10px;
 }
 #markerLegend {
+  background: url(/img/cream_dust.png) repeat 0 0;
   font-family: Arial, sans-serif;
   background: #fff;
   padding: 10px;
@@ -109,6 +138,7 @@ th{
   vertical-align: middle;
 }
 #float-panel {
+  background: url(/img/cream_dust.png) repeat 0 0;
   position: absolute;
   top: 390px;
   right: 0px;
@@ -122,6 +152,7 @@ th{
   padding-left: 10px;
 }
 #heatmapLegend {
+  background: url(/img/cream_dust.png) repeat 0 0;
   position: absolute;
   top: 787px;
   right: 0px;
@@ -135,6 +166,7 @@ th{
   padding-left: 10px;
 }
 .my-legend .legend-title {
+  background: url(/img/cream_dust.png) repeat 0 0;
   text-align: left;
   margin-bottom: 8px;
   font-weight: bold;
@@ -169,14 +201,68 @@ th{
   top: 275px;
   left: 50%;
   z-index: 5;
-  background-color: #fff;
+  background-color: blue;
   padding: 5px;
   border: 1px solid #999;
   text-align: center;
   font-family: 'Roboto', 'sans-serif';
   line-height: 30px;
-  padding-left: 10px; 
+  padding-left: 10px;
 }
 .has-error .help-inline.error-text {
   display: inline;
 }
+input[type=button] {
+
+  -moz-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	-webkit-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #768d87), color-stop(1, #6c7c7c));
+	background:-moz-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:-webkit-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:-o-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:-ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
+	background-color:#768d87;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:12px;
+	font-weight:bold;
+	padding:7px 20px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+input[type=button]:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
+	background:-moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:-webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:-o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:-ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
+	background-color:#6c7c7c;
+}  input[type=button]:active {
+  position:relative;
+	top:1px;
+}
+
+/*
+.button {
+    background-color: green;
+    border: none;
+    color: blue;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}*/

@@ -36,7 +36,9 @@ var markers = [];
 var markerArray = []; //will contain number of stops + 1 for starting location
 //initilizes the map with all elements hidden
 function initMap() {
+    //The busImage is the bus icon for the stops.
     var busImage = "https://www.materialui.co/materialIcons/maps/directions_bus_black_18x18.png";
+    // Initiate the directionService to be able to calculate directions and create bus routes
     directionsService = new google.maps.DirectionsService;
     directionsDisplay91 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
     directionsDisplay92 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
@@ -45,6 +47,89 @@ function initMap() {
     directionsDisplay95 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
     directionsDisplay96 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
     directionsDisplay97 = new google.maps.DirectionsRenderer({ map: map, preserveViewport: true, suppressMarkers: true });
+    //Sets up bus route display
+    //Initiate a DirectionsRenderer that will handle the bus request and will be displaying the results on the map.
+    //For each direction display bus number will be assigned a route color to be show difference between each route.
+    directionsDisplay20 = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "blue" }
+    });
+    directionsDisplay20x = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "blue" }
+    });
+    directionsDisplay20y = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "blue" }
+    });
+    directionsDisplay62 = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "orange" }
+    });
+    directionsDisplay62x = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "orange" }
+    });
+    directionsDisplay62y = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "orange" }
+    });
+    directionsDisplay75 = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "grey" }
+    });
+    directionsDisplay75x = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "grey" }
+    });
+    directionsDisplay75y = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "grey" }
+    });
+    directionsDisplay75z = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "grey" }
+    });
+    directionsDisplay75w = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "grey" }
+    });
+    directionsDisplay76 = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "pink" }
+    });
+    directionsDisplay76x = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "pink" }
+    });
+    directionsDisplay76y = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "pink" }
+    });
+    directionsDisplay1 = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "green" }
+    });
+    directionsDisplay1x = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "green" }
+    });
+    directionsDisplay1y = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "green" }
+    });
+    directionsDisplay7 = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "red" }
+    });
+    directionsDisplay7x = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "red" }
+    });
+    directionsDisplay7y = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: { strokeColor: "red" }
+    });
     //Displays map
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
@@ -121,9 +206,11 @@ function initMap() {
         }
     };
         document.getElementById('start').addEventListener('change', onChangeHandler);
-        //Bus route onchange display
-        var busOnChangeHandler = function(){
+    //Bus route onchange display
+    //This function displays the pair bus stop that the user selects from drop down menu.
+    var busOnChangeHandler = function(){
         if(document.getElementById('bRoutes').value == "noneSelected"){
+            //Set all directionDisplays to null, so none of the bus routes will show on the map
             directionsDisplay20.setMap(null);
             directionsDisplay20x.setMap(null);
             directionsDisplay20y.setMap(null);
@@ -144,48 +231,56 @@ function initMap() {
             directionsDisplay7.setMap(null);
             directionsDisplay7x.setMap(null);
             directionsDisplay7y.setMap(null);
+            //By setting setBus to null will ensure the bus stops will not show on the map.
             setBus(null, busstopmarkers1);
             setBus(null, busstopmarkers2);
             setBus(null, busstopmarkers3);
         }
-        else if(document.getElementById('bRoutes').value == "bus1")
-        {
-          setBus(null, busstopmarkers1);
-          setBus(null, busstopmarkers2);
-          setBus(null, busstopmarkers3);
-          directionsDisplay20.setMap(map);
-          directionsDisplay20.setOptions( { suppressMarkers: true } );
-          directionsDisplay20x.setMap(map);
-          directionsDisplay20x.setOptions( { suppressMarkers: true } );
-          directionsDisplay20y.setMap(map);
-          directionsDisplay20y.setOptions( { suppressMarkers: true } );
-          directionsDisplay62.setMap(map);
-          directionsDisplay62.setOptions( { suppressMarkers: true } );
-          directionsDisplay62x.setMap(map);
-          directionsDisplay62x.setOptions( { suppressMarkers: true } );
-          directionsDisplay62y.setMap(map);
-          directionsDisplay62y.setOptions( { suppressMarkers: true } );
-          directionsDisplay75.setMap(null);
-          directionsDisplay75x.setMap(null);
-          directionsDisplay75y.setMap(null);
-          directionsDisplay75z.setMap(null);
-          directionsDisplay75w.setMap(null);
-          directionsDisplay76.setMap(null);
-          directionsDisplay76x.setMap(null);
-          directionsDisplay76y.setMap(null);
-          directionsDisplay1.setMap(null);
-          directionsDisplay1x.setMap(null);
-          directionsDisplay1y.setMap(null);
-          directionsDisplay7.setMap(null);
-          directionsDisplay7x.setMap(null);
-          directionsDisplay7y.setMap(null);
-          setBus(map, busstopmarkers1);
-          showingRoutesSelected(directionsService, 1);
+        else if(document.getElementById('bRoutes').value == "bus1"){
+            //By setting setBus to null will ensure the bus stops will not show on the map from previous user selections.
+            setBus(null, busstopmarkers1);
+            setBus(null, busstopmarkers2);
+            setBus(null, busstopmarkers3);
+            //Activate the direction display for the bus routes that the user selected and set the unselected buses
+            // to null to make their not displaying on the map
+            directionsDisplay20.setMap(map);
+            directionsDisplay20.setOptions( { suppressMarkers: true } );
+            directionsDisplay20x.setMap(map);
+            directionsDisplay20x.setOptions( { suppressMarkers: true } );
+            directionsDisplay20y.setMap(map);
+            directionsDisplay20y.setOptions( { suppressMarkers: true } );
+            directionsDisplay62.setMap(map);
+            directionsDisplay62.setOptions( { suppressMarkers: true } );
+            directionsDisplay62x.setMap(map);
+            directionsDisplay62x.setOptions( { suppressMarkers: true } );
+            directionsDisplay62y.setMap(map);
+            directionsDisplay62y.setOptions( { suppressMarkers: true } );
+            directionsDisplay75.setMap(null);
+            directionsDisplay75x.setMap(null);
+            directionsDisplay75y.setMap(null);
+            directionsDisplay75z.setMap(null);
+            directionsDisplay75w.setMap(null);
+            directionsDisplay76.setMap(null);
+            directionsDisplay76x.setMap(null);
+            directionsDisplay76y.setMap(null);
+            directionsDisplay1.setMap(null);
+            directionsDisplay1x.setMap(null);
+            directionsDisplay1y.setMap(null);
+            directionsDisplay7.setMap(null);
+            directionsDisplay7x.setMap(null);
+            directionsDisplay7y.setMap(null);
+            //The setBus is called to display the bus markers that the user selected
+            setBus(map, busstopmarkers1);
+            //The showingRoutesSelected is called to calculate and display the bus routes.
+            showingRoutesSelected(directionsService, 1);
         }
         else if(document.getElementById('bRoutes').value == "bus2"){
+            //By setting setBus to null will ensure the bus stops will not show on the map from previous user selections.
             setBus(null, busstopmarkers1);
             setBus(null, busstopmarkers2);
             setBus(null, busstopmarkers3);
+            //Activate the direction display for the bus routes that the user selected and set the unselected buses
+            // to null to make their not displaying on the map
             directionsDisplay20.setMap(null);
             directionsDisplay20x.setMap(null);
             directionsDisplay20y.setMap(null);
@@ -214,13 +309,18 @@ function initMap() {
             directionsDisplay76x.setOptions( { suppressMarkers: true } );
             directionsDisplay76y.setMap(map);
             directionsDisplay76y.setOptions( { suppressMarkers: true } );
+            //The setBus is called to display the bus markers that the user selected
             setBus(map, busstopmarkers2);
+            //The showingRoutesSelected is called to calculate and display the bus routes.
             showingRoutesSelected(directionsService, 2);
         }
         else if(document.getElementById('bRoutes').value == "bus3"){
+            //By setting setBus to null will ensure the bus stops will not show on the map from previous user selections.
             setBus(null, busstopmarkers1);
             setBus(null, busstopmarkers2);
             setBus(null, busstopmarkers3);
+            //Activate the direction display for the bus routes that the user selected and set the unselected buses
+            // to null to make their not displaying on the map
             directionsDisplay20.setMap(null);
             directionsDisplay20x.setMap(null);
             directionsDisplay20y.setMap(null);
@@ -247,10 +347,13 @@ function initMap() {
             directionsDisplay7x.setOptions( { suppressMarkers: true } );
             directionsDisplay7y.setMap(map);
             directionsDisplay7y.setOptions( { suppressMarkers: true } );
+            //The setBus is called to display the bus markers that the user selected
             setBus(map, busstopmarkers3);
+            //The showingRoutesSelected is called to calculate and display the bus routes.
             showingRoutesSelected(directionsService, 3);
         }
-      };
+    };
+    //Handles all the event changes from when a user selects a pair of bus stops from the drop down menu
     document.getElementById('bRoutes').addEventListener('change', busOnChangeHandler);
     //Initilize heatmap
     heatmap = new google.maps.visualization.HeatmapLayer({
@@ -428,6 +531,7 @@ function initMap() {
     markers.push(marker32641);
     markers.push(marker32653);
     setMapOnAll(null);
+    //Created json objects for each bus number that contain the bus stops code number and their latitude and longitude.
     //Bus 20 bus stops
     var bus20 = {
         "businfo": [
@@ -1637,95 +1741,7 @@ function initMap() {
             }
         ]
     };
-    //Sets up bus route display
-    directionsDisplay20 = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "blue" }
-    });
-    directionsDisplay20x = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "blue" }
-    });
-    directionsDisplay20y = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "blue" }
-    });
-    directionsDisplay62 = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "orange" }
-    });
-    directionsDisplay62x = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "orange" }
-    });
-    directionsDisplay62y = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "orange" }
-    });
-    directionsDisplay75 = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "grey" }
-    });
-    directionsDisplay75x = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "grey" }
-    });
-    directionsDisplay75y = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "grey" }
-    });
-    directionsDisplay75z = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "grey" }
-    });
-    directionsDisplay75w = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "grey" }
-    });
-    directionsDisplay76 = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "pink" }
-    });
-    directionsDisplay76x = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "pink" }
-    });
-    directionsDisplay76y = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "pink" }
-    });
-    directionsDisplay1 = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "green" }
-    });
-    directionsDisplay1x = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "green" }
-    });
-    directionsDisplay1y = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "green" }
-    });
-    directionsDisplay7 = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "red" }
-    });
-    directionsDisplay7x = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "red" }
-    });
-    directionsDisplay7y = new google.maps.DirectionsRenderer({
-        map: map,
-        polylineOptions: { strokeColor: "red" }
-    });
-    // Bus 20 Markers and bus route id 4001214
-    var busmarker20, busmarker62, busmarker75, busmarker76, busmarker1, busmarker7;
-    var busIcon = {
-        url: busImage,
-        scaledSize: new google.maps.Size(13, 13),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(0, 0)
-    };
+
     //Sets displays to map and removes unnessesary markers
     directionsDisplay20.setMap(map);
     directionsDisplay20.setOptions({ suppressMarkers: true });
@@ -1768,492 +1784,695 @@ function initMap() {
     directionsDisplay7y.setMap(map);
     directionsDisplay7y.setOptions( { suppressMarkers: true } );
     //each of these set of for loops creates markers for the bus stops and pushes them into arrays by pair
-     var x20 = 0, y20 = 0;
-        request20 = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = 0; i < bus20.businfo.length-30; i++){
-            busmarker20 =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus20.businfo[i].lat, bus20.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    //This takes the bus icon image and scale it to appropriate size on the map.
+    var busIcon = {
+        url: busImage,
+        scaledSize: new google.maps.Size(13, 13),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0, 0)
+    };
+    // Bus 20 Markers and bus route id 4001214
+    //Each of these set of for loops creates markers for the bus stops and pushes them into arrays by pair
+    //These variables will contain a portion of the bus markers in order to satisfy the waypoint limit for google maps.
+    var busmarker20,busmarker20x, busmarker20y;
+    // These variables are counters that will save the last position that a marker was added from the bus object
+    var x20 = 0, y20 = 0;
+    //Create a direction request for bus 20 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request20 = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = 0; i < bus20.businfo.length-30; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus20 object and attach busIcon as
+        // the marker icon.
+        busmarker20 =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus20.businfo[i].lat, bus20.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers1.push(busmarker20);
+        //Increase the counter to keep track of the position
+        x20++;
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == 0){request20.origin = busmarker20.getPosition();}
+        else if (i == bus20.businfo.length - 31){request20.destination = busmarker20.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request20.waypoints){request20.waypoints = [];}
+            request20.waypoints.push({
+                location: busmarker20.getPosition(),
+                stopover: true
             });
-            busstopmarkers1.push(busmarker20);
-            x20++;
-            if (i == 0) request20.origin = busmarker20.getPosition();
-            else if (i == bus20.businfo.length - 31) request20.destination = busmarker20.getPosition();
-            else{
-                 if(!request20.waypoints) request20.waypoints = [];
-                 request20.waypoints.push({
-                     location: busmarker20.getPosition(),
-                     stopover: true
-                 });
-             }
         }
-       //
-        var busmarker20x;
-        request20x = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = x20; i < bus20.businfo.length-5; i++){
-            busmarker20x =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus20.businfo[i].lat, bus20.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    //Create a direction request for bus 20 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request20x = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = x20; i < bus20.businfo.length-5; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus20 object and attach busIcon as
+        // the marker icon.
+        busmarker20x =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus20.businfo[i].lat, bus20.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers1.push(busmarker20x);
+        //Increase the counter to keep track of the position
+        y20++;
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == x20){ request20x.origin = busmarker20x.getPosition();}
+        else if (i == bus20.businfo.length - 6){ request20x.destination = busmarker20x.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request20x.waypoints){ request20x.waypoints = [];}
+            request20x.waypoints.push({
+                location: busmarker20x.getPosition(),
+                stopover: true
             });
-            busstopmarkers1.push(busmarker20x);
-            y20++;
-            if (i == x20) request20x.origin = busmarker20x.getPosition();
-            else if (i == bus20.businfo.length - 6) request20x.destination = busmarker20x.getPosition();
-            else{
-                if(!request20x.waypoints) request20x.waypoints = [];
-                request20x.waypoints.push({
-                    location: busmarker20x.getPosition(),
-                    stopover: true
-                });
-            }
         }
-          //
-        y20 = y20 +x20;
-        var busmarker20y;
-        request20y = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = y20; i < bus20.businfo.length; i++){
-            busmarker20y =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus20.businfo[i].lat, bus20.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    //This will update the current position of the bus object by adding the x20 with the count done in the previous loop.
+    y20 = y20 +x20
+    //Create a direction request for bus 20 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request20y = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = y20; i < bus20.businfo.length; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus20 object and attach busIcon as
+        // the marker icon.
+        busmarker20y =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus20.businfo[i].lat, bus20.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers1.push(busmarker20y);
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == y20){ request20y.origin = busmarker20y.getPosition();}
+        else if (i == bus20.businfo.length - 1){ request20y.destination = busmarker20y.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request20y.waypoints){ request20y.waypoints = [];}
+            request20y.waypoints.push({
+                location: busmarker20y.getPosition(),
+                stopover: true
             });
-            busstopmarkers1.push(busmarker20y);
-            if (i == y20) request20y.origin = busmarker20y.getPosition();
-            else if (i == bus20.businfo.length - 1) request20y.destination = busmarker20y.getPosition();
-            else{
-                if(!request20y.waypoints) request20y.waypoints = [];
-                request20y.waypoints.push({
-                    location: busmarker20y.getPosition(),
-                    stopover: true
-                });
-            }
         }
-        // Bus 62 markers and route id 4008446
-        var x62 = 0, y62 = 0;
-        request62 = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = 0; i < bus62.businfo.length-37; i++){
-            busmarker62 =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus62.businfo[i].lat, bus62.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    // Bus 62 markers and route id 4008446
+    //These variables will contain a portion of the bus markers in order to satisfy the waypoint limit for google maps.
+    var busmarker62, busmarker62y, busmarker62x;
+    // These variables are counters that will save the last position that a marker was added from the bus object
+    var x62 = 0, y62 = 0;
+    //Create a direction request for bus 62 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request62 = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = 0; i < bus62.businfo.length-37; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus62 object and attach busIcon as
+        // the marker icon.
+        busmarker62 =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus62.businfo[i].lat, bus62.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers1.push(busmarker62);
+        //Increase the counter to keep track of the position
+        x62++;
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == 0){request62.origin = busmarker62.getPosition();}
+        else if (i == bus62.businfo.length - 38){request62.destination = busmarker62.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request62.waypoints){ request62.waypoints = [];}
+            request62.waypoints.push({
+                location: busmarker62.getPosition(),
+                stopover: true
             });
-            busstopmarkers1.push(busmarker62);
-            x62++;
-            if (i == 0) request62.origin = busmarker62.getPosition();
-            else if (i == bus62.businfo.length - 38) request62.destination = busmarker62.getPosition();
-            else{
-                 if(!request62.waypoints) request62.waypoints = [];
-                 request62.waypoints.push({
-                     location: busmarker62.getPosition(),
-                     stopover: true
-                 });
-             }
         }
-       //
-        var busmarker62x;
-        request62x = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = x62; i < bus62.businfo.length-12; i++){
-            busmarker62x =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus62.businfo[i].lat, bus62.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    //Create a direction request for bus 62 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request62x = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = x62; i < bus62.businfo.length-12; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus62 object and attach busIcon as
+        // the marker icon.
+        busmarker62x =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus62.businfo[i].lat, bus62.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers1.push(busmarker62x);
+        //Increase the counter to keep track of the position
+        y62++;
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == x62){ request62x.origin = busmarker62x.getPosition();}
+        else if (i == bus62.businfo.length - 13){ request62x.destination = busmarker62x.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request62x.waypoints){ request62x.waypoints = [];}
+            request62x.waypoints.push({
+                location: busmarker62x.getPosition(),
+                stopover: true
             });
-            busstopmarkers1.push(busmarker62x);
-            y62++;
-            if (i == x62) request62x.origin = busmarker62x.getPosition();
-            else if (i == bus62.businfo.length - 13) request62x.destination = busmarker62x.getPosition();
-            else{
-                if(!request62x.waypoints) request62x.waypoints = [];
-                request62x.waypoints.push({
-                    location: busmarker62x.getPosition(),
-                    stopover: true
-                });
-            }
         }
-          //
-        y62 = y62 +x62;
-        var busmarker62y;
-        request62y = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = y62; i < bus62.businfo.length; i++){
-            busmarker62y =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus62.businfo[i].lat, bus62.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    //This will update the current position of the bus object by adding the x62 with the count done in the previous loop.
+    y62 = y62 +x62;
+    //Create a direction request for bus 62 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request62y = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = y62; i < bus62.businfo.length; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus62 object and attach busIcon as
+        // the marker icon.
+        busmarker62y =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus62.businfo[i].lat, bus62.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers1.push(busmarker62y);
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == y62){ request62y.origin = busmarker62y.getPosition();}
+        else if (i == bus62.businfo.length - 1){ request62y.destination = busmarker62y.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request62y.waypoints){ request62y.waypoints = [];}
+            request62y.waypoints.push({
+                location: busmarker62y.getPosition(),
+                stopover: true
             });
-            busstopmarkers1.push(busmarker62y);
-            if (i == y62) request62y.origin = busmarker62y.getPosition();
-            else if (i == bus62.businfo.length - 1) request62y.destination = busmarker62y.getPosition();
-            else{
-                if(!request62y.waypoints) request62y.waypoints = [];
-                request62y.waypoints.push({
-                    location: busmarker62y.getPosition(),
-                    stopover: true
-                });
-            }
         }
-        // Bus 75 markers and route id 4001290
-        var x75 = 0, y75 = 0, z75 = 0, w75 =0;
-        request75 = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = 0; i < bus75.businfo.length-78; i++){
-            busmarker75 =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    // Bus 75 markers and route id 4001290
+    //These variables will contain a portion of the bus markers in order to satisfy the waypoint limit for google maps.
+    var busmarker75, busmarker75x, busmarker75y, busmarker75z, busmarker75w;
+    // These variables are counters that will save the last position that a marker was added from the bus object
+    var x75 = 0, y75 = 0, z75 = 0, w75 =0;
+    //Create a direction request for bus 75 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request75 = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = 0; i < bus75.businfo.length-78; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus75 object and attach busIcon as
+        // the marker icon.
+        busmarker75 =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers2.push(busmarker75);
+        //Increase the counter to keep track of the position
+        x75++;
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == 0){ request75.origin = busmarker75.getPosition();}
+        else if (i == bus75.businfo.length - 79){ request75.destination = busmarker75.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request75.waypoints){ request75.waypoints = [];}
+            request75.waypoints.push({
+                location: busmarker75.getPosition(),
+                stopover: true
             });
-            busstopmarkers2.push(busmarker75);
-            x75++;
-            if (i == 0) request75.origin = busmarker75.getPosition();
-            else if (i == bus75.businfo.length - 79) request75.destination = busmarker75.getPosition();
-            else{
-                 if(!request75.waypoints) request75.waypoints = [];
-                 request75.waypoints.push({
-                     location: busmarker75.getPosition(),
-                     stopover: true
-                 });
-             }
         }
-       //
-        var busmarker75x;
-        request75x = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = x75; i < bus75.businfo.length-53; i++){
-            busmarker75x =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    //Create a direction request for bus 75 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request75x = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = x75; i < bus75.businfo.length-53; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus75 object and attach busIcon as
+        // the marker icon.
+        busmarker75x =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers2.push(busmarker75x);
+        //Increase the counter to keep track of the position
+        y75++;
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == x75){ request75x.origin = busmarker75x.getPosition();}
+        else if (i == bus75.businfo.length - 54){ request75x.destination = busmarker75x.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request75x.waypoints){ request75x.waypoints = [];}
+            request75x.waypoints.push({
+                location: busmarker75x.getPosition(),
+                stopover: true
             });
-            busstopmarkers2.push(busmarker75x);
-            y75++;
-            if (i == x75) request75x.origin = busmarker75x.getPosition();
-            else if (i == bus75.businfo.length - 54) request75x.destination = busmarker75x.getPosition();
-            else{
-                if(!request75x.waypoints) request75x.waypoints = [];
-                request75x.waypoints.push({
-                    location: busmarker75x.getPosition(),
-                    stopover: true
-                });
-            }
         }
-          //
-        y75 = y75 +x75;
-        var busmarker75y;
-        request75y = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = y75; i < bus75.businfo.length-28; i++){
-            busmarker75y =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    //This will update the current position of the bus object by adding the x75 with the count done in the previous loop.
+    y75 = y75 +x75;
+    //Create a direction request for bus 75 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request75y = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = y75; i < bus75.businfo.length-28; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus75 object and attach busIcon as
+        // the marker icon.
+        busmarker75y =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers2.push(busmarker75y);
+        //Increase the counter to keep track of the position
+        z75++;
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == y75){ request75y.origin = busmarker75y.getPosition();}
+        else if (i == bus75.businfo.length - 29){ request75y.destination = busmarker75y.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request75y.waypoints){ request75y.waypoints = [];}
+            request75y.waypoints.push({
+                location: busmarker75y.getPosition(),
+                stopover: true
             });
-            busstopmarkers2.push(busmarker75y);
-            z75++;
-            if (i == y75) request75y.origin = busmarker75y.getPosition();
-            else if (i == bus75.businfo.length - 29) request75y.destination = busmarker75y.getPosition();
-            else{
-                if(!request75y.waypoints) request75y.waypoints = [];
-                request75y.waypoints.push({
-                    location: busmarker75y.getPosition(),
-                    stopover: true
-                });
-            }
         }
-        z75 = y75 +z75;
-        var busmarker75z;
-        request75z = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = z75; i < bus75.businfo.length-3; i++){
-            busmarker75z =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    //This will update the current position of the bus object by adding the y75 with the count done in the previous loop.
+    z75 = y75 +z75;
+    //Create a direction request for bus 75 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request75z = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = z75; i < bus75.businfo.length-3; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus75 object and attach busIcon as
+        // the marker icon.
+        busmarker75z =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers2.push(busmarker75z);
+        //Increase the counter to keep track of the position
+        w75++;
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == z75){ request75z.origin = busmarker75z.getPosition();}
+        else if (i == bus75.businfo.length - 4){ request75z.destination = busmarker75z.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request75z.waypoints){ request75z.waypoints = [];}
+            request75z.waypoints.push({
+                location: busmarker75z.getPosition(),
+                stopover: true
             });
-            busstopmarkers2.push(busmarker75z);
-            w75++;
-            if (i == z75) request75z.origin = busmarker75z.getPosition();
-            else if (i == bus75.businfo.length - 4) request75z.destination = busmarker75z.getPosition();
-            else{
-                if(!request75z.waypoints) request75z.waypoints = [];
-                request75z.waypoints.push({
-                    location: busmarker75z.getPosition(),
-                    stopover: true
-                });
-            }
         }
-        w75 = z75 +w75;
-          var busmarker75w;
-          request75w = {
-              travelMode: google.maps.TravelMode.DRIVING
-          };
-          for(i = w75; i < bus75.businfo.length; i++){
-              busmarker75w =  new google.maps.Marker({
-                  position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
-                  map: map,
-                  icon: busIcon
-              });
-              busstopmarkers2.push(busmarker75w);
-              if (i == w75) request75w.origin = busmarker75w.getPosition();
-              else if (i == bus75.businfo.length - 1) request75w.destination = busmarker75w.getPosition();
-              else{
-                  if(!request75w.waypoints) request75w.waypoints = [];
-                  request75w.waypoints.push({
-                      location: busmarker75w.getPosition(),
-                      stopover: true
-                  });
-              }
-          }
-        // Bus 76 markers and route id 4008444
-        var x76 = 0, y76 = 0;
-        request76 = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = 0; i < bus76.businfo.length-29; i++){
-            busmarker76 =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus76.businfo[i].lat, bus76.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    //This will update the current position of the bus object by adding the z75 with the count done in the previous loop.
+    w75 = z75 +w75;
+    //Create a direction request for bus 75 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request75w = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = w75; i < bus75.businfo.length; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus75 object and attach busIcon as
+        // the marker icon.
+        busmarker75w =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus75.businfo[i].lat, bus75.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers2.push(busmarker75w);
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == w75){ request75w.origin = busmarker75w.getPosition();}
+        else if (i == bus75.businfo.length - 1){ request75w.destination = busmarker75w.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request75w.waypoints){request75w.waypoints = [];}
+            request75w.waypoints.push({
+                location: busmarker75w.getPosition(),
+                stopover: true
             });
-            busstopmarkers2.push(busmarker76);
-            x76++;
-            if (i == 0) request76.origin = busmarker76.getPosition();
-            else if (i == bus76.businfo.length - 30) request76.destination = busmarker76.getPosition();
-            else{
-                if(!request76.waypoints) request76.waypoints = [];
-                request76.waypoints.push({
-                    location: busmarker76.getPosition(),
-                    stopover: true
-                });
-            }
         }
-       //
-        var busmarker76x;
-        request76x = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = x76; i < bus76.businfo.length-4; i++){
-            busmarker76x =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus76.businfo[i].lat, bus76.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    // Bus 76 markers and route id 4008444
+    //These variables will contain a portion of the bus markers in order to satisfy the waypoint limit for google maps.
+    var busmarker76, busmarker76x, busmarker76y;
+    // These variables are counters that will save the last position that a marker was added from the bus object
+    var x76 = 0, y76 = 0;
+    //Create a direction request for bus 76 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request76 = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = 0; i < bus76.businfo.length-29; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus76 object and attach busIcon as
+        // the marker icon.
+        busmarker76 =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus76.businfo[i].lat, bus76.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers2.push(busmarker76);
+        //Increase the counter to keep track of the position
+        x76++;
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == 0){ request76.origin = busmarker76.getPosition();}
+        else if (i == bus76.businfo.length - 30){ request76.destination = busmarker76.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request76.waypoints){ request76.waypoints = [];}
+            request76.waypoints.push({
+                location: busmarker76.getPosition(),
+                stopover: true
             });
-            busstopmarkers2.push(busmarker76x);
-            y76++;
-            if (i == x76) request76x.origin = busmarker76x.getPosition();
-            else if (i == bus76.businfo.length - 5) request76x.destination = busmarker76x.getPosition();
-            else{
-                if(!request76x.waypoints) request76x.waypoints = [];
-                request76x.waypoints.push({
-                    location: busmarker76x.getPosition(),
-                    stopover: true
-                });
-            }
         }
-          //
-        y76 = y76 +x76;
-        var busmarker76y;
-        request76y = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-
-        for(i = y76; i < bus76.businfo.length; i++){
-            busmarker76y =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus76.businfo[i].lat, bus76.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    //Create a direction request for bus 76 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request76x = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = x76; i < bus76.businfo.length-4; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus76 object and attach busIcon as
+        // the marker icon.
+        busmarker76x =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus76.businfo[i].lat, bus76.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers2.push(busmarker76x);
+        //Increase the counter to keep track of the position
+        y76++;
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == x76){ request76x.origin = busmarker76x.getPosition();}
+        else if (i == bus76.businfo.length - 5){ request76x.destination = busmarker76x.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request76x.waypoints){ request76x.waypoints = [];}
+            request76x.waypoints.push({
+                location: busmarker76x.getPosition(),
+                stopover: true
             });
-            busstopmarkers2.push(busmarker76y);
-            if (i == y76) request76y.origin = busmarker76y.getPosition();
-            else if (i == bus76.businfo.length - 1) request76y.destination = busmarker76y.getPosition();
-            else{
-                if(!request76y.waypoints) request76y.waypoints = [];
-                request76y.waypoints.push({
-                    location: busmarker76y.getPosition(),
-                    stopover: true
-                });
-            }
         }
-        // Bus 1 markers and route id 4001150
-        var x1 = 0, y1 = 0;
-        request1 = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = 0; i < bus1.businfo.length-37; i++){
-            busmarker1 =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus1.businfo[i].lat, bus1.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    //This will update the current position of the bus object by adding the x76 with the count done in the previous loop.
+    y76 = y76 +x76;
+    //Create a direction request for bus 76 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request76y = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = y76; i < bus76.businfo.length; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus76 object and attach busIcon as
+        // the marker icon.
+        busmarker76y =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus76.businfo[i].lat, bus76.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers2.push(busmarker76y);
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == y76){ request76y.origin = busmarker76y.getPosition();}
+        else if (i == bus76.businfo.length - 1){ request76y.destination = busmarker76y.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request76y.waypoints){ request76y.waypoints = [];}
+            request76y.waypoints.push({
+                location: busmarker76y.getPosition(),
+                stopover: true
             });
-            busstopmarkers3.push(busmarker1);
-            x1++;
-            if (i == 0) request1.origin = busmarker1.getPosition();
-            else if (i == bus1.businfo.length - 38) request1.destination = busmarker1.getPosition();
-            else{
-                if(!request1.waypoints) request1.waypoints = [];
-                request1.waypoints.push({
-                    location: busmarker1.getPosition(),
-                    stopover: true
-                });
-            }
         }
-       //
-        var busmarker1x;
-        request1x = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = x1-1; i < bus1.businfo.length-13; i++){
-            busmarker1x =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus1.businfo[i].lat, bus1.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    // Bus 1 markers and route id 4001150
+    //These variables will contain a portion of the bus markers in order to satisfy the waypoint limit for google maps.
+    var busmarker1, busmarker1x, busmarker1y;
+    // These variables are counters that will save the last position that a marker was added from the bus object
+    var x1 = 0, y1 = 0;
+    //Create a direction request for bus 1 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request1 = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = 0; i < bus1.businfo.length-37; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus1 object and attach busIcon as
+        // the marker icon.
+        busmarker1 =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus1.businfo[i].lat, bus1.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers3.push(busmarker1);
+        //Increase the counter to keep track of the position
+        x1++;
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == 0) request1.origin = busmarker1.getPosition();
+        else if (i == bus1.businfo.length - 38) request1.destination = busmarker1.getPosition();
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request1.waypoints) request1.waypoints = [];
+            request1.waypoints.push({
+                location: busmarker1.getPosition(),
+                stopover: true
             });
-            busstopmarkers3.push(busmarker1x);
-            y1++;
-            if (i == x1-1) request1x.origin = busmarker1x.getPosition();
-            else if (i == bus1.businfo.length - 14) request1x.destination = busmarker1x.getPosition();
-            else{
-                if(!request1x.waypoints) request1x.waypoints = [];
-                request1x.waypoints.push({
-                    location: busmarker1x.getPosition(),
-                    stopover: true
-                });
-            }
         }
-          //
-        y1 = y1 +x1;
-        var busmarker1y;
-        request1y = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = y1; i < bus1.businfo.length; i++){
-            busmarker1y =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus1.businfo[i].lat, bus1.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    //Create a direction request for bus 1 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request1x = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = x1-1; i < bus1.businfo.length-13; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus1 object and attach busIcon as
+        // the marker icon.
+        busmarker1x =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus1.businfo[i].lat, bus1.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers3.push(busmarker1x);
+        //Increase the counter to keep track of the position
+        y1++;
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == x1-1){ request1x.origin = busmarker1x.getPosition();}
+        else if (i == bus1.businfo.length - 14){ request1x.destination = busmarker1x.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request1x.waypoints){ request1x.waypoints = [];}
+            request1x.waypoints.push({
+                location: busmarker1x.getPosition(),
+                stopover: true
             });
-            busstopmarkers3.push(busmarker1y);
-            if (i == y1) request1y.origin = busmarker1y.getPosition();
-            else if (i == bus1.businfo.length - 1) request1y.destination = busmarker1y.getPosition();
-            else{
-                if(!request1y.waypoints) request1y.waypoints = [];
-                request1y.waypoints.push({
-                    location: busmarker1y.getPosition(),
-                    stopover: true
-                });
-            }
         }
-        // Bus 7 markers and route id 4001286
-        var x7 = 0, y7 = 0;
-        request7 = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = 0; i < bus7.businfo.length-37; i++){
-            busmarker7 =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus7.businfo[i].lat, bus7.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    //This will update the current position of the bus object by adding the x1 with the count done in the previous loop.
+    y1 = y1 +x1;
+    //Create a direction request for bus 1 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request1y = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = y1; i < bus1.businfo.length; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus1 object and attach busIcon as
+        // the marker icon.
+        busmarker1y =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus1.businfo[i].lat, bus1.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers3.push(busmarker1y);
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == y1){ request1y.origin = busmarker1y.getPosition();}
+        else if (i == bus1.businfo.length - 1){ request1y.destination = busmarker1y.getPosition();}
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request1y.waypoints) request1y.waypoints = [];
+            request1y.waypoints.push({
+                location: busmarker1y.getPosition(),
+                stopover: true
             });
-            busstopmarkers3.push(busmarker7);
-            x7++;
-            if (i == 0) request7.origin = busmarker7.getPosition();
-            else if (i == bus7.businfo.length - 38) request7.destination = busmarker7.getPosition();
-            else{
-                if(!request7.waypoints) request7.waypoints = [];
-                request7.waypoints.push({
-                    location: busmarker7.getPosition(),
-                    stopover: true
-                });
-            }
         }
-       //
-        var busmarker7x;
-        request7x = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = x7; i < bus7.businfo.length-12; i++){
-            busmarker7x =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus7.businfo[i].lat, bus7.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    // Bus 7 markers and route id 4001286
+    //These variables will contain a portion of the bus markers in order to satisfy the waypoint limit for google maps.
+    var busmarker7, busmarker7x, busmarker7y;
+    // These variables are counters that will save the last position that a marker was added from the bus object
+    var x7 = 0, y7 = 0;
+    //Create a direction request for bus 7 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request7 = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = 0; i < bus7.businfo.length-37; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus7 object and attach busIcon as
+        // the marker icon.
+        busmarker7 =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus7.businfo[i].lat, bus7.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers3.push(busmarker7);
+        //Increase the counter to keep track of the position
+        x7++;
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == 0) request7.origin = busmarker7.getPosition();
+        else if (i == bus7.businfo.length - 38) request7.destination = busmarker7.getPosition();
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request7.waypoints) request7.waypoints = [];
+            request7.waypoints.push({
+                location: busmarker7.getPosition(),
+                stopover: true
             });
-            busstopmarkers3.push(busmarker7x);
-            y7++;
-            if (i == x7) request7x.origin = busmarker7x.getPosition();
-            else if (i == bus7.businfo.length - 13) request7x.destination = busmarker7x.getPosition();
-            else{
-                if(!request7x.waypoints) request7x.waypoints = [];
-                request7x.waypoints.push({
-                    location: busmarker7x.getPosition(),
-                    stopover: true
-                });
-            }
         }
-          //
-        y7 = y7 +x7;
-        var busmarker7y;
-        request7y = {
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        for(i = y7; i < bus7.businfo.length; i++){
-            busmarker7y =  new google.maps.Marker({
-                position: new google.maps.LatLng(bus7.businfo[i].lat, bus7.businfo[i].lng),
-                map: map,
-                icon: busIcon
+    }
+    //Create a direction request for bus 7 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request7x = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = x7; i < bus7.businfo.length-12; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus7 object and attach busIcon as
+        // the marker icon.
+        busmarker7x =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus7.businfo[i].lat, bus7.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers3.push(busmarker7x);
+        //Increase the counter to keep track of the position
+        y7++;
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == x7) request7x.origin = busmarker7x.getPosition();
+        else if (i == bus7.businfo.length - 13) request7x.destination = busmarker7x.getPosition();
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request7x.waypoints) request7x.waypoints = [];
+            request7x.waypoints.push({
+                location: busmarker7x.getPosition(),
+                stopover: true
             });
-            busstopmarkers3.push(busmarker7y);
-            if (i == y7) request7y.origin = busmarker7y.getPosition();
-            else if (i == bus7.businfo.length - 1) request7y.destination = busmarker7y.getPosition();
-            else{
-                if(!request7y.waypoints) request7y.waypoints = [];
-                request7y.waypoints.push({
-                    location: busmarker7y.getPosition(),
-                    stopover: true
-                });
-            }
         }
-        //makes all bus stops and routes disappear
-        setBus(null, busstopmarkers1);
-        setBus(null, busstopmarkers2);
-        setBus(null, busstopmarkers3);
-        directionsDisplay20.setMap(null);
-        directionsDisplay20x.setMap(null);
-        directionsDisplay20y.setMap(null);
-        directionsDisplay62.setMap(null);
-        directionsDisplay62x.setMap(null);
-        directionsDisplay62y.setMap(null);
-        directionsDisplay75.setMap(null);
-        directionsDisplay75x.setMap(null);
-        directionsDisplay75y.setMap(null);
-        directionsDisplay75z.setMap(null);
-        directionsDisplay75w.setMap(null);
-        directionsDisplay76.setMap(null);
-        directionsDisplay76x.setMap(null);
-        directionsDisplay76y.setMap(null);
-        directionsDisplay1.setMap(null);
-        directionsDisplay1x.setMap(null);
-        directionsDisplay1y.setMap(null);
-        directionsDisplay7.setMap(null);
-        directionsDisplay7x.setMap(null);
-        directionsDisplay7y.setMap(null);
-      }
-//makes bus stops appear and disappear
+    }
+    //This will update the current position of the bus object by adding the x1 with the count done in the previous loop.
+    y7 = y7 +x7;
+    //Create a direction request for bus 7 that will be called by direction service to produce a response in order to
+    // display the result on the map.
+    request7y = {
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    //The for loop will store the bus stop location into a bus marker array
+    for(i = y7; i < bus7.businfo.length; i++){
+        //The marker variable is adding the bus stop coordinates that is from the bus7 object and attach busIcon as
+        // the marker icon.
+        busmarker7y =  new google.maps.Marker({
+            position: new google.maps.LatLng(bus7.businfo[i].lat, bus7.businfo[i].lng),
+            map: map,
+            icon: busIcon
+        });
+        //Adds the bus marker array to another marker array that will help display the bus stops that the user selects.
+        busstopmarkers3.push(busmarker7y);
+        //The if and else statement will add the starting and ending point of the bus markers in order to calculate the
+        // the bus route
+        if (i == y7) request7y.origin = busmarker7y.getPosition();
+        else if (i == bus7.businfo.length - 1) request7y.destination = busmarker7y.getPosition();
+        else{
+            //This if statement will add the bus marker stop as a waypoint to help create the bus route
+            if(!request7y.waypoints) request7y.waypoints = [];
+            request7y.waypoints.push({
+                location: busmarker7y.getPosition(),
+                stopover: true
+            });
+        }
+    }
+    //makes all bus stops and routes disappear
+    setBus(null, busstopmarkers1);
+    setBus(null, busstopmarkers2);
+    setBus(null, busstopmarkers3);
+    directionsDisplay20.setMap(null);
+    directionsDisplay20x.setMap(null);
+    directionsDisplay20y.setMap(null);
+    directionsDisplay62.setMap(null);
+    directionsDisplay62x.setMap(null);
+    directionsDisplay62y.setMap(null);
+    directionsDisplay75.setMap(null);
+    directionsDisplay75x.setMap(null);
+    directionsDisplay75y.setMap(null);
+    directionsDisplay75z.setMap(null);
+    directionsDisplay75w.setMap(null);
+    directionsDisplay76.setMap(null);
+    directionsDisplay76x.setMap(null);
+    directionsDisplay76y.setMap(null);
+    directionsDisplay1.setMap(null);
+    directionsDisplay1x.setMap(null);
+    directionsDisplay1y.setMap(null);
+    directionsDisplay7.setMap(null);
+    directionsDisplay7x.setMap(null);
+    directionsDisplay7y.setMap(null);
+}
+//The function below will take in a bus marker array and set each marker to display on the map.
+//Makes the bus stops appear and disappear.
 function setBus(map, busarray) {
     for (var i = 0; i < busarray.length; i++) {
         busarray[i].setMap(map);
@@ -2675,7 +2894,7 @@ function getPoints() {
         { location: new google.maps.LatLng(29.6346, -82.3395), weight: 1 },
         //boardwalk apt
         { location: new google.maps.LatLng(29.6264, -82.3392), weight: 1 },
-        //right on 16th
+        //right on 16 th
         { location: new google.maps.LatLng(29.6364, -82.3351), weight: 1 },
 
 
