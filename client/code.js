@@ -80,6 +80,9 @@ function initMap() {
         for (var i = 0; i < markerArray.length; i++) {
             markerArray[i].setMap(null);
         }
+        document.getElementById("busRoutesTable").style.display = "none";
+       document.getElementById("heatTable").style.display = "none";
+        document.getElementById('demoTable').style.display = 'none';
         directionsDisplay91.setMap(null);
         directionsDisplay92.setMap(null);
         directionsDisplay93.setMap(null);
