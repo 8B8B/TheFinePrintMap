@@ -2,10 +2,12 @@ body {
     background: url(/img/dust_scratches.png) repeat 0 0;
 }
 #box {
-  position: relative;
+  position: absolute;
   margin: auto;
   width: 1000px;
   height: 1130px;
+  zoom: .5;
+}
 }
 .info {
   line-height: 2px;
